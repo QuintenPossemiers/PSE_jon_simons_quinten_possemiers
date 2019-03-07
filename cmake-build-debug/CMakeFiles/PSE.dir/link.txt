@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/PSE.dir/main.cpp.o CMakeFiles/PSE.dir/Voertuig.cpp.o CMakeFiles/PSE.dir/Baan.cpp.o  -o PSE 

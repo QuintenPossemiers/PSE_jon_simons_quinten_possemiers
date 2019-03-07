@@ -3,4 +3,4 @@ project(untitled)
 set(CMAKE_CXX_STANDARD 14)
 
 
-add_executable(untitled main.cpp tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp Baan.cpp Baan.h Voertuig.cpp Voertuig.h parser.cpp)
+add_executable(untitled tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp Baan.cpp Baan.h Voertuig.cpp Voertuig.h parser.cpp)

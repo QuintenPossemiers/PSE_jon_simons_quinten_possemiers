@@ -48,10 +48,10 @@ RM = /opt/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/student/CLionProjects/PSE
+CMAKE_SOURCE_DIR = /home/student/Desktop/PSE_jon_simons_quinten_possemiers
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/student/CLionProjects/PSE/cmake-build-debug
+CMAKE_BINARY_DIR = /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/CLionProjects/PSE/cmake-build-debug/CMakeFiles /home/student/CLionProjects/PSE/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/CLionProjects/PSE/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,32 +177,32 @@ Voertuig.cpp.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Voertuig.cpp.s
 .PHONY : Voertuig.cpp.s
 
-main.o: main.cpp.o
+parser.o: parser.cpp.o
 
-.PHONY : main.o
+.PHONY : parser.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.o
-.PHONY : main.cpp.o
+parser.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/parser.cpp.o
+.PHONY : parser.cpp.o
 
-main.i: main.cpp.i
+parser.i: parser.cpp.i
 
-.PHONY : main.i
+.PHONY : parser.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.i
-.PHONY : main.cpp.i
+parser.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/parser.cpp.i
+.PHONY : parser.cpp.i
 
-main.s: main.cpp.s
+parser.s: parser.cpp.s
 
-.PHONY : main.s
+.PHONY : parser.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.s
-.PHONY : main.cpp.s
+parser.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/parser.cpp.s
+.PHONY : parser.cpp.s
 
 tinystr.o: tinystr.cpp.o
 
@@ -327,9 +327,9 @@ help:
 	@echo "... Voertuig.o"
 	@echo "... Voertuig.i"
 	@echo "... Voertuig.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
 	@echo "... tinystr.o"
 	@echo "... tinystr.i"
 	@echo "... tinystr.s"
