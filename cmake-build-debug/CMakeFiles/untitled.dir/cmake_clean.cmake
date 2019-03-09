@@ -1,13 +1,17 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/untitled.dir/tinystr.cpp.o"
-  "CMakeFiles/untitled.dir/tinyxml.cpp.o"
-  "CMakeFiles/untitled.dir/tinyxmlerror.cpp.o"
-  "CMakeFiles/untitled.dir/tinyxmlparser.cpp.o"
-  "CMakeFiles/untitled.dir/Baan.cpp.o"
-  "CMakeFiles/untitled.dir/Voertuig.cpp.o"
-  "CMakeFiles/untitled.dir/parser.cpp.o"
+  "CMakeFiles/untitled.dir/TinyXml/tinystr.cpp.obj"
+  "CMakeFiles/untitled.dir/TinyXml/tinyxml.cpp.obj"
+  "CMakeFiles/untitled.dir/TinyXml/tinyxmlerror.cpp.obj"
+  "CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.obj"
+  "CMakeFiles/untitled.dir/main.cpp.obj"
+  "CMakeFiles/untitled.dir/Model/SimulationModel.cpp.obj"
+  "CMakeFiles/untitled.dir/Model/Road.cpp.obj"
+  "CMakeFiles/untitled.dir/Model/Vehicle.cpp.obj"
+  "CMakeFiles/untitled.dir/Model/Parser.cpp.obj"
   "untitled.pdb"
-  "untitled"
+  "untitled.exe"
+  "untitled.exe.manifest"
+  "libuntitled.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

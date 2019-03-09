@@ -1,4 +1,4 @@
-<test>
+<root>
     <BAAN>
         <naam>E19</naam>
         <snelheidslimiet>100</snelheidslimiet>
@@ -8,7 +8,7 @@
         <type>AUTO</type>
         <nummerplaat>1THK180</nummerplaat>
         <baan>E19</baan>
-        <positie>10</positie>
+        <positie>100</positie>
         <snelheid>0
         </snelheid>
     </VOERTUIG>
@@ -20,4 +20,4 @@
         <snelheid>0
         </snelheid>
     </VOERTUIG>
-</test>
+</root>
