@@ -15,10 +15,8 @@ class Parser {
 
     /**section reserved for variables*/
 private:
+    const char *xml_path;
 
-    TiXmlDocument doc;
-
-    TiXmlElement *root;
 
     /**section reserved for the constructor and destructor
      *
