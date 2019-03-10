@@ -22,6 +22,8 @@ must not be misrepresented as being the original software.
 distribution.
 */
 
+#include<stdexcept>
+
 #include <ctype.h>
 
 #ifdef TIXML_USE_STL
@@ -906,6 +908,7 @@ const char* TiXmlElement::GetText() const
 			return childText->Value();
 		}
 	}
+	throw std::invalid_argument("");
 	return 0;
 }
 

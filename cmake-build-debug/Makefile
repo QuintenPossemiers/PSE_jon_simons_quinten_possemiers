@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers_v2
+CMAKE_SOURCE_DIR = C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers_v2\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers_v2\cmake-build-debug\CMakeFiles C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers_v2\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers\cmake-build-debug\CMakeFiles C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers_v2\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Quinten\Desktop\PSE_jon_simons_quinten_possemiers\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -121,6 +121,33 @@ untitled: cmake_check_build_system
 untitled/fast:
 	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
+
+Model/Exeptions/ParsingExc.obj: Model/Exeptions/ParsingExc.cpp.obj
+
+.PHONY : Model/Exeptions/ParsingExc.obj
+
+# target to build an object file
+Model/Exeptions/ParsingExc.cpp.obj:
+	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.obj
+.PHONY : Model/Exeptions/ParsingExc.cpp.obj
+
+Model/Exeptions/ParsingExc.i: Model/Exeptions/ParsingExc.cpp.i
+
+.PHONY : Model/Exeptions/ParsingExc.i
+
+# target to preprocess a source file
+Model/Exeptions/ParsingExc.cpp.i:
+	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.i
+.PHONY : Model/Exeptions/ParsingExc.cpp.i
+
+Model/Exeptions/ParsingExc.s: Model/Exeptions/ParsingExc.cpp.s
+
+.PHONY : Model/Exeptions/ParsingExc.s
+
+# target to generate assembly for a file
+Model/Exeptions/ParsingExc.cpp.s:
+	$(MAKE) -f CMakeFiles\untitled.dir\build.make CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.s
+.PHONY : Model/Exeptions/ParsingExc.cpp.s
 
 Model/Parser.obj: Model/Parser.cpp.obj
 
@@ -374,6 +401,9 @@ help:
 	@echo ... edit_cache
 	@echo ... untitled
 	@echo ... rebuild_cache
+	@echo ... Model/Exeptions/ParsingExc.obj
+	@echo ... Model/Exeptions/ParsingExc.i
+	@echo ... Model/Exeptions/ParsingExc.s
 	@echo ... Model/Parser.obj
 	@echo ... Model/Parser.i
 	@echo ... Model/Parser.s

@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled.dir/Model/Road.cpp.obj"
   "CMakeFiles/untitled.dir/Model/Vehicle.cpp.obj"
   "CMakeFiles/untitled.dir/Model/Parser.cpp.obj"
+  "CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.obj"
   "untitled.pdb"
   "untitled.exe"
   "untitled.exe.manifest"

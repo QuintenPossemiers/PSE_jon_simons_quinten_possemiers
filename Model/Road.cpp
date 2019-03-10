@@ -4,13 +4,14 @@
 
 #include "Road.h"
 #include <stdexcept>
+#include "Exeptions/AllExceptions.h"
 
 Road::Road(const std::string &name, unsigned int speed_limit, unsigned int length) :
         name(name),
         speed_limit(speed_limit),
         length(length) {
-    if (name.length() == 0 or length == 0 or speed_limit == 0) throw std::invalid_argument("");
-    //todo check this throw!
+    if (length == 0)throw ParsingExc(ParsingErr::road_length_null);
+    if (speed_limit == 0)throw ParsingExc(ParsingErr::road_speed_limit_null);
 }
 
 const std::string &Road::getName() const {

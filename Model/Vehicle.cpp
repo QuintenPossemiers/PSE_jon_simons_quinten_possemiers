@@ -1,7 +1,7 @@
 //
 // Created by Quinten on 3/9/2019.
 //
-
+#include "Exeptions/AllExceptions.h"
 #include "Vehicle.h"
 #include <stdexcept>
 #include <iostream>
@@ -60,10 +60,9 @@ Vehicle::Vehicle(unsigned int speed, unsigned int position, const std::string &l
                                                                 license_plate(license_plate),
                                                                 type(type),
                                                                 current_road(current_road) {
-if (current_road->getLength() < position or current_road->getSpeed_limit()<speed)
-    throw std::invalid_argument("");
-    //todo check this throw!
 
+    if (current_road->getLength() < position) throw ParsingExc(ParsingErr::vehicle_illegal_position);
+    if (current_road->getSpeed_limit() < speed) throw ParsingExc(ParsingErr::vehicle_speed_error);
 }
 
 
