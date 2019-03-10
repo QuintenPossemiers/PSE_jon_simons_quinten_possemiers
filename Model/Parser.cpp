@@ -4,8 +4,7 @@
 #include "Parser.h"
 #include "Exeptions/AllExceptions.h"
 
-Parser::Parser(const char *xml_path) :xml_path(xml_path){
-}
+Parser::Parser(const char *xml_path) :xml_path(xml_path){}
 
 void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
 
