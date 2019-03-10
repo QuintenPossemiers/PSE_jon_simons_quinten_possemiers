@@ -65,4 +65,12 @@ Vehicle::Vehicle(unsigned int speed, unsigned int position, const std::string &l
     if (current_road->getSpeed_limit() < speed) throw ParsingExc(ParsingErr::vehicle_speed_error);
 }
 
+std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle) {
+    os << "Voertuig: " << vehicle.type << " (" + vehicle.license_plate << ")" << std::endl;
+    os << " --> baan    : " << vehicle.current_road->getName() << std::endl;
+    os << " --> positie : " << vehicle.position << std::endl;
+    os << " --> snelheid: " << vehicle.speed << std::endl;
+    return os;
+}
+
 

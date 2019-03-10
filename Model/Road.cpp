@@ -45,3 +45,10 @@ bool Road::operator==(const Road &rhs) const {
 bool Road::operator!=(const Road &rhs) const {
     return !(rhs == *this);
 }
+
+std::ostream &operator<<(std::ostream &os, const Road &road) {
+    os << "Baan: " << road.name << std::endl;
+    os << " --> snelheidslimiet  : " << road.speed_limit << std::endl;
+    os << " --> lengte           : " << road.length << std::endl;
+    return os;
+}

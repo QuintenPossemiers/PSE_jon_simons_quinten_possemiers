@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 #include "Road.h"
 
 class Vehicle {
@@ -42,6 +43,8 @@ public:
 
     /**section for overloading operators*/
 public:
+    friend std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle);
+
     bool operator==(const Vehicle &rhs) const;
 
     bool operator!=(const Vehicle &rhs) const;
