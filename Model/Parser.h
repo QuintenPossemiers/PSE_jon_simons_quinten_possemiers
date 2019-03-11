@@ -35,7 +35,7 @@ private:
 
     /**section reserved for public functions*/
 public:
-    void initialise_roads_and_vehicles(SimulationModel* simulationModel);
+    void initialise_roads_and_vehicles(SimulationModel *simulationModel);
 
 };
 

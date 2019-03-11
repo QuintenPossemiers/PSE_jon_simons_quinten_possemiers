@@ -5,7 +5,7 @@
 #include "Exeptions/AllExceptions.h"
 #include "Exeptions/ParsingExc.h"
 
-Parser::Parser(const char *xml_path) :xml_path(xml_path){}
+Parser::Parser(const char *xml_path) : xml_path(xml_path) {}
 
 void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
 
@@ -14,7 +14,7 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
     int rejected_tag_count = 0;
 
     //Open the file and throw an error message if the file could not be found!
-    if (!doc.LoadFile(xml_path)) throw ParsingExc(ParsingErr::dumb);;
+    if (!doc.LoadFile(xml_path)) throw ParsingExc(ParsingErr::file_opening_error);;
 
     //Initialise the root of the xml file and check if it is not a null pointer
     root = doc.FirstChildElement();
@@ -23,6 +23,9 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
 
     std::vector<TiXmlElement *> elements_of_roads;
     std::vector<TiXmlElement *> elements_of_vehicles;
+
+
+    std::cout << std::endl;
 
     for (TiXmlElement *element = root->FirstChildElement();             //Loop over all tags should only contain
          element != nullptr; element = element->NextSiblingElement()) { //Either "BAAN" or "VOERTUIG"
@@ -61,6 +64,7 @@ void Parser::initialise_roads(std::vector<TiXmlElement *> elements_of_roads, Sim
                     speed_limit = static_cast<unsigned int>(std::stoi(attribute->GetText()));
                 else if (attribute_name == "lengte")
                     length = static_cast<unsigned int>(std::stoi(attribute->GetText()));
+
             }
             if (simulationModel->does_road_exist(name) != nullptr)
                 throw ParsingExc(ParsingErr::road_dupe_name);

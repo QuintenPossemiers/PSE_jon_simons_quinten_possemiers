@@ -46,6 +46,10 @@ public:
     bool operator==(const Road &rhs) const;
 
     bool operator!=(const Road &rhs) const;
+
+    /**section for public functions*/
+public:
+    void add_connection(Road* road);
 };
 
 

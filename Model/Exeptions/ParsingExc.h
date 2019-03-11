@@ -9,7 +9,7 @@
 
 enum ParsingErr {
     duplicate_plate,road_dupe_name, xml_empty_tag, xml_expected_tag, road_length_null, road_speed_limit_null,
-    vehicle_illegal_position, vehicle_collision_error, vehicle_speed_error, non_existing_road,file_root,file_opening_error,dumb
+    vehicle_illegal_position, vehicle_collision_error, vehicle_speed_error, non_existing_road,file_root,file_opening_error
 };
 
 static const char *ToStr(const ParsingErr &error) {
@@ -39,8 +39,13 @@ static const char *ToStr(const ParsingErr &error) {
 
 
 class ParsingExc : public std::invalid_argument {
+
+private:
+    int exit_code;
 public:
     explicit ParsingExc(const ParsingErr &err);
+
+    int get_exit_code();
 
 };
 

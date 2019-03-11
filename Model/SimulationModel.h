@@ -4,6 +4,7 @@
 
 
 #include <string>
+#include <ostream>
 #include "Parser.h"
 
 class SimulationModel {
@@ -27,6 +28,8 @@ public:
 
     const std::vector<Vehicle *> &getVehicles() const;
 
+    const std::vector<Road *> &getRoads() const;
+
     /**section reserved for public functions*/
 public:
     void add_road(Road *road);
@@ -36,6 +39,10 @@ public:
     Road *does_road_exist(std::string name);
 
     void start(const char *xml_path);
+
+    /**section for overloaded operators*/
+public:
+    friend std::ostream &operator<<(std::ostream &os, const SimulationModel &model);
 
 };
 

@@ -34,3 +34,17 @@ void SimulationModel::start(const char *xml_path) {
     parser.initialise_roads_and_vehicles(this);
 }
 
+std::ostream &operator<<(std::ostream &os, const SimulationModel &model) {
+    for (const auto &item : model.getRoads()) {
+        os << *item << std::endl;
+    }
+    for (const auto &getVehicle : model.getVehicles()) {
+        os <<*getVehicle << std::endl;
+    }
+    return os;
+}
+
+const std::vector<Road *> &SimulationModel::getRoads() const {
+    return roads;
+}
+

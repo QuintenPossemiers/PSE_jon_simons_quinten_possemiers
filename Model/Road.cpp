@@ -52,3 +52,7 @@ std::ostream &operator<<(std::ostream &os, const Road &road) {
     os << " --> lengte           : " << road.length << std::endl;
     return os;
 }
+
+void Road::add_connection(Road *road) {
+    connections.push_back(road);
+}
