@@ -23,6 +23,7 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
 
     std::vector<TiXmlElement *> elements_of_roads;
     std::vector<TiXmlElement *> elements_of_vehicles;
+    std::vector<std::string> connections;
 
 
     std::cout << std::endl;
@@ -44,14 +45,16 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
         }
     }
 
-    initialise_roads(elements_of_roads, simulationModel);
+    initialise_roads(elements_of_roads, simulationModel, connections);
+    initialise_connections(simulationModel, connections);
     initialise_vehicles(elements_of_vehicles, simulationModel);
 
     doc.Clear();
 
 }
 
-void Parser::initialise_roads(std::vector<TiXmlElement *> elements_of_roads, SimulationModel *simulationModel) {
+void Parser::initialise_roads(std::vector<TiXmlElement *> elements_of_roads, SimulationModel *simulationModel,
+                              std::vector<std::string> &connections) {
     for (const auto &road : elements_of_roads) {
         std::string name;
         unsigned int speed_limit = 0, length = 0;
@@ -64,15 +67,18 @@ void Parser::initialise_roads(std::vector<TiXmlElement *> elements_of_roads, Sim
                     speed_limit = static_cast<unsigned int>(std::stoi(attribute->GetText()));
                 else if (attribute_name == "lengte")
                     length = static_cast<unsigned int>(std::stoi(attribute->GetText()));
-
+                else if (attribute_name == "verbinding") connections.emplace_back(attribute->GetText());
             }
             if (simulationModel->does_road_exist(name) != nullptr)
                 throw ParsingExc(ParsingErr::road_dupe_name);
+            for (auto &item : connections) {
+                item.append(connection_delimiter);
+                item.append(name);
+            }
             simulationModel->add_road(new Road(name, speed_limit, length));
         } catch (const std::invalid_argument &e) {
             std::cerr << e.what() << std::endl;
         }
-
     }
 
 }
@@ -110,6 +116,19 @@ Parser::initialise_vehicles(std::vector<TiXmlElement *> elements_of_vehicles, Si
         } catch (ParsingExc &e) {
             std::cerr << e.what() << std::endl;
         }
+    }
+}
+
+void Parser::initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections) {
+    for (const auto &item : connections) {
+        try {
+            Road *road_from = simulationModel->does_road_exist(
+                    item.substr(item.find(connection_delimiter) + 2 , item.size() - 1));
+            Road *road_to = simulationModel->does_road_exist(item.substr(0, item.find(connection_delimiter)));
+            if (road_from != nullptr and road_to != nullptr) road_from->add_connection(road_to);
+            else if (!road_from) throw ParsingExc(ParsingErr::road_non_ex_connection_from);
+            else throw ParsingExc(ParsingErr::road_non_ex_connection_to);
+        } catch (ParsingExc &e) { std::cerr << e.what() << std::endl; }
     }
 }
 

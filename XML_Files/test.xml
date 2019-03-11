@@ -3,6 +3,8 @@
         <naam>E19</naam>
         <snelheidslimiet>100</snelheidslimiet>
         <lengte>2000</lengte>
+        <verbinding>0
+        </verbinding>
     </BAAN>
     <VOERTUIG>
         <type>AUTO</type>
@@ -11,8 +13,7 @@
         <positie>100</positie>
         <snelheid>0
         </snelheid>
-        <verbinding>0
-        </verbinding>
+
     </VOERTUIG>
     <VOERTUIG>
         <type>AUTO</type>
@@ -21,7 +22,5 @@
         <positie>0</positie>
         <snelheid>0
         </snelheid>
-        <verbinding>0
-        </verbinding>
     </VOERTUIG>
 </root>

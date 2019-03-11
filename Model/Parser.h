@@ -17,6 +17,8 @@ class Parser {
 private:
     const char *xml_path;
 
+    const char* connection_delimiter = "::"; //required size == 2
+
 
     /**section reserved for the constructor and destructor
      *
@@ -29,9 +31,11 @@ public:
     /**section reserved for private functions*/
 private:
 
-    void initialise_roads(std::vector<TiXmlElement *> elements_of_roads, SimulationModel *simulationModel);
+    void initialise_roads(std::vector<TiXmlElement *> elements_of_roads, SimulationModel *simulationModel, std::vector<std::string> &connections);
 
     void initialise_vehicles(std::vector<TiXmlElement *> elements_of_vehicles, SimulationModel *simulationModel);
+
+    void initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections);
 
     /**section reserved for public functions*/
 public:

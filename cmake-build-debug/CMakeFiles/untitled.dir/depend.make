@@ -48,6 +48,8 @@ CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.o: ../TinyXml/tinystr.h
 CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.o: ../TinyXml/tinyxml.h
 CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.o: ../TinyXml/tinyxmlparser.cpp
 
+CMakeFiles/untitled.dir/main.cpp.o: ../Model/Exeptions/AllExceptions.h
+CMakeFiles/untitled.dir/main.cpp.o: ../Model/Exeptions/ParsingExc.h
 CMakeFiles/untitled.dir/main.cpp.o: ../Model/Parser.h
 CMakeFiles/untitled.dir/main.cpp.o: ../Model/Road.h
 CMakeFiles/untitled.dir/main.cpp.o: ../Model/SimulationModel.h
