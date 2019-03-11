@@ -1,4 +1,6 @@
 
+class SimulationModel;
+
 #ifndef UNTITLED_PARSER_H
 #define UNTITLED_PARSER_H
 
@@ -9,7 +11,6 @@
 #include "SimulationModel.h"
 #include "../TinyXml/tinyxml.h"
 
-class SimulationModel;
 
 class Parser {
 
