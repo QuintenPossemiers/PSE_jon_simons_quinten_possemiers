@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Parser.h"
 #include "Exeptions/AllExceptions.h"
+#include "Exeptions/ParsingExc.h"
 
 Parser::Parser(const char *xml_path) :xml_path(xml_path){}
 
@@ -13,11 +14,11 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
     int rejected_tag_count = 0;
 
     //Open the file and throw an error message if the file could not be found!
-    if (!doc.LoadFile(xml_path)) throw std::ios_base::failure("FILE ERROR: could not find file! ");
+    if (!doc.LoadFile(xml_path)) throw ParsingExc(ParsingErr::dumb);;
 
     //Initialise the root of the xml file and check if it is not a null pointer
     root = doc.FirstChildElement();
-    if (root == nullptr) throw std::ios_base::failure("FILE ERROR: file does not contain a root element! ");
+    if (root == nullptr) throw ParsingExc(ParsingErr::file_root);
 
 
     std::vector<TiXmlElement *> elements_of_roads;
