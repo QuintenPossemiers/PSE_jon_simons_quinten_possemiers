@@ -54,5 +54,6 @@ std::ostream &operator<<(std::ostream &os, const Road &road) {
 }
 
 void Road::add_connection(Road *road) {
+    if (road == this) throw ParsingExc(ParsingErr::road_self_connection);
     connections.push_back(road);
 }
