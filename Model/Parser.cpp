@@ -88,47 +88,44 @@ Parser::initialise_vehicles(std::vector<TiXmlElement *> elements_of_vehicles, Si
     for (auto element  :elements_of_vehicles) {
         std::string type, license_plate, road_name;
         unsigned int position = 0, speed = 0;
+        try {
+            for (TiXmlElement *attribute = element->FirstChildElement();
+                 attribute != nullptr; attribute = attribute->NextSiblingElement()) {
+                std::string element_name = attribute->Value();
 
-        for (TiXmlElement *attribute = element->FirstChildElement();
-             attribute != nullptr; attribute = attribute->NextSiblingElement()) {
-            std::string element_name = attribute->Value();
-
-            if (element_name == "type")type = attribute->GetText();
-            else if (element_name == "nummerplaat")license_plate = attribute->GetText();
-            else if (element_name == "baan")road_name = attribute->GetText();
-            else if (element_name == "positie")
-                position = static_cast<unsigned int>(std::stoi(attribute->GetText()));
-            else if (element_name == "snelheid")speed = static_cast<unsigned int>(std::stoi(attribute->GetText()));
+                if (element_name == "type")type = attribute->GetText();
+                else if (element_name == "nummerplaat")license_plate = attribute->GetText();
+                else if (element_name == "baan")road_name = attribute->GetText();
+                else if (element_name == "positie")
+                    position = static_cast<unsigned int>(std::stoi(attribute->GetText()));
+                else if (element_name == "snelheid")speed = static_cast<unsigned int>(std::stoi(attribute->GetText()));
+            }
+        } catch (std::invalid_argument &e) {
+            std::cerr << e.what() << std::endl;
         }
-
         //check if road exists
         Road *road = simulationModel->does_road_exist(road_name);
         //check collisions
-        try {
-            for (const auto &item : simulationModel->getVehicles()) {
-                if (item->collides(position, road_name)) {
-                    throw ParsingExc(ParsingErr::vehicle_collision_error);
-                }
+        for (const auto &item : simulationModel->getVehicles()) {
+            if (item->collides(position, road_name)) {
+                throw ParsingExc(ParsingErr::vehicle_collision_error);
             }
-            if (road != nullptr)
-                simulationModel->add_vehicle(new Vehicle(speed, position, license_plate, type, road));
-            else throw ParsingExc(ParsingErr::non_existing_road);
-        } catch (ParsingExc &e) {
-            std::cerr << e.what() << std::endl;
         }
+        if (road != nullptr)
+            simulationModel->add_vehicle(new Vehicle(speed, position, license_plate, type, road));
+        else throw ParsingExc(ParsingErr::non_existing_road);
     }
 }
 
 void Parser::initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections) {
     for (const auto &item : connections) {
-        try {
-            Road *road_from = simulationModel->does_road_exist(
-                    item.substr(item.find(connection_delimiter) + 2 , item.size() - 1));
-            Road *road_to = simulationModel->does_road_exist(item.substr(0, item.find(connection_delimiter)));
-            if (road_from != nullptr and road_to != nullptr) road_from->add_connection(road_to);
-            else if (!road_from) throw ParsingExc(ParsingErr::road_non_ex_connection_from);
-            else throw ParsingExc(ParsingErr::road_non_ex_connection_to);
-        } catch (ParsingExc &e) { std::cerr << e.what() << std::endl; }
+        Road *road_from = simulationModel->does_road_exist(
+                item.substr(item.find(connection_delimiter) + 2, item.size() - 1));
+        Road *road_to = simulationModel->does_road_exist(item.substr(0, item.find(connection_delimiter)));
+        if (road_from != nullptr and road_to != nullptr) road_from->add_connection(road_to);
+        else if (!road_from) throw ParsingExc(ParsingErr::road_non_ex_connection_from);
+        else throw ParsingExc(ParsingErr::road_non_ex_connection_to);
+
     }
 }
 
