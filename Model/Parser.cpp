@@ -20,7 +20,6 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
     if (root == nullptr) throw ParsingExc(ParsingErr::file_root);
 
     std::vector<std::string> connections;
-
     initialise_roads(root->FirstChildElement("BAAN"), simulationModel, connections);
     initialise_connections(simulationModel, connections);
     initialise_vehicles(root->FirstChildElement("VOERTUIG"), simulationModel);
