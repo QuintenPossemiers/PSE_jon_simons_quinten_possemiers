@@ -32,9 +32,9 @@ public:
     /**section reserved for private functions*/
 private:
 
-    void initialise_roads(std::vector<TiXmlElement *> elements_of_roads, SimulationModel *simulationModel, std::vector<std::string> &connections);
+    void initialise_roads(TiXmlElement * elements_of_roads, SimulationModel *simulationModel, std::vector<std::string> &connections);
 
-    void initialise_vehicles(std::vector<TiXmlElement *> elements_of_vehicles, SimulationModel *simulationModel);
+    void initialise_vehicles(TiXmlElement * elements_of_vehicles, SimulationModel *simulationModel);
 
     void initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections);
 

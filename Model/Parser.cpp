@@ -11,7 +11,6 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
 
     TiXmlDocument doc;
     TiXmlElement *root;
-    int rejected_tag_count = 0;
 
     //Open the file and throw an error message if the file could not be found!
     if (!doc.LoadFile(xml_path)) throw ParsingExc(ParsingErr::file_opening_error);;
@@ -20,42 +19,19 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
     root = doc.FirstChildElement();
     if (root == nullptr) throw ParsingExc(ParsingErr::file_root);
 
-
-    std::vector<TiXmlElement *> elements_of_roads;
-    std::vector<TiXmlElement *> elements_of_vehicles;
     std::vector<std::string> connections;
 
-
-    std::cout << std::endl;
-
-    for (TiXmlElement *element = root->FirstChildElement();             //Loop over all tags should only contain
-         element != nullptr; element = element->NextSiblingElement()) { //Either "BAAN" or "VOERTUIG"
-        try {
-            if (element->FirstChild() != nullptr) {
-                std::string element_name = element->Value();
-                if (element_name == "BAAN") elements_of_roads.push_back(element);
-                else if (element_name == "VOERTUIG") elements_of_vehicles.push_back(element);
-                else {
-                    rejected_tag_count++;       //todo If the tag does contain something else it wont be processed!
-                    throw ParsingExc(ParsingErr::xml_expected_tag);
-                }
-            }
-        } catch (std::invalid_argument &e) {
-            std::cerr << e.what() << std::endl;
-        }
-    }
-
-    initialise_roads(elements_of_roads, simulationModel, connections);
+    initialise_roads(root->FirstChildElement("BAAN"), simulationModel, connections);
     initialise_connections(simulationModel, connections);
-    initialise_vehicles(elements_of_vehicles, simulationModel);
+    initialise_vehicles(root->FirstChildElement("VOERTUIG"), simulationModel);
 
     doc.Clear();
 
 }
 
-void Parser::initialise_roads(std::vector<TiXmlElement *> elements_of_roads, SimulationModel *simulationModel,
+void Parser::initialise_roads(TiXmlElement *elements_of_roads, SimulationModel *simulationModel,
                               std::vector<std::string> &connections) {
-    for (const auto &road : elements_of_roads) {
+    for (TiXmlElement *road = elements_of_roads; road != nullptr; road = road->NextSiblingElement("BAAN")) {
         std::string name;
         unsigned int speed_limit = 0, length = 0;
         try {
@@ -80,12 +56,12 @@ void Parser::initialise_roads(std::vector<TiXmlElement *> elements_of_roads, Sim
             std::cerr << e.what() << std::endl;
         }
     }
-
 }
 
 void
-Parser::initialise_vehicles(std::vector<TiXmlElement *> elements_of_vehicles, SimulationModel *simulationModel) {
-    for (auto element  :elements_of_vehicles) {
+Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationModel *simulationModel) {
+    for (TiXmlElement *element = elements_of_vehicles; element != nullptr;
+         element = element->NextSiblingElement("VOERTUIG")) {
         std::string type, license_plate, road_name;
         unsigned int position = 0, speed = 0;
         try {
