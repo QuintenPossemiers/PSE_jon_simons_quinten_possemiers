@@ -31,18 +31,14 @@ void Parser::initialise_roads_and_vehicles(SimulationModel *simulationModel) {
 void Parser::initialise_roads(TiXmlElement *elements_of_roads, SimulationModel *simulationModel,
                               std::vector<std::string> &connections) {
     for (TiXmlElement *road = elements_of_roads; road != nullptr; road = road->NextSiblingElement("BAAN")) {
-        std::string name;
-        unsigned int speed_limit = 0, length = 0;
         try {
-            for (TiXmlElement *attribute = road->FirstChildElement();
-                 attribute != nullptr; attribute = attribute->NextSiblingElement()) {
-                std::string attribute_name = attribute->Value();
-                if (attribute_name == "naam")name = attribute->GetText();
-                else if (attribute_name == "snelheidslimiet")
-                    speed_limit = static_cast<unsigned int>(std::stoi(attribute->GetText()));
-                else if (attribute_name == "lengte")
-                    length = static_cast<unsigned int>(std::stoi(attribute->GetText()));
-                else if (attribute_name == "verbinding") connections.emplace_back(attribute->GetText());
+            std::string name = road->FirstChildElement("naam")->GetText();
+            unsigned int speed_limit =
+                    static_cast<unsigned int>(std::stoi(road->FirstChildElement("snelheidslimiet")->GetText()));
+            unsigned int length = static_cast<unsigned int>(std::stoi(road->FirstChildElement("lengte")->GetText()));
+            for (TiXmlElement *connection = road->FirstChildElement("verbinding"); connection != nullptr;
+                 connection->NextSiblingElement("verbinding")) {
+                connections.emplace_back(connection->GetText());
             }
             if (simulationModel->does_road_exist(name) != nullptr)
                 throw ParsingExc(ParsingErr::road_dupe_name);
@@ -63,7 +59,7 @@ Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationModel 
          element = element->NextSiblingElement("VOERTUIG")) {
         std::string type, license_plate, road_name;
         unsigned int position = 0, speed = 0;
-        try {
+        try {//todo rewrite this for loop!
             for (TiXmlElement *attribute = element->FirstChildElement();
                  attribute != nullptr; attribute = attribute->NextSiblingElement()) {
                 std::string element_name = attribute->Value();

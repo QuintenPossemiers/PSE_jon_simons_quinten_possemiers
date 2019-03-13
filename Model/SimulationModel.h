@@ -1,11 +1,12 @@
 
+
 #ifndef UNTITLED_SIMULATIONMODEL_H
 #define UNTITLED_SIMULATIONMODEL_H
-
 
 #include <string>
 #include <ostream>
 #include "Parser.h"
+
 
 class SimulationModel {
 
@@ -44,7 +45,7 @@ public:
 public:
     friend std::ostream &operator<<(std::ostream &os, const SimulationModel &model);
 
-};
 
+};
 
 #endif //UNTITLED_SIMULATIONMODEL_H

@@ -23,7 +23,7 @@ public:
 
     double getPosition() const;
 
-    void setPosition(unsigned int position);
+    void setPosition(double position);
 
     const std::string &getLicense_plate() const;
 
@@ -54,7 +54,7 @@ public:
 public:
     bool collides(Vehicle* second_car);
 
-    bool collides(unsigned int position, std::string road_name);
+    bool collides(double position, std::string road_name);
 
     void set_new_position(unsigned int time_spent = 1); // time spent
 

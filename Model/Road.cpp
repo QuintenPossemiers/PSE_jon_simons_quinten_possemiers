@@ -1,6 +1,3 @@
-//
-// Created by Quinten on 3/9/2019.
-//
 
 #include "Road.h"
 #include <stdexcept>

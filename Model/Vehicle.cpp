@@ -18,7 +18,7 @@ bool Vehicle::collides(Vehicle *second_car) {
     return collides(second_car->getPosition(), second_car->getCurrent_road()->getName());
 }
 
-bool Vehicle::collides(unsigned int position, std::string road_name) {
+bool Vehicle::collides(double position, std::string road_name) {
     return road_name == current_road->getName() and this->position - 5 < position and position < this->position + 5;
 }
 
@@ -34,7 +34,7 @@ double Vehicle::getPosition() const {
     return position;
 }
 
-void Vehicle::setPosition(unsigned int position) {
+void Vehicle::setPosition(double position) {
     Vehicle::position = position;
 }
 
