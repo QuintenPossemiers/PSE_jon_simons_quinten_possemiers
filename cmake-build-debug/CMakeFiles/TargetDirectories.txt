@@ -1,3 +1,3 @@
-C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/untitled.dir
-C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/untitled.dir

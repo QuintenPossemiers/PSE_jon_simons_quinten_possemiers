@@ -10,7 +10,8 @@ class Vehicle {
 
     /**section reserved for variables*/
 private:
-    unsigned int speed, position;
+    unsigned int speed;
+    double position;
     std::string license_plate, type;
     Road *current_road;
 
@@ -20,7 +21,7 @@ public:
 
     void setSpeed(unsigned int speed);
 
-    unsigned int getPosition() const;
+    double getPosition() const;
 
     void setPosition(unsigned int position);
 
@@ -54,6 +55,8 @@ public:
     bool collides(Vehicle* second_car);
 
     bool collides(unsigned int position, std::string road_name);
+
+    void set_new_position(unsigned int time_spent = 1); // time spent
 
 };
 

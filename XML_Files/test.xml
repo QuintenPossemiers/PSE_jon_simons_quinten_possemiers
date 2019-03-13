@@ -1,17 +1,15 @@
 <root>
     <BAAN>
-        <naam>E19</naam>
+        <naam> E19</naam>
         <snelheidslimiet>100</snelheidslimiet>
         <lengte>2000</lengte>
-        <verbinding>E19
-        </verbinding>
     </BAAN>
     <VOERTUIG>
         <type>AUTO</type>
         <nummerplaat>1THK180</nummerplaat>
         <baan>E19</baan>
         <positie>100</positie>
-        <snelheid>0
+        <snelheid>80
         </snelheid>
 
     </VOERTUIG>
@@ -20,7 +18,7 @@
         <nummerplaat>651BUF</nummerplaat>
         <baan>E19</baan>
         <positie>0</positie>
-        <snelheid>0
+        <snelheid>80
         </snelheid>
     </VOERTUIG>
 </root>

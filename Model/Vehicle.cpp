@@ -30,7 +30,7 @@ void Vehicle::setSpeed(unsigned int speed) {
     Vehicle::speed = speed;
 }
 
-unsigned int Vehicle::getPosition() const {
+double Vehicle::getPosition() const {
     return position;
 }
 
@@ -72,5 +72,11 @@ std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle) {
     os << " --> snelheid: " << vehicle.speed << std::endl;
     return os;
 }
+
+void Vehicle::set_new_position(unsigned int time_spent) {
+    position += (speed / 3.6)*time_spent;
+}
+
+
 
 

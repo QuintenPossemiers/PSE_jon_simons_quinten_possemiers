@@ -8,133 +8,137 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="untitled">
-				<Option output="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/untitled.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include/c++"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include/c++/backward"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include-fixed"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/../../../../i686-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="untitled/fast">
-				<Option output="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/untitled.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include/c++"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include/c++/backward"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/include-fixed"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.2.0/../../../../i686-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-7~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled">
+				<Option output="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled/fast">
+				<Option output="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
+					<Add directory="/usr/include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Exeptions/AllExceptions.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Exeptions/AllExceptions.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Exeptions/ParsingExc.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Exeptions/ParsingExc.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Exeptions/ParsingExc.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Exeptions/ParsingExc.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Parser.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Parser.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Parser.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Parser.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Road.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Road.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Road.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Road.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/SimulationModel.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/SimulationModel.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/SimulationModel.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/SimulationModel.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Vehicle.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Vehicle.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/Model/Vehicle.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Vehicle.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.h">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlerror.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlerror.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlparser.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlparser.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/main.cpp">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/main.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="C:/Users/Quinten/Desktop/PSE_jon_simons_quinten_possemiers/CMakeLists.txt">
+		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

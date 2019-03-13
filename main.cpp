@@ -23,6 +23,7 @@ SimulationModel *init_simulation() {
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
         std::cout << simulation;
+        simulation.getVehicles()[0]->set_new_position();
 
     } catch (ParsingExc &e) {
         std::cerr << e.what() << std::endl;
