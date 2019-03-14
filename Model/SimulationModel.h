@@ -41,9 +41,16 @@ public:
 
     void start(const char *xml_path);
 
+    void tick(unsigned int time = 1);
+
     /**section for overloaded operators*/
 public:
     friend std::ostream &operator<<(std::ostream &os, const SimulationModel &model);
+
+private:
+    std::vector<Vehicle*> get_vehicle_on_road(Road* road);
+
+
 
 
 };

@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option working_dir="/home/student/CLionProjects/untitled/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option working_dir="/home/student/CLionProjects/untitled/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option working_dir="/home/student/CLionProjects/untitled/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="untitled">
-				<Option output="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option output="/home/student/CLionProjects/untitled/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/student/CLionProjects/untitled/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="untitled/fast">
-				<Option output="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option output="/home/student/CLionProjects/untitled/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/student/CLionProjects/untitled/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,68 +77,71 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/student/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Exeptions/AllExceptions.h">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Exeptions/AllExceptions.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Exeptions/ParsingExc.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Exeptions/ParsingExc.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Exeptions/ParsingExc.h">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Exeptions/ParsingExc.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Parser.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Parser.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Parser.h">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Parser.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Road.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Road.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Road.h">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Road.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/SimulationModel.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/SimulationModel.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/SimulationModel.h">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/SimulationModel.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Vehicle.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Vehicle.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/Model/Vehicle.h">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/Vehicle.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/Model/VehicleTypes.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.h">
+		<Unit filename="/home/student/CLionProjects/untitled/TinyXml/tinystr.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/TinyXml/tinystr.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.h">
+		<Unit filename="/home/student/CLionProjects/untitled/TinyXml/tinyxml.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlerror.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/TinyXml/tinyxml.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlparser.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/TinyXml/tinyxmlerror.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/main.cpp">
+		<Unit filename="/home/student/CLionProjects/untitled/TinyXml/tinyxmlparser.cpp">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/student/PSE_jon_simons_quinten_possemiers/CMakeLists.txt">
+		<Unit filename="/home/student/CLionProjects/untitled/main.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/student/CLionProjects/untitled/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

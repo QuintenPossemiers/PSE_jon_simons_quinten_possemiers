@@ -10,7 +10,7 @@
 enum ParsingErr {
     duplicate_plate,road_dupe_name, xml_empty_tag, xml_expected_tag, road_length_null, road_speed_limit_null,
     vehicle_illegal_position, vehicle_collision_error, vehicle_speed_error, non_existing_road,file_root,
-    file_opening_error, road_non_ex_connection_to, road_non_ex_connection_from, road_self_connection
+    file_opening_error, road_non_ex_connection_to, road_non_ex_connection_from, road_self_connection,vehicle_speed_limit
 };
 
 static const char *ToStr(const ParsingErr &error) {
@@ -30,6 +30,7 @@ static const char *ToStr(const ParsingErr &error) {
         case road_non_ex_connection_to: return "Road error: road to connect to does not exist!";
         case road_non_ex_connection_from:return"Road error: cannot start a connection from a not existing road!";
         case road_self_connection:      return "Road error: road cannot have a connection to itself!";
+        case vehicle_speed_limit:       return "Vehicle error: vehicle is over speed limit!";
         default:
         {
             static std::string out = "UNIDENTIFIED ERROR: error id: ";

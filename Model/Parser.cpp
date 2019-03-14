@@ -4,6 +4,7 @@
 #include "Parser.h"
 #include "Exeptions/AllExceptions.h"
 #include "Exeptions/ParsingExc.h"
+#include "VehicleTypes.h"
 
 Parser::Parser(const char *xml_path) : xml_path(xml_path) {}
 
@@ -53,40 +54,37 @@ void Parser::initialise_roads(TiXmlElement *elements_of_roads, SimulationModel *
     }
 }
 
-void
-Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationModel *simulationModel) {
+void Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationModel *simulationModel) {
     for (TiXmlElement *element = elements_of_vehicles; element != nullptr;
          element = element->NextSiblingElement("VOERTUIG")) {
         std::string type, license_plate, road_name;
-        unsigned int position = 0, speed = 0;
-        try {//todo rewrite this for loop!
-            for (TiXmlElement *attribute = element->FirstChildElement();
-                 attribute != nullptr; attribute = attribute->NextSiblingElement()) {
-                std::string element_name = attribute->Value();
-
-                if (element_name == "type")type = attribute->GetText();
-                else if (element_name == "nummerplaat")license_plate = attribute->GetText();
-                else if (element_name == "baan")road_name = attribute->GetText();
-                else if (element_name == "positie")
-                    position = static_cast<unsigned int>(std::stoi(attribute->GetText()));
-                else if (element_name == "snelheid")speed = static_cast<unsigned int>(std::stoi(attribute->GetText()));
-            }
+        double position = 0;
+        unsigned speed = 0;
+        try {
+            type = element->FirstChildElement("type")->GetText();
+            license_plate = element->FirstChildElement("nummerplaat")->GetText();
+            road_name = element->FirstChildElement("baan")->GetText();
+            position = std::stod(element->FirstChildElement("positie")->GetText());
+            speed = static_cast<unsigned int>(std::stoi(
+                    element->FirstChildElement("snelheid")->GetText()));
         } catch (std::invalid_argument &e) {
             std::cerr << e.what() << std::endl;
         }
-        //check if road exists
+//check if road exists
         Road *road = simulationModel->does_road_exist(road_name);
-        //check collisions
+
+//check collisions
         for (const auto &item : simulationModel->getVehicles()) {
             if (item->collides(position, road_name)) {
                 throw ParsingExc(ParsingErr::vehicle_collision_error);
             }
         }
         if (road != nullptr)
-            simulationModel->add_vehicle(new Vehicle(speed, position, license_plate, type, road));
+            simulationModel->add_vehicle(new Vehicle(speed, position, license_plate, type, road, VehicleTypes.at(type)));
         else throw ParsingExc(ParsingErr::non_existing_road);
     }
 }
+
 
 void Parser::initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections) {
     for (const auto &item : connections) {

@@ -11,12 +11,14 @@ class Vehicle {
     /**section reserved for variables*/
 private:
     unsigned int speed;
-    double position;
+    double position, length;
     std::string license_plate, type;
     Road *current_road;
 
     /**section for getters and setters*/
 public:
+    double getLength() const;
+
     unsigned int getSpeed() const;
 
     void setSpeed(unsigned int speed);
@@ -39,8 +41,10 @@ public:
      * Speed cannot be greater than the speed limit of the the road!
      * */
 
-    Vehicle(unsigned int speed, unsigned int position, const std::string &license_plate, const std::string &type,
-            Road *current_road);
+    Vehicle(unsigned int speed, double position, const std::string &license_plate, const std::string &type,
+            Road *current_road, int length);
+
+    virtual ~Vehicle();
 
     /**section for overloading operators*/
 public:
@@ -56,7 +60,11 @@ public:
 
     bool collides(double position, std::string road_name);
 
-    void set_new_position(unsigned int time_spent = 1); // time spent
+    bool set_new_position(unsigned int time_spent = 1); // time spent
+
+    void set_new_speed(double acceleration);
+
+    double get_acceleration(std::vector<Vehicle*> vehicles);
 
 };
 
