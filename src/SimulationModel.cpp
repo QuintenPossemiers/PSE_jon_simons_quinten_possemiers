@@ -1,20 +1,16 @@
-//
-// Created by Quinten on 3/9/2019.
-//
-
-
-#include <lzma.h>
 #include "Vehicle.h"
 
-auto test = [](Vehicle *number) -> bool {
-    return number == nullptr;
+bool test (Vehicle *number) {
+    return number == NULL;
 };
 
 #include <iostream>
 #include <algorithm>
 #include "SimulationModel.h"
 
-SimulationModel::SimulationModel() = default;
+SimulationModel::SimulationModel() {
+
+};
 
 void SimulationModel::add_road(Road *road) {
     roads.push_back(road);
@@ -26,10 +22,10 @@ void SimulationModel::add_vehicle(Vehicle *vehicle) {
 
 
 Road *SimulationModel::does_road_exist(std::string name) {
-    for (const auto &item : roads) {
-        if (item->getName() == name) return item;
+    for (int i = 0; i < roads.size(); ++i) {
+        if (roads[i]->getName() == name) return roads[i];
     }
-    return nullptr;
+    return NULL;
 }
 
 const std::vector<Vehicle *> &SimulationModel::getVehicles() const {
@@ -44,11 +40,13 @@ void SimulationModel::start(const char *xml_path) {
 }
 
 std::ostream &operator<<(std::ostream &os, const SimulationModel &model) {
-    for (const auto &item : model.getRoads()) {
-        os << *item << std::endl;
+
+    for (int i = 0; i < model.getRoads().size(); ++i) {
+        os << *model.getRoads()[i] << std::endl;
     }
-    for (const auto &getVehicle : model.getVehicles()) {
-        os << *getVehicle << std::endl;
+
+    for (int j = 0; j < model.getVehicles().size(); ++j) {
+        os << *model.getVehicles()[j] << std::endl;
     }
     return os;
 }
@@ -59,23 +57,27 @@ const std::vector<Road *> &SimulationModel::getRoads() const {
 
 std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
     std::vector<Vehicle *> vehicles_on_road;
-    for (const auto &item : vehicles) {
-        if (item->getCurrent_road() == road)vehicles_on_road.push_back(item);
-    }
+
+    for (int i = 0; i < vehicles.size(); ++i)
+        if (vehicles[i]->getCurrent_road() == road)vehicles_on_road.push_back(vehicles[i]);
+
 
     return vehicles_on_road;
 }
 
 void SimulationModel::tick(unsigned int time) {
-    for (auto &item : vehicles) {
-        if (!item->set_new_position(time)) {
-            item = nullptr;
+
+    for (int i = 0; i < vehicles.size(); ++i) {
+        if (!vehicles[i]->set_new_position(time)) {
+            vehicles[i] = NULL;
         }
-        if (item != nullptr){
-        item->set_new_speed(item->get_acceleration(get_vehicle_on_road(item->getCurrent_road())));
+        if (vehicles[i] != NULL) {
+            vehicles[i]->set_new_speed(
+                    vehicles[i]->get_acceleration(get_vehicle_on_road(vehicles[i]->getCurrent_road())));
         }
     }
-    vehicles.erase(std::remove_if(vehicles.begin(), vehicles.end(), test), vehicles.end());
+
+    vehicles.erase(std::remove_if(vehicles.begin(), vehicles.end(), test), vehicles.end());//todo help
 }
 
 

@@ -3,18 +3,18 @@
 #include <iostream>
 #include "Model/SimulationModel.h"
 
-#include "Model/Exeptions/AllExceptions.h"
+#include "src/Exeptions/AllExceptions.h"
 
-const std::string file_name = "test";
+static std::string file_name = "test";
 
-SimulationModel *init_simulation();
+void init_simulation();
 
 int main() {
     init_simulation();
     return 0;
 }
 
-SimulationModel *init_simulation() {
+void init_simulation() {
     /**
      * Function to initialise the engine handling the simulation
      * */
@@ -23,11 +23,10 @@ SimulationModel *init_simulation() {
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
         std::cout << simulation;
-        simulation.getVehicles()[0]->set_new_position();
 
 
     } catch (ParsingExc &e) {
         std::cerr << e.what() << std::endl;
-        exit(e.get_exit_code());
+        //exit(e.get_exit_code());
     }
 };

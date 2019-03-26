@@ -33,9 +33,7 @@ static const char *ToStr(const ParsingErr &error) {
         case vehicle_speed_limit:       return "Vehicle error: vehicle is over speed limit!";
         default:
         {
-            static std::string out = "UNIDENTIFIED ERROR: error id: ";
-            out.append(std::to_string(error + 1));
-            return out.c_str();
+            return "UNIDENTIFIED ERROR";
         }
 
         }

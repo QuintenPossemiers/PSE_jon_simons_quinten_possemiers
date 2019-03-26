@@ -1,6 +1,3 @@
-//
-// Created by Quinten on 3/9/2019.
-//
 #include "Exeptions/AllExceptions.h"
 #include "Vehicle.h"
 #include <stdexcept>
@@ -56,18 +53,18 @@ void Vehicle::setCurrent_road(Road *current_road) {
 }
 
 Vehicle::Vehicle(unsigned int speed, double position, const std::string &license_plate,
-                 const std::string &type, Road *current_road, int length) : speed(speed),
+                 Road *current_road, VehicleType* type) : speed(speed),
                                                                             position(position),
                                                                             license_plate(license_plate),
                                                                             type(type),
-                                                                            current_road(current_road), length(length) {
+                                                                            current_road(current_road){
 
-    if (current_road->getLength() < position) throw ParsingExc(ParsingErr::vehicle_illegal_position);
-    if (current_road->getSpeed_limit() < speed) throw ParsingExc(ParsingErr::vehicle_speed_error);
+    if (current_road->getLength() < position) throw ParsingExc(vehicle_illegal_position);
+    if (current_road->getSpeed_limit() < speed) throw ParsingExc(vehicle_speed_error);
 }
 
 std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle) {
-    os << "Voertuig: " << vehicle.type << " (" + vehicle.license_plate << ")" << std::endl;
+    os << "Voertuig: " << vehicle.type->getName() << " (" + vehicle.license_plate << ")" << std::endl;
     os << " --> baan    : " << vehicle.current_road->getName() << std::endl;
     os << " --> positie : " << vehicle.position << std::endl;
     os << " --> snelheid: " << vehicle.speed << std::endl;
@@ -92,9 +89,9 @@ void Vehicle::set_new_speed(double acceleration) {
 }
 
 double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
-    Vehicle *previous_veh = nullptr;
+    Vehicle *previous_veh = NULL;
 
-    for (const auto &item : vehicles) {
+    for (Vehicle* item : vehicles) {
         if (this != item and previous_veh) {
             if (item->position > position and previous_veh->position > item->position) previous_veh = item;
         } else if (this != item and item->position > position) {
@@ -113,13 +110,23 @@ double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
 
 
 double Vehicle::getLength() const {
+    return type->getLength();
+}
+
+Vehicle::~Vehicle() {
+
+}
+
+
+
+int VehicleType::getLength() const {
     return length;
 }
 
-Vehicle::~Vehicle() = default;
+VehicleType::VehicleType(const std::string &name) : name(name){
+    if (name == "AUTO")length = 2;
+}
 
-
-
-
-
-
+std::string VehicleType::getName() {
+    return name;
+}

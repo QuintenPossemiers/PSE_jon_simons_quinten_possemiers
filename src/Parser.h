@@ -11,14 +11,14 @@ class SimulationModel;
 #include "SimulationModel.h"
 #include "../TinyXml/tinyxml.h"
 
-
+static std::string connection_delimiter = "::"; //required size == 2
 class Parser {
 
     /**section reserved for variables*/
 private:
     const char *xml_path;
 
-    const char* connection_delimiter = "::"; //required size == 2
+
 
 
     /**section reserved for the constructor and destructor

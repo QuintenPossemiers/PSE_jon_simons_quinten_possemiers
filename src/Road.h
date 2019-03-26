@@ -1,6 +1,3 @@
-//
-// Created by Quinten on 3/9/2019.
-//
 
 #ifndef UNTITLED_ROAD_H
 #define UNTITLED_ROAD_H

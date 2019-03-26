@@ -11,7 +11,6 @@ CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../Model/Parser.h
 CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../Model/Road.h
 CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../Model/SimulationModel.h
 CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../Model/Vehicle.h
-CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../Model/VehicleTypes.h
 CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../TinyXml/tinystr.h
 CMakeFiles/untitled.dir/Model/Parser.cpp.o: ../TinyXml/tinyxml.h
 

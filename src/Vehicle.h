@@ -5,15 +5,29 @@
 #include <vector>
 #include <ostream>
 #include "Road.h"
+#include <set>
+
+class VehicleType{
+private:
+    int length;
+    std::string name;
+public:
+    VehicleType(const std::string &name);
+
+    int getLength() const;
+
+    std::string getName();
+
+};
 
 class Vehicle {
-
     /**section reserved for variables*/
 private:
     unsigned int speed;
-    double position, length;
-    std::string license_plate, type;
+    double position;
+    std::string license_plate;
     Road *current_road;
+    VehicleType* type;
 
     /**section for getters and setters*/
 public:
@@ -41,8 +55,8 @@ public:
      * Speed cannot be greater than the speed limit of the the road!
      * */
 
-    Vehicle(unsigned int speed, double position, const std::string &license_plate, const std::string &type,
-            Road *current_road, int length);
+    Vehicle(unsigned int speed, double position, const std::string &license_plate,
+            Road *current_road, VehicleType* type);
 
     virtual ~Vehicle();
 
@@ -65,7 +79,6 @@ public:
     void set_new_speed(double acceleration);
 
     double get_acceleration(std::vector<Vehicle*> vehicles);
-
 };
 
 

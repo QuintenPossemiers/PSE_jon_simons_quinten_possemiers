@@ -48,10 +48,10 @@ RM = /opt/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/student/CLionProjects/untitled
+CMAKE_SOURCE_DIR = /home/student/Desktop/PSE_jon_simons_quinten_possemiers
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/student/CLionProjects/untitled/cmake-build-debug
+CMAKE_BINARY_DIR = /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/CLionProjects/untitled/cmake-build-debug/CMakeFiles /home/student/CLionProjects/untitled/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/CLionProjects/untitled/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,141 +122,6 @@ untitled: cmake_check_build_system
 untitled/fast:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
-
-Model/Exeptions/ParsingExc.o: Model/Exeptions/ParsingExc.cpp.o
-
-.PHONY : Model/Exeptions/ParsingExc.o
-
-# target to build an object file
-Model/Exeptions/ParsingExc.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.o
-.PHONY : Model/Exeptions/ParsingExc.cpp.o
-
-Model/Exeptions/ParsingExc.i: Model/Exeptions/ParsingExc.cpp.i
-
-.PHONY : Model/Exeptions/ParsingExc.i
-
-# target to preprocess a source file
-Model/Exeptions/ParsingExc.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.i
-.PHONY : Model/Exeptions/ParsingExc.cpp.i
-
-Model/Exeptions/ParsingExc.s: Model/Exeptions/ParsingExc.cpp.s
-
-.PHONY : Model/Exeptions/ParsingExc.s
-
-# target to generate assembly for a file
-Model/Exeptions/ParsingExc.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Exeptions/ParsingExc.cpp.s
-.PHONY : Model/Exeptions/ParsingExc.cpp.s
-
-Model/Parser.o: Model/Parser.cpp.o
-
-.PHONY : Model/Parser.o
-
-# target to build an object file
-Model/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Parser.cpp.o
-.PHONY : Model/Parser.cpp.o
-
-Model/Parser.i: Model/Parser.cpp.i
-
-.PHONY : Model/Parser.i
-
-# target to preprocess a source file
-Model/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Parser.cpp.i
-.PHONY : Model/Parser.cpp.i
-
-Model/Parser.s: Model/Parser.cpp.s
-
-.PHONY : Model/Parser.s
-
-# target to generate assembly for a file
-Model/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Parser.cpp.s
-.PHONY : Model/Parser.cpp.s
-
-Model/Road.o: Model/Road.cpp.o
-
-.PHONY : Model/Road.o
-
-# target to build an object file
-Model/Road.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Road.cpp.o
-.PHONY : Model/Road.cpp.o
-
-Model/Road.i: Model/Road.cpp.i
-
-.PHONY : Model/Road.i
-
-# target to preprocess a source file
-Model/Road.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Road.cpp.i
-.PHONY : Model/Road.cpp.i
-
-Model/Road.s: Model/Road.cpp.s
-
-.PHONY : Model/Road.s
-
-# target to generate assembly for a file
-Model/Road.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Road.cpp.s
-.PHONY : Model/Road.cpp.s
-
-Model/SimulationModel.o: Model/SimulationModel.cpp.o
-
-.PHONY : Model/SimulationModel.o
-
-# target to build an object file
-Model/SimulationModel.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/SimulationModel.cpp.o
-.PHONY : Model/SimulationModel.cpp.o
-
-Model/SimulationModel.i: Model/SimulationModel.cpp.i
-
-.PHONY : Model/SimulationModel.i
-
-# target to preprocess a source file
-Model/SimulationModel.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/SimulationModel.cpp.i
-.PHONY : Model/SimulationModel.cpp.i
-
-Model/SimulationModel.s: Model/SimulationModel.cpp.s
-
-.PHONY : Model/SimulationModel.s
-
-# target to generate assembly for a file
-Model/SimulationModel.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/SimulationModel.cpp.s
-.PHONY : Model/SimulationModel.cpp.s
-
-Model/Vehicle.o: Model/Vehicle.cpp.o
-
-.PHONY : Model/Vehicle.o
-
-# target to build an object file
-Model/Vehicle.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Vehicle.cpp.o
-.PHONY : Model/Vehicle.cpp.o
-
-Model/Vehicle.i: Model/Vehicle.cpp.i
-
-.PHONY : Model/Vehicle.i
-
-# target to preprocess a source file
-Model/Vehicle.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Vehicle.cpp.i
-.PHONY : Model/Vehicle.cpp.i
-
-Model/Vehicle.s: Model/Vehicle.cpp.s
-
-.PHONY : Model/Vehicle.s
-
-# target to generate assembly for a file
-Model/Vehicle.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/Model/Vehicle.cpp.s
-.PHONY : Model/Vehicle.cpp.s
 
 TinyXml/tinystr.o: TinyXml/tinystr.cpp.o
 
@@ -393,6 +258,168 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+main_test.o: main_test.cpp.o
+
+.PHONY : main_test.o
+
+# target to build an object file
+main_test.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main_test.cpp.o
+.PHONY : main_test.cpp.o
+
+main_test.i: main_test.cpp.i
+
+.PHONY : main_test.i
+
+# target to preprocess a source file
+main_test.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main_test.cpp.i
+.PHONY : main_test.cpp.i
+
+main_test.s: main_test.cpp.s
+
+.PHONY : main_test.s
+
+# target to generate assembly for a file
+main_test.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main_test.cpp.s
+.PHONY : main_test.cpp.s
+
+src/Exeptions/ParsingExc.o: src/Exeptions/ParsingExc.cpp.o
+
+.PHONY : src/Exeptions/ParsingExc.o
+
+# target to build an object file
+src/Exeptions/ParsingExc.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Exeptions/ParsingExc.cpp.o
+.PHONY : src/Exeptions/ParsingExc.cpp.o
+
+src/Exeptions/ParsingExc.i: src/Exeptions/ParsingExc.cpp.i
+
+.PHONY : src/Exeptions/ParsingExc.i
+
+# target to preprocess a source file
+src/Exeptions/ParsingExc.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Exeptions/ParsingExc.cpp.i
+.PHONY : src/Exeptions/ParsingExc.cpp.i
+
+src/Exeptions/ParsingExc.s: src/Exeptions/ParsingExc.cpp.s
+
+.PHONY : src/Exeptions/ParsingExc.s
+
+# target to generate assembly for a file
+src/Exeptions/ParsingExc.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Exeptions/ParsingExc.cpp.s
+.PHONY : src/Exeptions/ParsingExc.cpp.s
+
+src/Parser.o: src/Parser.cpp.o
+
+.PHONY : src/Parser.o
+
+# target to build an object file
+src/Parser.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Parser.cpp.o
+.PHONY : src/Parser.cpp.o
+
+src/Parser.i: src/Parser.cpp.i
+
+.PHONY : src/Parser.i
+
+# target to preprocess a source file
+src/Parser.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Parser.cpp.i
+.PHONY : src/Parser.cpp.i
+
+src/Parser.s: src/Parser.cpp.s
+
+.PHONY : src/Parser.s
+
+# target to generate assembly for a file
+src/Parser.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Parser.cpp.s
+.PHONY : src/Parser.cpp.s
+
+src/Road.o: src/Road.cpp.o
+
+.PHONY : src/Road.o
+
+# target to build an object file
+src/Road.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Road.cpp.o
+.PHONY : src/Road.cpp.o
+
+src/Road.i: src/Road.cpp.i
+
+.PHONY : src/Road.i
+
+# target to preprocess a source file
+src/Road.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Road.cpp.i
+.PHONY : src/Road.cpp.i
+
+src/Road.s: src/Road.cpp.s
+
+.PHONY : src/Road.s
+
+# target to generate assembly for a file
+src/Road.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Road.cpp.s
+.PHONY : src/Road.cpp.s
+
+src/SimulationModel.o: src/SimulationModel.cpp.o
+
+.PHONY : src/SimulationModel.o
+
+# target to build an object file
+src/SimulationModel.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/SimulationModel.cpp.o
+.PHONY : src/SimulationModel.cpp.o
+
+src/SimulationModel.i: src/SimulationModel.cpp.i
+
+.PHONY : src/SimulationModel.i
+
+# target to preprocess a source file
+src/SimulationModel.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/SimulationModel.cpp.i
+.PHONY : src/SimulationModel.cpp.i
+
+src/SimulationModel.s: src/SimulationModel.cpp.s
+
+.PHONY : src/SimulationModel.s
+
+# target to generate assembly for a file
+src/SimulationModel.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/SimulationModel.cpp.s
+.PHONY : src/SimulationModel.cpp.s
+
+src/Vehicle.o: src/Vehicle.cpp.o
+
+.PHONY : src/Vehicle.o
+
+# target to build an object file
+src/Vehicle.cpp.o:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Vehicle.cpp.o
+.PHONY : src/Vehicle.cpp.o
+
+src/Vehicle.i: src/Vehicle.cpp.i
+
+.PHONY : src/Vehicle.i
+
+# target to preprocess a source file
+src/Vehicle.cpp.i:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Vehicle.cpp.i
+.PHONY : src/Vehicle.cpp.i
+
+src/Vehicle.s: src/Vehicle.cpp.s
+
+.PHONY : src/Vehicle.s
+
+# target to generate assembly for a file
+src/Vehicle.cpp.s:
+	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Vehicle.cpp.s
+.PHONY : src/Vehicle.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -402,21 +429,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... untitled"
-	@echo "... Model/Exeptions/ParsingExc.o"
-	@echo "... Model/Exeptions/ParsingExc.i"
-	@echo "... Model/Exeptions/ParsingExc.s"
-	@echo "... Model/Parser.o"
-	@echo "... Model/Parser.i"
-	@echo "... Model/Parser.s"
-	@echo "... Model/Road.o"
-	@echo "... Model/Road.i"
-	@echo "... Model/Road.s"
-	@echo "... Model/SimulationModel.o"
-	@echo "... Model/SimulationModel.i"
-	@echo "... Model/SimulationModel.s"
-	@echo "... Model/Vehicle.o"
-	@echo "... Model/Vehicle.i"
-	@echo "... Model/Vehicle.s"
 	@echo "... TinyXml/tinystr.o"
 	@echo "... TinyXml/tinystr.i"
 	@echo "... TinyXml/tinystr.s"
@@ -432,6 +444,24 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... main_test.o"
+	@echo "... main_test.i"
+	@echo "... main_test.s"
+	@echo "... src/Exeptions/ParsingExc.o"
+	@echo "... src/Exeptions/ParsingExc.i"
+	@echo "... src/Exeptions/ParsingExc.s"
+	@echo "... src/Parser.o"
+	@echo "... src/Parser.i"
+	@echo "... src/Parser.s"
+	@echo "... src/Road.o"
+	@echo "... src/Road.i"
+	@echo "... src/Road.s"
+	@echo "... src/SimulationModel.o"
+	@echo "... src/SimulationModel.i"
+	@echo "... src/SimulationModel.s"
+	@echo "... src/Vehicle.o"
+	@echo "... src/Vehicle.i"
+	@echo "... src/Vehicle.s"
 .PHONY : help
 
 
