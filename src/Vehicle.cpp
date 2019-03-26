@@ -28,11 +28,11 @@ void Vehicle::setSpeed(unsigned int speed) {
     Vehicle::speed = speed;
 }
 
-double Vehicle::getPosition() const {
+unsigned int Vehicle::getPosition() const {
     return position;
 }
 
-void Vehicle::setPosition(double position) {
+void Vehicle::setPosition(unsigned int position) {
     Vehicle::position = position;
 }
 
@@ -52,7 +52,7 @@ void Vehicle::setCurrent_road(Road *current_road) {
     Vehicle::current_road = current_road;
 }
 
-Vehicle::Vehicle(unsigned int speed, double position, const std::string &license_plate,
+Vehicle::Vehicle(unsigned int speed, unsigned int position, const std::string &license_plate,
                  Road *current_road_arg, VehicleType *type) : speed(speed),
                                                           position(position),
                                                           license_plate(license_plate),
@@ -72,7 +72,7 @@ std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle) {
 }
 
 bool Vehicle::set_new_position(unsigned int time_spent) {
-    position += (speed / 3.6) * time_spent;
+    position += (unsigned int)round((speed / 3.6) * time_spent);
     if (position > current_road->getLength()) {
         position = 0;//je moet rekening houden met de overgang naar een andere baan
         if (current_road->getConnections().empty()) return false;
@@ -83,7 +83,7 @@ bool Vehicle::set_new_position(unsigned int time_spent) {
 }
 
 void Vehicle::set_new_speed(double acceleration) {
-    speed += std::ceil(acceleration);//todo check ceil or round
+    speed += (unsigned int)round(acceleration);
     if (speed > 150)speed = 150;
     if (current_road->getSpeed_limit() < speed)speed = current_road->getSpeed_limit();
 }
@@ -110,8 +110,8 @@ double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
 }
 
 
-double Vehicle::getLength() const {
-    return type->getLength();
+unsigned int Vehicle::getLength() const {
+    return (unsigned int)type->getLength();
 }
 
 Vehicle::~Vehicle() {

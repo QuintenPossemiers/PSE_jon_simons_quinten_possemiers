@@ -2,7 +2,7 @@
 #include "Exeptions/ParsingExc.h"
 
 bool test(Vehicle *number) {
-    return number == NULL;
+    return number->getCurrent_road() == NULL;
 };
 
 #include <iostream>
@@ -77,9 +77,8 @@ void SimulationModel::tick(unsigned int time) {
 
     for (unsigned int i = 0; i < vehicles.size(); ++i) {
         if (!vehicles[i]->set_new_position(time)) {
-            vehicles[i] = NULL;
-        }
-        if (vehicles[i] != NULL) {
+            vehicles[i]->setCurrent_road(NULL);
+        } else if (vehicles[i] != NULL) {
             vehicles[i]->set_new_speed(
                     vehicles[i]->get_acceleration(get_vehicle_on_road(vehicles[i]->getCurrent_road())));
         }
@@ -102,6 +101,11 @@ void SimulationModel::addConnection(Road *from, Road *to) {
     if (to == NULL or !does_road_exist(to->getName())) throw FatalException(road_non_ex_connection_to);
     if (from == NULL or !does_road_exist(from->getName()))throw ParsingExc(road_non_ex_connection_from);
     from->add_connection(to);
+}
+
+void SimulationModel::automaticSimulation() {
+    while (!vehicles.empty()) {tick();
+    }
 }
 
 

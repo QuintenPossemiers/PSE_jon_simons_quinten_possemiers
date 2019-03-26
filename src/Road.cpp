@@ -6,7 +6,8 @@
 Road::Road(const std::string &name, unsigned int speed_limit, unsigned int length) :
         name(name),
         speed_limit(speed_limit),
-        length(length) {
+        length(length),
+        _initCheck(this){
     if (length == 0)throw ParsingExc(road_length_null);
     if (speed_limit == 0)throw ParsingExc(road_speed_limit_null);
 }
@@ -57,4 +58,8 @@ std::ostream &operator<<(std::ostream &os, const Road &road) {
 void Road::add_connection(Road *road) {
     if (road == this) throw ParsingExc(road_self_connection);
     connections.push_back(road);
+}
+
+bool Road::properlyInitialized() {
+    return _initCheck == this;
 }

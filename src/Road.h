@@ -14,7 +14,7 @@ private:
     std::string name;                    //Unique name
     unsigned int speed_limit, length;    //length of the road in meters
     std::vector<Road *> connections;     //Road you can get to by using this one
-
+    Road* _initCheck;
     /**section for getters and setters does not include add connection*/
 public:
     const std::string &getName() const;
@@ -28,6 +28,8 @@ public:
     unsigned int getLength() const;
 
     const std::vector<Road *> &getConnections() const;
+
+    bool properlyInitialized();
 
     /**constructor
      *

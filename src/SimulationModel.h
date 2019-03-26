@@ -51,6 +51,8 @@ public:
 
     void addConnection(Road* from, Road* to);
 
+    void automaticSimulation();
+
     /**section for overloaded operators*/
 public:
     friend std::ostream &operator<<(std::ostream &os, const SimulationModel &model);

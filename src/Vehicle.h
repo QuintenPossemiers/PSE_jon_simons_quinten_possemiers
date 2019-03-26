@@ -23,7 +23,7 @@ class Vehicle {
     /**section reserved for variables*/
 private:
     unsigned int speed;
-    double position;
+    unsigned int position;
     std::string license_plate;
     Road *current_road;
     VehicleType* type;
@@ -33,15 +33,15 @@ private:
 
     /**section for getters and setters*/
 public:
-    double getLength() const;
+    unsigned int getLength() const;
 
     unsigned int getSpeed() const;
 
     void setSpeed(unsigned int speed);
 
-    double getPosition() const;
+    unsigned int getPosition() const;
 
-    void setPosition(double position);
+    void setPosition(unsigned int position);
 
     const std::string &getLicense_plate() const;
 
@@ -59,7 +59,7 @@ public:
      * Speed cannot be greater than the speed limit of the the road!
      * */
 
-    Vehicle(unsigned int speed, double position, const std::string &license_plate,
+    Vehicle(unsigned int speed, unsigned int position, const std::string &license_plate,
             Road *current_road, VehicleType* type);
 
     virtual ~Vehicle();

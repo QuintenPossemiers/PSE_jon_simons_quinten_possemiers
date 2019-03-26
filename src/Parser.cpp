@@ -59,13 +59,13 @@ void Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationM
     for (TiXmlElement *element = elements_of_vehicles; element != NULL;
          element = element->NextSiblingElement("VOERTUIG")) {
         std::string type, license_plate, road_name;
-        double position = 0;
+        unsigned int position = 0;
         unsigned int speed = 0;
         try {
             type = element->FirstChildElement("type")->GetText();
             license_plate = element->FirstChildElement("nummerplaat")->GetText();
             road_name = element->FirstChildElement("baan")->GetText();
-            position = std::strtod(element->FirstChildElement("positie")->GetText(), NULL);
+            position = (unsigned int)std::atoi(element->FirstChildElement("positie")->GetText());
 
             std::string speed_str = element->FirstChildElement("snelheid")->GetText();
             char *writable = new char[speed_str.size() + 1];
