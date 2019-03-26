@@ -10,7 +10,8 @@ CXXFLAGS =	-O2 -g -Wall -fmessage-length=0 -I$(INCL)
 OBJS =		SimulationModel.o
 SRCS =		Parser.cpp \
 			Road.cpp \
-			Vehicle.cpp
+			Vehicle.cpp\
+			SimulationModel.h
 
 
 TINYOBJS =	tinystr.o \

@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/student/Desktop/PSE_jon_simons_quinten_possemiers/cmake
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/clion-2018.2.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/opt/clion-2018.2.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled
+# Target rules for targets named pse_debug
 
 # Build rule for target.
-untitled: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 untitled
-.PHONY : untitled
+pse_debug: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pse_debug
+.PHONY : pse_debug
 
 # fast build rule for target.
-untitled/fast:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
-.PHONY : untitled/fast
+pse_debug/fast:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/build
+.PHONY : pse_debug/fast
+
+#=============================================================================
+# Target rules for targets named pse
+
+# Build rule for target.
+pse: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pse
+.PHONY : pse
+
+# fast build rule for target.
+pse/fast:
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/build
+.PHONY : pse/fast
 
 TinyXml/tinystr.o: TinyXml/tinystr.cpp.o
 
@@ -129,7 +142,8 @@ TinyXml/tinystr.o: TinyXml/tinystr.cpp.o
 
 # target to build an object file
 TinyXml/tinystr.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinystr.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinystr.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinystr.cpp.o
 .PHONY : TinyXml/tinystr.cpp.o
 
 TinyXml/tinystr.i: TinyXml/tinystr.cpp.i
@@ -138,7 +152,8 @@ TinyXml/tinystr.i: TinyXml/tinystr.cpp.i
 
 # target to preprocess a source file
 TinyXml/tinystr.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinystr.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinystr.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinystr.cpp.i
 .PHONY : TinyXml/tinystr.cpp.i
 
 TinyXml/tinystr.s: TinyXml/tinystr.cpp.s
@@ -147,7 +162,8 @@ TinyXml/tinystr.s: TinyXml/tinystr.cpp.s
 
 # target to generate assembly for a file
 TinyXml/tinystr.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinystr.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinystr.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinystr.cpp.s
 .PHONY : TinyXml/tinystr.cpp.s
 
 TinyXml/tinyxml.o: TinyXml/tinyxml.cpp.o
@@ -156,7 +172,8 @@ TinyXml/tinyxml.o: TinyXml/tinyxml.cpp.o
 
 # target to build an object file
 TinyXml/tinyxml.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxml.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxml.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxml.cpp.o
 .PHONY : TinyXml/tinyxml.cpp.o
 
 TinyXml/tinyxml.i: TinyXml/tinyxml.cpp.i
@@ -165,7 +182,8 @@ TinyXml/tinyxml.i: TinyXml/tinyxml.cpp.i
 
 # target to preprocess a source file
 TinyXml/tinyxml.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxml.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxml.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxml.cpp.i
 .PHONY : TinyXml/tinyxml.cpp.i
 
 TinyXml/tinyxml.s: TinyXml/tinyxml.cpp.s
@@ -174,7 +192,8 @@ TinyXml/tinyxml.s: TinyXml/tinyxml.cpp.s
 
 # target to generate assembly for a file
 TinyXml/tinyxml.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxml.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxml.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxml.cpp.s
 .PHONY : TinyXml/tinyxml.cpp.s
 
 TinyXml/tinyxmlerror.o: TinyXml/tinyxmlerror.cpp.o
@@ -183,7 +202,8 @@ TinyXml/tinyxmlerror.o: TinyXml/tinyxmlerror.cpp.o
 
 # target to build an object file
 TinyXml/tinyxmlerror.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxmlerror.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxmlerror.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlerror.cpp.o
 .PHONY : TinyXml/tinyxmlerror.cpp.o
 
 TinyXml/tinyxmlerror.i: TinyXml/tinyxmlerror.cpp.i
@@ -192,7 +212,8 @@ TinyXml/tinyxmlerror.i: TinyXml/tinyxmlerror.cpp.i
 
 # target to preprocess a source file
 TinyXml/tinyxmlerror.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxmlerror.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxmlerror.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlerror.cpp.i
 .PHONY : TinyXml/tinyxmlerror.cpp.i
 
 TinyXml/tinyxmlerror.s: TinyXml/tinyxmlerror.cpp.s
@@ -201,7 +222,8 @@ TinyXml/tinyxmlerror.s: TinyXml/tinyxmlerror.cpp.s
 
 # target to generate assembly for a file
 TinyXml/tinyxmlerror.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxmlerror.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxmlerror.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlerror.cpp.s
 .PHONY : TinyXml/tinyxmlerror.cpp.s
 
 TinyXml/tinyxmlparser.o: TinyXml/tinyxmlparser.cpp.o
@@ -210,7 +232,8 @@ TinyXml/tinyxmlparser.o: TinyXml/tinyxmlparser.cpp.o
 
 # target to build an object file
 TinyXml/tinyxmlparser.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxmlparser.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.o
 .PHONY : TinyXml/tinyxmlparser.cpp.o
 
 TinyXml/tinyxmlparser.i: TinyXml/tinyxmlparser.cpp.i
@@ -219,7 +242,8 @@ TinyXml/tinyxmlparser.i: TinyXml/tinyxmlparser.cpp.i
 
 # target to preprocess a source file
 TinyXml/tinyxmlparser.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxmlparser.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.i
 .PHONY : TinyXml/tinyxmlparser.cpp.i
 
 TinyXml/tinyxmlparser.s: TinyXml/tinyxmlparser.cpp.s
@@ -228,62 +252,9 @@ TinyXml/tinyxmlparser.s: TinyXml/tinyxmlparser.cpp.s
 
 # target to generate assembly for a file
 TinyXml/tinyxmlparser.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/TinyXml/tinyxmlparser.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/TinyXml/tinyxmlparser.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.s
 .PHONY : TinyXml/tinyxmlparser.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.s
-.PHONY : main.cpp.s
-
-main_test.o: main_test.cpp.o
-
-.PHONY : main_test.o
-
-# target to build an object file
-main_test.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main_test.cpp.o
-.PHONY : main_test.cpp.o
-
-main_test.i: main_test.cpp.i
-
-.PHONY : main_test.i
-
-# target to preprocess a source file
-main_test.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main_test.cpp.i
-.PHONY : main_test.cpp.i
-
-main_test.s: main_test.cpp.s
-
-.PHONY : main_test.s
-
-# target to generate assembly for a file
-main_test.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main_test.cpp.s
-.PHONY : main_test.cpp.s
 
 src/Exeptions/ParsingExc.o: src/Exeptions/ParsingExc.cpp.o
 
@@ -291,7 +262,8 @@ src/Exeptions/ParsingExc.o: src/Exeptions/ParsingExc.cpp.o
 
 # target to build an object file
 src/Exeptions/ParsingExc.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Exeptions/ParsingExc.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/ParsingExc.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/ParsingExc.cpp.o
 .PHONY : src/Exeptions/ParsingExc.cpp.o
 
 src/Exeptions/ParsingExc.i: src/Exeptions/ParsingExc.cpp.i
@@ -300,7 +272,8 @@ src/Exeptions/ParsingExc.i: src/Exeptions/ParsingExc.cpp.i
 
 # target to preprocess a source file
 src/Exeptions/ParsingExc.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Exeptions/ParsingExc.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/ParsingExc.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/ParsingExc.cpp.i
 .PHONY : src/Exeptions/ParsingExc.cpp.i
 
 src/Exeptions/ParsingExc.s: src/Exeptions/ParsingExc.cpp.s
@@ -309,7 +282,8 @@ src/Exeptions/ParsingExc.s: src/Exeptions/ParsingExc.cpp.s
 
 # target to generate assembly for a file
 src/Exeptions/ParsingExc.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Exeptions/ParsingExc.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/ParsingExc.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/ParsingExc.cpp.s
 .PHONY : src/Exeptions/ParsingExc.cpp.s
 
 src/Parser.o: src/Parser.cpp.o
@@ -318,7 +292,8 @@ src/Parser.o: src/Parser.cpp.o
 
 # target to build an object file
 src/Parser.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Parser.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Parser.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Parser.cpp.o
 .PHONY : src/Parser.cpp.o
 
 src/Parser.i: src/Parser.cpp.i
@@ -327,7 +302,8 @@ src/Parser.i: src/Parser.cpp.i
 
 # target to preprocess a source file
 src/Parser.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Parser.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Parser.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Parser.cpp.i
 .PHONY : src/Parser.cpp.i
 
 src/Parser.s: src/Parser.cpp.s
@@ -336,7 +312,8 @@ src/Parser.s: src/Parser.cpp.s
 
 # target to generate assembly for a file
 src/Parser.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Parser.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Parser.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Parser.cpp.s
 .PHONY : src/Parser.cpp.s
 
 src/Road.o: src/Road.cpp.o
@@ -345,7 +322,8 @@ src/Road.o: src/Road.cpp.o
 
 # target to build an object file
 src/Road.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Road.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Road.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Road.cpp.o
 .PHONY : src/Road.cpp.o
 
 src/Road.i: src/Road.cpp.i
@@ -354,7 +332,8 @@ src/Road.i: src/Road.cpp.i
 
 # target to preprocess a source file
 src/Road.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Road.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Road.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Road.cpp.i
 .PHONY : src/Road.cpp.i
 
 src/Road.s: src/Road.cpp.s
@@ -363,7 +342,8 @@ src/Road.s: src/Road.cpp.s
 
 # target to generate assembly for a file
 src/Road.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Road.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Road.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Road.cpp.s
 .PHONY : src/Road.cpp.s
 
 src/SimulationModel.o: src/SimulationModel.cpp.o
@@ -372,7 +352,8 @@ src/SimulationModel.o: src/SimulationModel.cpp.o
 
 # target to build an object file
 src/SimulationModel.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/SimulationModel.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/SimulationModel.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/SimulationModel.cpp.o
 .PHONY : src/SimulationModel.cpp.o
 
 src/SimulationModel.i: src/SimulationModel.cpp.i
@@ -381,7 +362,8 @@ src/SimulationModel.i: src/SimulationModel.cpp.i
 
 # target to preprocess a source file
 src/SimulationModel.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/SimulationModel.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/SimulationModel.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/SimulationModel.cpp.i
 .PHONY : src/SimulationModel.cpp.i
 
 src/SimulationModel.s: src/SimulationModel.cpp.s
@@ -390,7 +372,8 @@ src/SimulationModel.s: src/SimulationModel.cpp.s
 
 # target to generate assembly for a file
 src/SimulationModel.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/SimulationModel.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/SimulationModel.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/SimulationModel.cpp.s
 .PHONY : src/SimulationModel.cpp.s
 
 src/Vehicle.o: src/Vehicle.cpp.o
@@ -399,7 +382,8 @@ src/Vehicle.o: src/Vehicle.cpp.o
 
 # target to build an object file
 src/Vehicle.cpp.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Vehicle.cpp.o
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Vehicle.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Vehicle.cpp.o
 .PHONY : src/Vehicle.cpp.o
 
 src/Vehicle.i: src/Vehicle.cpp.i
@@ -408,7 +392,8 @@ src/Vehicle.i: src/Vehicle.cpp.i
 
 # target to preprocess a source file
 src/Vehicle.cpp.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Vehicle.cpp.i
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Vehicle.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Vehicle.cpp.i
 .PHONY : src/Vehicle.cpp.i
 
 src/Vehicle.s: src/Vehicle.cpp.s
@@ -417,8 +402,63 @@ src/Vehicle.s: src/Vehicle.cpp.s
 
 # target to generate assembly for a file
 src/Vehicle.cpp.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/src/Vehicle.cpp.s
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Vehicle.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Vehicle.cpp.s
 .PHONY : src/Vehicle.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/main_test.o: src/main_test.cpp.o
+
+.PHONY : src/main_test.o
+
+# target to build an object file
+src/main_test.cpp.o:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/main_test.cpp.o
+.PHONY : src/main_test.cpp.o
+
+src/main_test.i: src/main_test.cpp.i
+
+.PHONY : src/main_test.i
+
+# target to preprocess a source file
+src/main_test.cpp.i:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/main_test.cpp.i
+.PHONY : src/main_test.cpp.i
+
+src/main_test.s: src/main_test.cpp.s
+
+.PHONY : src/main_test.s
+
+# target to generate assembly for a file
+src/main_test.cpp.s:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/main_test.cpp.s
+.PHONY : src/main_test.cpp.s
 
 # Help Target
 help:
@@ -426,9 +466,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... untitled"
+	@echo "... pse_debug"
+	@echo "... rebuild_cache"
+	@echo "... pse"
 	@echo "... TinyXml/tinystr.o"
 	@echo "... TinyXml/tinystr.i"
 	@echo "... TinyXml/tinystr.s"
@@ -441,12 +482,6 @@ help:
 	@echo "... TinyXml/tinyxmlparser.o"
 	@echo "... TinyXml/tinyxmlparser.i"
 	@echo "... TinyXml/tinyxmlparser.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... main_test.o"
-	@echo "... main_test.i"
-	@echo "... main_test.s"
 	@echo "... src/Exeptions/ParsingExc.o"
 	@echo "... src/Exeptions/ParsingExc.i"
 	@echo "... src/Exeptions/ParsingExc.s"
@@ -462,6 +497,12 @@ help:
 	@echo "... src/Vehicle.o"
 	@echo "... src/Vehicle.i"
 	@echo "... src/Vehicle.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/main_test.o"
+	@echo "... src/main_test.i"
+	@echo "... src/main_test.s"
 .PHONY : help
 
 

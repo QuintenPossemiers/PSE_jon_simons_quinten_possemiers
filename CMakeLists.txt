@@ -1,6 +1,30 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.6)
 project(untitled)
+
 set(CMAKE_CXX_STANDARD 98)
+set(CMAKE_CXX_FLAGS "-Wall -Werror")
+set(CMAKE_EXE_LINKER_FLAGS -pthread)
+
+# Set include dir
+include_directories(gtest/include)
+
+# Set Library dir
+link_directories(gtest/lib)
+
+# Set source files for RELEASE target
+set(RELEASE_SOURCE_FILES src/main.cpp src/Parser.cpp src/Vehicle.cpp
+        src/Road.cpp src/SimulationModel.cpp src/Exeptions/ParsingExc.cpp TinyXml/tinystr.cpp TinyXml/tinyxml.cpp TinyXml/tinyxmlerror.cpp TinyXml/tinyxmlparser.cpp)
+
+# Set source files for DEBUG target
+set(DEBUG_SOURCE_FILES src/main_test.cpp src/Parser.cpp src/Vehicle.cpp
+        src/Road.cpp src/SimulationModel.cpp src/Exeptions/ParsingExc.cpp TinyXml/tinystr.cpp TinyXml/tinyxml.cpp TinyXml/tinyxmlerror.cpp TinyXml/tinyxmlparser.cpp)
 
 
-add_executable(untitled TinyXml/tinystr.cpp TinyXml/tinyxml.cpp TinyXml/tinyxmlerror.cpp TinyXml/tinyxmlparser.cpp   main.cpp src/SimulationModel.cpp src/SimulationModel.h src/Road.cpp src/Road.h src/Vehicle.cpp src/Vehicle.h src/Parser.cpp src/Parser.h src/Exeptions/ParsingExc.cpp src/Exeptions/ParsingExc.h src/Exeptions/AllExceptions.h main_test.cpp)
+# Create RELEASE target
+add_executable(pse ${RELEASE_SOURCE_FILES})
+
+# Create DEBUG target
+add_executable(pse_debug ${DEBUG_SOURCE_FILES})
+
+# Link library
+target_link_libraries(pse_debug gtest)

@@ -1,9 +1,9 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "Model/SimulationModel.h"
+#include "SimulationModel.h"
 
-#include "src/Exeptions/AllExceptions.h"
+#include "Exeptions/AllExceptions.h"
 
 static std::string file_name = "test";
 

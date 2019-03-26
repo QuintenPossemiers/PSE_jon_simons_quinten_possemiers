@@ -42,7 +42,7 @@ void Parser::initialise_roads(TiXmlElement *elements_of_roads, SimulationModel *
             }
             if (simulationModel->does_road_exist(name) != NULL)
                 throw ParsingExc(road_dupe_name);
-            for (int i = 0; i < connections.size(); ++i) {
+            for (unsigned int i = 0; i < connections.size(); ++i) {
                 connections[i].append(connection_delimiter);
                 connections[i].append(name);
             }
@@ -79,7 +79,7 @@ void Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationM
         Road *road = simulationModel->does_road_exist(road_name);
 
 //check collisions
-         for (int i = 0; i < simulationModel->getVehicles().size(); ++i) {
+         for (unsigned int i = 0; i < simulationModel->getVehicles().size(); ++i) {
             if (simulationModel->getVehicles()[i]->collides(position, road_name)) {
                 throw ParsingExc(vehicle_collision_error);
             }
@@ -92,7 +92,7 @@ void Parser::initialise_vehicles(TiXmlElement *elements_of_vehicles, SimulationM
 
 
 void Parser::initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections) {
-    for (int i = 0; i < connections.size(); ++i) {
+    for (unsigned int i = 0; i < connections.size(); ++i) {
         Road *road_from = simulationModel->does_road_exist(
                 connections[i].substr(connections[i].find(connection_delimiter) + 2, connections[i].size() - 1));
         Road *road_to = simulationModel->does_road_exist(connections[i].substr(0,

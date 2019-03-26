@@ -56,8 +56,7 @@ Vehicle::Vehicle(unsigned int speed, double position, const std::string &license
                  Road *current_road, VehicleType* type) : speed(speed),
                                                                             position(position),
                                                                             license_plate(license_plate),
-                                                                            type(type),
-                                                                            current_road(current_road){
+                                                                            current_road(current_road), type(type){
 
     if (current_road->getLength() < position) throw ParsingExc(vehicle_illegal_position);
     if (current_road->getSpeed_limit() < speed) throw ParsingExc(vehicle_speed_error);
@@ -90,14 +89,14 @@ void Vehicle::set_new_speed(double acceleration) {
 
 double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
     Vehicle *previous_veh = NULL;
-
-    for (Vehicle* item : vehicles) {
-        if (this != item and previous_veh) {
-            if (item->position > position and previous_veh->position > item->position) previous_veh = item;
-        } else if (this != item and item->position > position) {
-            previous_veh = item;
+    for (unsigned int i = 0; i < vehicles.size(); ++i) {
+        if (this != vehicles[i] and previous_veh) {
+            if ( vehicles[i]->position > position and previous_veh->position >  vehicles[i]->position) previous_veh =  vehicles[i];
+        } else if (this !=  vehicles[i] and  vehicles[i]->position > position) {
+            previous_veh =  vehicles[i];
         }
     }
+
     if (!previous_veh) return 2;
 
     double delta_ideal = 0.75 * this->speed + previous_veh->getLength() + 2;
