@@ -28,5 +28,6 @@ void init_simulation() {
     } catch (ParsingExc &e) {
         std::cerr << e.what() << std::endl;
         //exit(e.get_exit_code());
+
     }
 };
