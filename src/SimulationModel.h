@@ -13,6 +13,8 @@ class SimulationModel {
     /**Section reserved for variables*/
 private:
 
+    SimulationModel* _initCheck;
+
     std::vector<Road *> roads;
 
     std::vector<Vehicle *> vehicles;
@@ -35,6 +37,8 @@ public:
 public:
     void add_road(Road *road);
 
+    bool properlyInitialized();
+
     void add_vehicle(Vehicle *vehicle);
 
     Road *does_road_exist(std::string name);
@@ -42,6 +46,10 @@ public:
     void start(const char *xml_path);
 
     void tick(unsigned int time = 1);
+
+    void checkCollision(Vehicle* vehicle);
+
+    void addConnection(Road* from, Road* to);
 
     /**section for overloaded operators*/
 public:

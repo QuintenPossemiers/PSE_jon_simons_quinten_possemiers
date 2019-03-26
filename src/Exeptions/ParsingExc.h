@@ -27,4 +27,15 @@ public:
 
 };
 
+class FatalException : public std::invalid_argument {
+
+private:
+    int exit_code;
+public:
+    explicit FatalException(const ParsingErr &err);
+
+    int get_exit_code();
+
+};
+
 #endif //UNTITLED_PARSINGEXC_H

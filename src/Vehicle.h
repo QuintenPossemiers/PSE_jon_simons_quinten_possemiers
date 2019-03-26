@@ -12,12 +12,11 @@ private:
     int length;
     std::string name;
 public:
-    VehicleType(const std::string &name);
+    explicit VehicleType(const std::string &name);
 
     int getLength() const;
 
     std::string getName();
-
 };
 
 class Vehicle {
@@ -28,6 +27,9 @@ private:
     std::string license_plate;
     Road *current_road;
     VehicleType* type;
+    Vehicle* _initCheck;
+
+
 
     /**section for getters and setters*/
 public:
@@ -48,6 +50,8 @@ public:
     Road *getCurrent_road() const;
 
     void setCurrent_road(Road *current_road);
+
+    bool properlyInitialized();
 
     /**section reserved for constructor
      *

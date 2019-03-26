@@ -47,6 +47,10 @@ std::ostream &operator<<(std::ostream &os, const Road &road) {
     os << "Baan: " << road.name << std::endl;
     os << " --> snelheidslimiet  : " << road.speed_limit << std::endl;
     os << " --> lengte           : " << road.length << std::endl;
+    for (unsigned int i = 0; i < road.getConnections().size(); ++i) {
+        os << " --> verbinding       : " << road.getConnections()[i]->getName() << std::endl;
+    }
+
     return os;
 }
 

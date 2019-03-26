@@ -53,13 +53,14 @@ void Vehicle::setCurrent_road(Road *current_road) {
 }
 
 Vehicle::Vehicle(unsigned int speed, double position, const std::string &license_plate,
-                 Road *current_road, VehicleType* type) : speed(speed),
-                                                                            position(position),
-                                                                            license_plate(license_plate),
-                                                                            current_road(current_road), type(type){
+                 Road *current_road_arg, VehicleType *type) : speed(speed),
+                                                          position(position),
+                                                          license_plate(license_plate),
+                                                          current_road(current_road_arg), type(type), _initCheck(this) {
 
-    if (current_road->getLength() < position) throw ParsingExc(vehicle_illegal_position);
+    if (current_road->getLength() < position) throw FatalException(vehicle_illegal_position);
     if (current_road->getSpeed_limit() < speed) throw ParsingExc(vehicle_speed_error);
+    if (current_road_arg == 0) throw ParsingExc(vehicle_illegal_position);
 }
 
 std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle) {
@@ -91,9 +92,10 @@ double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
     Vehicle *previous_veh = NULL;
     for (unsigned int i = 0; i < vehicles.size(); ++i) {
         if (this != vehicles[i] and previous_veh) {
-            if ( vehicles[i]->position > position and previous_veh->position >  vehicles[i]->position) previous_veh =  vehicles[i];
-        } else if (this !=  vehicles[i] and  vehicles[i]->position > position) {
-            previous_veh =  vehicles[i];
+            if (vehicles[i]->position > position and previous_veh->position > vehicles[i]->position)
+                previous_veh = vehicles[i];
+        } else if (this != vehicles[i] and vehicles[i]->position > position) {
+            previous_veh = vehicles[i];
         }
     }
 
@@ -116,16 +118,21 @@ Vehicle::~Vehicle() {
 
 }
 
+bool Vehicle::properlyInitialized() {
+    return _initCheck == this;
+}
 
 
 int VehicleType::getLength() const {
     return length;
 }
 
-VehicleType::VehicleType(const std::string &name) : name(name){
-    if (name == "AUTO")length = 2;
+VehicleType::VehicleType(const std::string &name) : name(name) {
+    if (name == "AUTO")length = 3;
 }
 
 std::string VehicleType::getName() {
     return name;
 }
+
+

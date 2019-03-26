@@ -1,6 +1,7 @@
 #include "Vehicle.h"
+#include "Exeptions/ParsingExc.h"
 
-bool test (Vehicle *number) {
+bool test(Vehicle *number) {
     return number == NULL;
 };
 
@@ -8,15 +9,22 @@ bool test (Vehicle *number) {
 #include <algorithm>
 #include "SimulationModel.h"
 
-SimulationModel::SimulationModel() {
+SimulationModel::SimulationModel() : _initCheck(this) {
 
 };
 
 void SimulationModel::add_road(Road *road) {
+    if (does_road_exist(road->getName()) != NULL)
+        throw ParsingExc(road_dupe_name);
     roads.push_back(road);
 }
 
 void SimulationModel::add_vehicle(Vehicle *vehicle) {
+
+    if (NULL == does_road_exist(vehicle->getCurrent_road()->getName()))
+        throw FatalException(non_existing_road);
+    checkCollision(vehicle);
+
     vehicles.push_back(vehicle);
 }
 
@@ -78,6 +86,22 @@ void SimulationModel::tick(unsigned int time) {
     }
 
     vehicles.erase(std::remove_if(vehicles.begin(), vehicles.end(), test), vehicles.end());//todo help
+}
+
+bool SimulationModel::properlyInitialized() {
+    return _initCheck == this;
+}
+
+void SimulationModel::checkCollision(Vehicle *vehicle) {
+    for (unsigned int i = 0; i < vehicles.size(); ++i) {
+        if (vehicles[i]->collides(vehicle) and vehicle != vehicles[i])throw FatalException(vehicle_collision_error);
+    }
+}
+
+void SimulationModel::addConnection(Road *from, Road *to) {
+    if (to == NULL or !does_road_exist(to->getName())) throw FatalException(road_non_ex_connection_to);
+    if (from == NULL or !does_road_exist(from->getName()))throw ParsingExc(road_non_ex_connection_from);
+    from->add_connection(to);
 }
 
 

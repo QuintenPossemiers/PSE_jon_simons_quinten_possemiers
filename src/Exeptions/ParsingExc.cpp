@@ -37,3 +37,12 @@ static const char *ToStr(const ParsingErr &error) {
 ParsingExc::ParsingExc(const ParsingErr &err) : invalid_argument(ToStr(err)) {
     exit_code = err;
 }
+
+FatalException::FatalException(const ParsingErr &err) : invalid_argument(ToStr(err)) {
+    exit_code = err;
+}
+
+
+int FatalException::get_exit_code() {
+    return exit_code;
+}
