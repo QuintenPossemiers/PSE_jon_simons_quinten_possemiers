@@ -7,7 +7,7 @@ int NonFatalException::getExitCode() {
     return fExitCode;
 }
 
-static const char *toStr(const EExceptionText &error) {
+static const char *exceptionToStr(const EExceptionText &error) {
     switch (error) {
         case duplicate_plate:           return "Vehicle error: license plate must be unique!";
         case xml_empty_tag:             return "XML error: empty tag!";
@@ -34,11 +34,11 @@ static const char *toStr(const EExceptionText &error) {
 
 }
 
-NonFatalException::NonFatalException(const EExceptionText &err) : invalid_argument(toStr(err)) {
+NonFatalException::NonFatalException(const EExceptionText &err) : invalid_argument(exceptionToStr(err)) {
     fExitCode = err;
 }
 
-FatalException::FatalException(const EExceptionText &err) : invalid_argument(toStr(err)) {
+FatalException::FatalException(const EExceptionText &err) : invalid_argument(exceptionToStr(err)) {
     fExitCode = err;
 }
 

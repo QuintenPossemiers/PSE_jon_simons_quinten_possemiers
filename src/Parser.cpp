@@ -2,7 +2,7 @@
 #include <bits/ios_base.h>
 #include <iostream>
 #include "Parser.h"
-#include "Exeptions/Exceptions.h"
+#include "Exceptions.h"
 
 Parser::Parser(const char *kXmlPath) : kXmlPath(kXmlPath) {}
 

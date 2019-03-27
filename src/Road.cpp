@@ -1,7 +1,7 @@
 
 #include "Road.h"
 #include <stdexcept>
-#include "Exeptions/Exceptions.h"
+#include "Exceptions.h"
 
 Road::Road(const std::string &name, unsigned int speedLimit, unsigned int length) :
         fName(name),

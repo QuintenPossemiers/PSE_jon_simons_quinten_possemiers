@@ -6,7 +6,7 @@
 #include "SimulationModel.h"
 #include "Road.h"
 #include "Vehicle.h"
-#include "Exeptions/Exceptions.h"
+#include "Exceptions.h"
 
 using namespace std;
 

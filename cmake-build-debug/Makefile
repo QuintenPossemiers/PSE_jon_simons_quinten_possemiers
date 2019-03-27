@@ -256,35 +256,35 @@ TinyXml/tinyxmlparser.cpp.s:
 	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.s
 .PHONY : TinyXml/tinyxmlparser.cpp.s
 
-src/Exeptions/Exceptions.o: src/Exeptions/Exceptions.cpp.o
+src/Exceptions.o: src/Exceptions.cpp.o
 
-.PHONY : src/Exeptions/Exceptions.o
+.PHONY : src/Exceptions.o
 
 # target to build an object file
-src/Exeptions/Exceptions.cpp.o:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/Exceptions.cpp.o
-	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/Exceptions.cpp.o
-.PHONY : src/Exeptions/Exceptions.cpp.o
+src/Exceptions.cpp.o:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exceptions.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exceptions.cpp.o
+.PHONY : src/Exceptions.cpp.o
 
-src/Exeptions/Exceptions.i: src/Exeptions/Exceptions.cpp.i
+src/Exceptions.i: src/Exceptions.cpp.i
 
-.PHONY : src/Exeptions/Exceptions.i
+.PHONY : src/Exceptions.i
 
 # target to preprocess a source file
-src/Exeptions/Exceptions.cpp.i:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/Exceptions.cpp.i
-	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/Exceptions.cpp.i
-.PHONY : src/Exeptions/Exceptions.cpp.i
+src/Exceptions.cpp.i:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exceptions.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exceptions.cpp.i
+.PHONY : src/Exceptions.cpp.i
 
-src/Exeptions/Exceptions.s: src/Exeptions/Exceptions.cpp.s
+src/Exceptions.s: src/Exceptions.cpp.s
 
-.PHONY : src/Exeptions/Exceptions.s
+.PHONY : src/Exceptions.s
 
 # target to generate assembly for a file
-src/Exeptions/Exceptions.cpp.s:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/Exceptions.cpp.s
-	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/Exceptions.cpp.s
-.PHONY : src/Exeptions/Exceptions.cpp.s
+src/Exceptions.cpp.s:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exceptions.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exceptions.cpp.s
+.PHONY : src/Exceptions.cpp.s
 
 src/Parser.o: src/Parser.cpp.o
 
@@ -433,32 +433,32 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/main_test.o: src/main_test.cpp.o
+src/mainTests.o: src/mainTests.cpp.o
 
-.PHONY : src/main_test.o
+.PHONY : src/mainTests.o
 
 # target to build an object file
-src/main_test.cpp.o:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/main_test.cpp.o
-.PHONY : src/main_test.cpp.o
+src/mainTests.cpp.o:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/mainTests.cpp.o
+.PHONY : src/mainTests.cpp.o
 
-src/main_test.i: src/main_test.cpp.i
+src/mainTests.i: src/mainTests.cpp.i
 
-.PHONY : src/main_test.i
+.PHONY : src/mainTests.i
 
 # target to preprocess a source file
-src/main_test.cpp.i:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/main_test.cpp.i
-.PHONY : src/main_test.cpp.i
+src/mainTests.cpp.i:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/mainTests.cpp.i
+.PHONY : src/mainTests.cpp.i
 
-src/main_test.s: src/main_test.cpp.s
+src/mainTests.s: src/mainTests.cpp.s
 
-.PHONY : src/main_test.s
+.PHONY : src/mainTests.s
 
 # target to generate assembly for a file
-src/main_test.cpp.s:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/main_test.cpp.s
-.PHONY : src/main_test.cpp.s
+src/mainTests.cpp.s:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/mainTests.cpp.s
+.PHONY : src/mainTests.cpp.s
 
 # Help Target
 help:
@@ -482,9 +482,9 @@ help:
 	@echo "... TinyXml/tinyxmlparser.o"
 	@echo "... TinyXml/tinyxmlparser.i"
 	@echo "... TinyXml/tinyxmlparser.s"
-	@echo "... src/Exeptions/Exceptions.o"
-	@echo "... src/Exeptions/Exceptions.i"
-	@echo "... src/Exeptions/Exceptions.s"
+	@echo "... src/Exceptions.o"
+	@echo "... src/Exceptions.i"
+	@echo "... src/Exceptions.s"
 	@echo "... src/Parser.o"
 	@echo "... src/Parser.i"
 	@echo "... src/Parser.s"
@@ -500,9 +500,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/main_test.o"
-	@echo "... src/main_test.i"
-	@echo "... src/main_test.s"
+	@echo "... src/mainTests.o"
+	@echo "... src/mainTests.i"
+	@echo "... src/mainTests.s"
 .PHONY : help
 
 

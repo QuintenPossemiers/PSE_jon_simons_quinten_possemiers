@@ -1,25 +1,23 @@
 
-#include <stdio.h>
 #include <iostream>
 #include "SimulationModel.h"
+#include "Exceptions.h"
 
-#include "Exeptions/Exceptions.h"
+const std::string fileName = "test";
 
-static std::string file_name = "test";
-
-void init_simulation();
+void initSimulation();
 
 int main() {
-    init_simulation();
+    initSimulation();
     return 0;
 }
 
-void init_simulation() {
+void initSimulation() {
     /**
      * Function to initialise the engine handling the simulation
      * */
     try {
-        std::string location = "../XML_Files/" + file_name + ".xml";
+        std::string location = "XML_Files/" + fileName + ".xml";
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
         std::cout << simulation;

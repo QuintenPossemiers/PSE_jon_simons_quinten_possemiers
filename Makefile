@@ -1,28 +1,38 @@
 #--- the location of the test includes; YOU MIGHT NEED TO MODIFY THESE
-INCL =		../gtest/include
+INCL =		gtest/include
 #--- the location of the test libraries; YOU MIGHT NEED TO MODIFY THESE
-TLIBPATH =	-L../gtest/lib
+TLIBPATH =	-Lgtest/lib
 TLIBS =		-lgtest -lgtest_main
 
 
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0 -I$(INCL)
 
-OBJS =		SimulationModel.o
-SRCS =		Parser.cpp \
-			Road.cpp \
-			Vehicle.cpp\
-			SimulationModel.h
-
-
-TINYOBJS =	tinystr.o \
-			tinyxml.o \
-			tinyxmlerror.o \
-			tinyxmlparser.o
-TINYSRCS =	XML_Files\tinystr.h \
-			XML_Files\tinyxml.cpp \
-			XML_Files\tinyxmlerror.cpp \
-			XML_Files\tinyxmlparser.cpp
-TARGET =	main.cpp
+OBJS =		src/SimulationModel.o\
+			 		src/Road.o\
+					src/Vehicle.o\
+					src/Parser.o\
+					src/Exceptions.o
+SRCS =		src/Parser.cpp \
+					src/Road.cpp \
+					src/Vehicle.cpp\
+					src/SimulationModel.cpp\
+					src/main.cpp\
+					src/Exceptions.cpp
+TSTSRCS =	src/Parser.cpp \
+            					src/Road.cpp \
+            					src/Vehicle.cpp\
+            					src/SimulationModel.cpp\
+            					src/mainTests.cpp\
+            					src/Exceptions.cpp
+TINYOBJS =	TinyXml/tinystr.o \
+					TinyXml/tinyxml.o \
+					TinyXml/tinyxmlerror.o \
+					TinyXml/tinyxmlparser.o
+TINYSRCS =	TinyXml/tinystr.h \
+					TinyXml/tinyxml.cpp \
+					TinyXml/tinyxmlerror.cpp \
+					TinyXml/tinyxmlparser.cpp
+TARGET =	main mainTests
 
 #--- primary target
 .PHONY : all
@@ -30,14 +40,14 @@ all : $(TARGET)
 
 
 #--- compiler targets
-TicTacToeMain : $(OBJS) $(TINYOBJS) tinyxml.h TicTacToeMain.o
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(TINYOBJS) TicTacToeMain.o
+main : $(OBJS) $(TINYOBJS) TinyXml/tinyxml.h src/main.o
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(TINYOBJS) src/main.o
 
-TicTacToeTests : $(OBJS) $(TSTSRCS) $(TINYOBJS) tinyxml.h TicTacToeTests.o
-	$(CXX) $(CXXFLAGS) $(TLIBPATH) $(TLIBS) -o $@ $(OBJS) $(TINYOBJS) TicTacToeTests.o
+mainTests : $(OBJS) $(TSTSRCS) $(TINYOBJS) TinyXml/tinyxml.h src/mainTests.o
+	$(CXX) $(CXXFLAGS) $(TLIBPATH) $(TLIBS) -o $@ $(OBJS) $(TINYOBJS) src/mainTests.o
 
-TicTacToeTests.o : $(TSTSRCS)
-	$(CXX) $(CXXFLAGS) -c -o $@ main_test.cpp
+mainTests.o : $(TSTSRCS)
+	$(CXX) $(CXXFLAGS) -c -o $@ src/mainTests.cpp
 
 %.o : %.cpp %.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
@@ -72,9 +82,9 @@ echo :
 
 .PHONY : sourcestar
 sourcestar :
-	tar -cvf TicTacToe.tar *.h *.cpp Makefile testOutput testInput
+	tar -cvf PSE.tar *.h *.cpp Makefile testOutput testInput
 
 .PHONY : sourceszip
 sourceszip :
-	zip -q -r TicTacToe.zip *.h *.cpp Makefile testOutput testInput
+	zip -q -r PSE.zip *.h *.cpp Makefile testOutput testInput
 #--zip quietly and recursively

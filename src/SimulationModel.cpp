@@ -1,5 +1,5 @@
 #include "Vehicle.h"
-#include "Exeptions/Exceptions.h"
+#include "Exceptions.h"
 
 bool test(Vehicle *number) {
     return number->getCurrentRoad() == NULL;

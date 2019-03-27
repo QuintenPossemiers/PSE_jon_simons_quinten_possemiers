@@ -158,11 +158,14 @@
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>
-		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exeptions/Exceptions.cpp">
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/DesignByContract.h">
+			<Option target="pse"/>
+		</Unit>
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exceptions.cpp">
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>
-		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exeptions/Exceptions.h">
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exceptions.h">
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>
@@ -201,7 +204,7 @@
 		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/main.cpp">
 			<Option target="pse"/>
 		</Unit>
-		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/main_test.cpp">
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/mainTests.cpp">
 			<Option target="pse_debug"/>
 		</Unit>
 		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/CMakeLists.txt">
