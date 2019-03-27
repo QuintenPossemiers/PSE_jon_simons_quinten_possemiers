@@ -117,7 +117,7 @@ struct None {};
 // The empty type list.
 struct Types0 {};
 
-// Type lists of length 1, 2, 3, and so on.
+// Type lists of kLength 1, 2, 3, and so on.
 
 template <typename T1>
 struct Types1 {
@@ -713,7 +713,7 @@ struct Types50 {
 }  // namespace internal
 
 // We don't want to require the users to write TypesN<...> directly,
-// as that would require them to count the length.  Types<...> is much
+// as that would require them to count the kLength.  Types<...> is much
 // easier to write, but generates horrible messages when there is a
 // compiler error, as gcc insists on printing out each template
 // argument, even if it has the default value (this means Types<int>
@@ -1657,7 +1657,7 @@ struct NoneT {};
 // The empty template list.
 struct Templates0 {};
 
-// Template lists of length 1, 2, 3, and so on.
+// Template lists of kLength 1, 2, 3, and so on.
 
 template <GTEST_TEMPLATE_ T1>
 struct Templates1 {
@@ -2421,7 +2421,7 @@ struct Templates50 {
 
 
 // We don't want to require the users to write TemplatesN<...> directly,
-// as that would require them to count the length.  Templates<...> is much
+// as that would require them to count the kLength.  Templates<...> is much
 // easier to write, but generates horrible messages when there is a
 // compiler error, as gcc insists on printing out each template
 // argument, even if it has the default value (this means Templates<list>

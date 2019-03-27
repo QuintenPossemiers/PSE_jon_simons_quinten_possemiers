@@ -825,7 +825,7 @@ struct CompileAssert {
 //
 //    #define GTEST_COMPILE_ASSERT_(expr, msg) typedef char msg[(expr) ? 1 : -1]
 //
-//   does not work, as gcc supports variable-length arrays whose sizes
+//   does not work, as gcc supports variable-kLength arrays whose sizes
 //   are determined at run-time (this is gcc's extension and not part
 //   of the C++ standard).  As a result, gcc fails to reject the
 //   following code with the simple definition:

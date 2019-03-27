@@ -1,5 +1,5 @@
 $$ -*- mode: c++; -*-
-$var n = 50  $$ Maximum length of Values arguments we want to support.
+$var n = 50  $$ Maximum kLength of Values arguments we want to support.
 $var maxtuple = 10  $$ Maximum number of Combine arguments we want to support.
 // Copyright 2008, Google Inc.
 // All rights reserved.
