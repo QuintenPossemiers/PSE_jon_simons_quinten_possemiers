@@ -1,109 +1,105 @@
-#include "Exeptions/AllExceptions.h"
+#include "Exeptions/Exceptions.h"
 #include "Vehicle.h"
 #include <stdexcept>
 #include <iostream>
 #include <math.h>
 
 bool Vehicle::operator==(const Vehicle &rhs) const {
-    return license_plate == rhs.license_plate;
+    return kLicencePlate == rhs.kLicencePlate;
 }
 
 bool Vehicle::operator!=(const Vehicle &rhs) const {
     return !(rhs == *this);
 }
 
-bool Vehicle::collides(Vehicle *second_car) {
-    return collides(second_car->getPosition(), second_car->getCurrent_road()->getName());
+bool Vehicle::collides(Vehicle *secondCar) {
+    return collides(secondCar->getPosition(), secondCar->getCurrentRoad()->getName());
 }
 
-bool Vehicle::collides(double position, std::string road_name) {
-    return road_name == current_road->getName() and this->position - 5 < position and position < this->position + 5;
+bool Vehicle::collides(double position, std::string roadName) {
+    return roadName == fCurrentRoad->getName() and this->fPosition - 5 < position and position < this->fPosition + 5;
 }
 
 unsigned int Vehicle::getSpeed() const {
-    return speed;
+    return fSpeed;
 }
 
 void Vehicle::setSpeed(unsigned int speed) {
-    Vehicle::speed = speed;
+    Vehicle::fSpeed = speed;
 }
 
 unsigned int Vehicle::getPosition() const {
-    return position;
+    return fPosition;
 }
 
 void Vehicle::setPosition(unsigned int position) {
-    Vehicle::position = position;
+    Vehicle::fPosition = position;
 }
 
-const std::string &Vehicle::getLicense_plate() const {
-    return license_plate;
+const std::string &Vehicle::getLicencePlate() const {
+    return kLicencePlate;
 }
 
-void Vehicle::setLicense_plate(const std::string &license_plate) {
-    Vehicle::license_plate = license_plate;
+Road *Vehicle::getCurrentRoad() const {
+    return fCurrentRoad;
 }
 
-Road *Vehicle::getCurrent_road() const {
-    return current_road;
+void Vehicle::setCurrentRoad(Road *currentRoad) {
+    Vehicle::fCurrentRoad = currentRoad;
 }
 
-void Vehicle::setCurrent_road(Road *current_road) {
-    Vehicle::current_road = current_road;
-}
+Vehicle::Vehicle(unsigned int speed, unsigned int position, const std::string &licenePlate,
+                 Road *currentRoad, VehicleType *type) : fSpeed(speed),
+                                                          fPosition(position),
+                                                          kLicencePlate(licenePlate),
+                                                          fCurrentRoad(currentRoad), fType(type), _initCheck(this) {
 
-Vehicle::Vehicle(unsigned int speed, unsigned int position, const std::string &license_plate,
-                 Road *current_road_arg, VehicleType *type) : speed(speed),
-                                                          position(position),
-                                                          license_plate(license_plate),
-                                                          current_road(current_road_arg), type(type), _initCheck(this) {
-
-    if (current_road->getLength() < position) throw FatalException(vehicle_illegal_position);
-    if (current_road->getSpeed_limit() < speed) throw ParsingExc(vehicle_speed_error);
-    if (current_road_arg == 0) throw ParsingExc(vehicle_illegal_position);
+    if (fCurrentRoad->getLength() < position) throw FatalException(vehicle_illegal_position);
+    if (fCurrentRoad->getSpeedLimit() < speed) throw NonFatalException(vehicle_speed_error);
+    if (currentRoad == 0) throw NonFatalException(vehicle_illegal_position);
 }
 
 std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle) {
-    os << "Voertuig: " << vehicle.type->getName() << " (" + vehicle.license_plate << ")" << std::endl;
-    os << " --> baan    : " << vehicle.current_road->getName() << std::endl;
-    os << " --> positie : " << vehicle.position << std::endl;
-    os << " --> snelheid: " << vehicle.speed << std::endl;
+    os << "Voertuig: " << vehicle.fType->getName() << " (" + vehicle.kLicencePlate << ")" << std::endl;
+    os << " --> baan    : " << vehicle.fCurrentRoad->getName() << std::endl;
+    os << " --> positie : " << vehicle.fPosition << std::endl;
+    os << " --> snelheid: " << vehicle.fSpeed << std::endl;
     return os;
 }
 
-bool Vehicle::set_new_position(unsigned int time_spent) {
-    position += (unsigned int)round((speed / 3.6) * time_spent);
-    if (position > current_road->getLength()) {
-        position = 0;//je moet rekening houden met de overgang naar een andere baan
-        if (current_road->getConnections().empty()) return false;
-        this->setCurrent_road(current_road->getConnections()[0]);
+bool Vehicle::setNewPosition(unsigned int timeSpent) {
+    fPosition += (unsigned int)round((fSpeed / 3.6) * timeSpent);
+    if (fPosition > fCurrentRoad->getLength()) {
+        fPosition = 0;//je moet rekening houden met de overgang naar een andere baan
+        if (fCurrentRoad->getConnections().empty()) return false;
+        this->setCurrentRoad(fCurrentRoad->getConnections()[0]);
         return true;
     }
     return true;
 }
 
-void Vehicle::set_new_speed(double acceleration) {
-    speed += (unsigned int)round(acceleration);
-    if (speed > 150)speed = 150;
-    if (current_road->getSpeed_limit() < speed)speed = current_road->getSpeed_limit();
+void Vehicle::setAcceleration(double acceleration) {
+    fSpeed += (unsigned int)round(acceleration);
+    if (fSpeed > 150)fSpeed = 150;
+    if (fCurrentRoad->getSpeedLimit() < fSpeed)fSpeed = fCurrentRoad->getSpeedLimit();
 }
 
-double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
-    Vehicle *previous_veh = NULL;
+double Vehicle::getAcceleration(std::vector<Vehicle *> vehicles) {
+    Vehicle *previousVehicle = NULL;
     for (unsigned int i = 0; i < vehicles.size(); ++i) {
-        if (this != vehicles[i] and previous_veh) {
-            if (vehicles[i]->position > position and previous_veh->position > vehicles[i]->position)
-                previous_veh = vehicles[i];
-        } else if (this != vehicles[i] and vehicles[i]->position > position) {
-            previous_veh = vehicles[i];
+        if (this != vehicles[i] and previousVehicle) {
+            if (vehicles[i]->fPosition > fPosition and previousVehicle->fPosition > vehicles[i]->fPosition)
+                previousVehicle = vehicles[i];
+        } else if (this != vehicles[i] and vehicles[i]->fPosition > fPosition) {
+            previousVehicle = vehicles[i];
         }
     }
 
-    if (!previous_veh) return 2;
+    if (!previousVehicle) return 2;
 
-    double delta_ideal = 0.75 * this->speed + previous_veh->getLength() + 2;
-    double delta_real = previous_veh->position - previous_veh->getLength() - position;
-    double acceleration = 0.5 * (delta_real - delta_ideal);
+    double deltaIdeal = 0.75 * this->fSpeed + previousVehicle->getLength() + 2;
+    double deltaReal = previousVehicle->fPosition - previousVehicle->getLength() - fPosition;
+    double acceleration = 0.5 * (deltaReal - deltaIdeal);
     if (-8 >= acceleration)return -8;
     if (acceleration >= 2) return 2;
     return acceleration;
@@ -111,7 +107,7 @@ double Vehicle::get_acceleration(std::vector<Vehicle *> vehicles) {
 
 
 unsigned int Vehicle::getLength() const {
-    return (unsigned int)type->getLength();
+    return (unsigned int)fType->getLength();
 }
 
 Vehicle::~Vehicle() {
@@ -124,15 +120,15 @@ bool Vehicle::properlyInitialized() {
 
 
 int VehicleType::getLength() const {
-    return length;
+    return fLength;
 }
 
-VehicleType::VehicleType(const std::string &name) : name(name) {
-    if (name == "AUTO")length = 3;
+VehicleType::VehicleType(const std::string &name) : fName(name) {
+    if (name == "AUTO")fLength = 3;
 }
 
 std::string VehicleType::getName() {
-    return name;
+    return fName;
 }
 
 

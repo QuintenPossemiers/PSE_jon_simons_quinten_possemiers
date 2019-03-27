@@ -1,8 +1,8 @@
 #include "Vehicle.h"
-#include "Exeptions/ParsingExc.h"
+#include "Exeptions/Exceptions.h"
 
 bool test(Vehicle *number) {
-    return number->getCurrent_road() == NULL;
+    return number->getCurrentRoad() == NULL;
 };
 
 #include <iostream>
@@ -13,38 +13,38 @@ SimulationModel::SimulationModel() : _initCheck(this) {
 
 };
 
-void SimulationModel::add_road(Road *road) {
-    if (does_road_exist(road->getName()) != NULL)
-        throw ParsingExc(road_dupe_name);
-    roads.push_back(road);
+void SimulationModel::addRoad(Road *road) {
+    if (doesRoadExist(road->getName()) != NULL)
+        throw NonFatalException(road_dupe_name);
+    fRoads.push_back(road);
 }
 
-void SimulationModel::add_vehicle(Vehicle *vehicle) {
+void SimulationModel::addVehicle(Vehicle *vehicle) {
 
-    if (NULL == does_road_exist(vehicle->getCurrent_road()->getName()))
+    if (NULL == doesRoadExist(vehicle->getCurrentRoad()->getName()))
         throw FatalException(non_existing_road);
     checkCollision(vehicle);
 
-    vehicles.push_back(vehicle);
+    fVehicles.push_back(vehicle);
 }
 
 
-Road *SimulationModel::does_road_exist(std::string name) {
-    for (unsigned int i = 0; i < roads.size(); ++i) {
-        if (roads[i]->getName() == name) return roads[i];
+Road *SimulationModel::doesRoadExist(std::string name) {
+    for (unsigned int i = 0; i < fRoads.size(); ++i) {
+        if (fRoads[i]->getName() == name) return fRoads[i];
     }
     return NULL;
 }
 
 const std::vector<Vehicle *> &SimulationModel::getVehicles() const {
-    return vehicles;
+    return fVehicles;
 }
 
 void SimulationModel::start(const char *xml_path) {
-    vehicles.clear();
-    roads.clear();
+    fVehicles.clear();
+    fRoads.clear();
     Parser parser = Parser(xml_path);
-    parser.initialise_roads_and_vehicles(this);
+    parser.initialiseRoadsAndVehicles(this);
 }
 
 std::ostream &operator<<(std::ostream &os, const SimulationModel &model) {
@@ -60,31 +60,31 @@ std::ostream &operator<<(std::ostream &os, const SimulationModel &model) {
 }
 
 const std::vector<Road *> &SimulationModel::getRoads() const {
-    return roads;
+    return fRoads;
 }
 
 std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
-    std::vector<Vehicle *> vehicles_on_road;
+    std::vector<Vehicle *> vehiclesOnRoad;
 
-    for (unsigned int i = 0; i < vehicles.size(); ++i)
-        if (vehicles[i]->getCurrent_road() == road)vehicles_on_road.push_back(vehicles[i]);
+    for (unsigned int i = 0; i < fVehicles.size(); ++i)
+        if (fVehicles[i]->getCurrentRoad() == road)vehiclesOnRoad.push_back(fVehicles[i]);
 
 
-    return vehicles_on_road;
+    return vehiclesOnRoad;
 }
 
 void SimulationModel::tick(unsigned int time) {
 
-    for (unsigned int i = 0; i < vehicles.size(); ++i) {
-        if (!vehicles[i]->set_new_position(time)) {
-            vehicles[i]->setCurrent_road(NULL);
-        } else if (vehicles[i] != NULL) {
-            vehicles[i]->set_new_speed(
-                    vehicles[i]->get_acceleration(get_vehicle_on_road(vehicles[i]->getCurrent_road())));
+    for (unsigned int i = 0; i < fVehicles.size(); ++i) {
+        if (!fVehicles[i]->setNewPosition(time)) {
+            fVehicles[i]->setCurrentRoad(NULL);
+        } else if (fVehicles[i] != NULL) {
+            fVehicles[i]->setAcceleration(
+                    fVehicles[i]->getAcceleration(get_vehicle_on_road(fVehicles[i]->getCurrentRoad())));
         }
     }
 
-    vehicles.erase(std::remove_if(vehicles.begin(), vehicles.end(), test), vehicles.end());//todo help
+    fVehicles.erase(std::remove_if(fVehicles.begin(), fVehicles.end(), test), fVehicles.end());//todo help
 }
 
 bool SimulationModel::properlyInitialized() {
@@ -92,19 +92,19 @@ bool SimulationModel::properlyInitialized() {
 }
 
 void SimulationModel::checkCollision(Vehicle *vehicle) {
-    for (unsigned int i = 0; i < vehicles.size(); ++i) {
-        if (vehicles[i]->collides(vehicle) and vehicle != vehicles[i])throw FatalException(vehicle_collision_error);
+    for (unsigned int i = 0; i < fVehicles.size(); ++i) {
+        if (fVehicles[i]->collides(vehicle) and vehicle != fVehicles[i])throw FatalException(vehicle_collision_error);
     }
 }
 
 void SimulationModel::addConnection(Road *from, Road *to) {
-    if (to == NULL or !does_road_exist(to->getName())) throw FatalException(road_non_ex_connection_to);
-    if (from == NULL or !does_road_exist(from->getName()))throw ParsingExc(road_non_ex_connection_from);
-    from->add_connection(to);
+    if (to == NULL or !doesRoadExist(to->getName())) throw FatalException(road_non_ex_connection_to);
+    if (from == NULL or !doesRoadExist(from->getName()))throw NonFatalException(road_non_ex_connection_from);
+    from->addConnection(to);
 }
 
 void SimulationModel::automaticSimulation() {
-    while (!vehicles.empty()) {tick();
+    while (!fVehicles.empty()) {tick();
     }
 }
 

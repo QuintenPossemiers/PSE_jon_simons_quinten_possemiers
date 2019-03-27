@@ -158,11 +158,11 @@
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>
-		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exeptions/ParsingExc.cpp">
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exeptions/Exceptions.cpp">
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>
-		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exeptions/ParsingExc.h">
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Exeptions/Exceptions.h">
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>

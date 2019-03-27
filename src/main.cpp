@@ -3,7 +3,7 @@
 #include <iostream>
 #include "SimulationModel.h"
 
-#include "Exeptions/AllExceptions.h"
+#include "Exeptions/Exceptions.h"
 
 static std::string file_name = "test";
 
@@ -25,9 +25,9 @@ void init_simulation() {
         std::cout << simulation;
 
 
-    } catch (ParsingExc &e) {
+    } catch (FatalException &e) {
         std::cerr << e.what() << std::endl;
-        //exit(e.get_exit_code());
+        //exit(e.getExitCode());
 
     }
 };

@@ -11,7 +11,7 @@
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -71,7 +71,7 @@
 // has a different implementation.
 //
 // The user can define GTEST_HAS_GLOBAL_STRING to 1 to indicate that
-// ::string is available AND is a distinct type to ::std::string, or
+// ::string is available AND is a distinct fType to ::std::string, or
 // define it to 0 to indicate otherwise.
 //
 // If the user's ::std::string and ::string are the same class due to
@@ -99,7 +99,7 @@ GTEST_DECLARE_bool_(catch_exceptions);
 // to let Google Test decide.
 GTEST_DECLARE_string_(color);
 
-// This flag sets up the filter to select by name using a glob pattern
+// This flag sets up the filter to select by fName using a glob pattern
 // the tests to run. If the filter is not given all tests are executed.
 GTEST_DECLARE_string_(filter);
 
@@ -424,7 +424,7 @@ class GTEST_API_ Test {
   // Sets up, executes, and tears down the test.
   void Run();
 
-  // Deletes self.  We deliberately pick an unusual name for this
+  // Deletes self.  We deliberately pick an unusual fName for this
   // internal method to avoid clashing with names used in user TESTs.
   void DeleteSelf_() { delete this; }
 
@@ -436,7 +436,7 @@ class GTEST_API_ Test {
   // the following method is solely for catching such an error at
   // compile time:
   //
-  //   - The return type is deliberately chosen to be not void, so it
+  //   - The return fType is deliberately chosen to be not void, so it
   //   will be a conflict if a user declares void Setup() in his test
   //   fixture.
   //
@@ -609,8 +609,8 @@ class GTEST_API_ TestResult {
 
 // A TestInfo object stores the following information about a test:
 //
-//   Test case name
-//   Test name
+//   Test case fName
+//   Test fName
 //   Whether the test should be run
 //   A function pointer that creates the test object when invoked
 //   Test result
@@ -624,14 +624,14 @@ class GTEST_API_ TestInfo {
   // don't inherit from TestInfo.
   ~TestInfo();
 
-  // Returns the test case name.
+  // Returns the test case fName.
   const char* test_case_name() const { return test_case_name_.c_str(); }
 
-  // Returns the test name.
+  // Returns the test fName.
   const char* name() const { return name_.c_str(); }
 
-  // Returns the name of the parameter type, or NULL if this is not a typed
-  // or a type-parameterized test.
+  // Returns the fName of the parameter fType, or NULL if this is not a typed
+  // or a fType-parameterized test.
   const char* type_param() const {
     if (type_param_.get() != NULL)
       return type_param_->c_str();
@@ -648,10 +648,10 @@ class GTEST_API_ TestInfo {
 
   // Returns true if this test should run, that is if the test is not
   // disabled (or it is disabled but the also_run_disabled_tests flag has
-  // been specified) and its full name matches the user-specified filter.
+  // been specified) and its full fName matches the user-specified filter.
   //
   // Google Test allows the user to filter the tests by their full names.
-  // The full name of a test Bar in test case Foo is defined as
+  // The full fName of a test Bar in test case Foo is defined as
   // "Foo.Bar".  Only the tests that match the filter will run.
   //
   // A filter is a colon-separated list of glob (not regex) patterns,
@@ -697,7 +697,7 @@ class GTEST_API_ TestInfo {
   // ownership of the factory object.
   TestInfo(const std::string& test_case_name,
            const std::string& name,
-           const char* a_type_param,   // NULL if not a type-parameterized test
+           const char* a_type_param,   // NULL if not a fType-parameterized test
            const char* a_value_param,  // NULL if not a value-parameterized test
            internal::TypeId fixture_class_id,
            internal::TestFactoryBase* factory);
@@ -717,10 +717,10 @@ class GTEST_API_ TestInfo {
   }
 
   // These fields are immutable properties of the test.
-  const std::string test_case_name_;     // Test case name
-  const std::string name_;               // Test name
-  // Name of the parameter type, or NULL if this is not a typed or a
-  // type-parameterized test.
+  const std::string test_case_name_;     // Test case fName
+  const std::string name_;               // Test fName
+  // Name of the parameter fType, or NULL if this is not a typed or a
+  // fType-parameterized test.
   const internal::scoped_ptr<const ::std::string> type_param_;
   // Text representation of the value parameter, or NULL if this is not a
   // value-parameterized test.
@@ -745,16 +745,16 @@ class GTEST_API_ TestInfo {
 // TestCase is not copyable.
 class GTEST_API_ TestCase {
  public:
-  // Creates a TestCase with the given name.
+  // Creates a TestCase with the given fName.
   //
   // TestCase does NOT have a default constructor.  Always use this
   // constructor to create a TestCase object.
   //
   // Arguments:
   //
-  //   name:         name of the test case
-  //   a_type_param: the name of the test's type parameter, or NULL if
-  //                 this is not a type-parameterized test.
+  //   fName:         fName of the test case
+  //   a_type_param: the fName of the test's fType parameter, or NULL if
+  //                 this is not a fType-parameterized test.
   //   set_up_tc:    pointer to the function that sets up the test case
   //   tear_down_tc: pointer to the function that tears down the test case
   TestCase(const char* name, const char* a_type_param,
@@ -764,11 +764,11 @@ class GTEST_API_ TestCase {
   // Destructor of TestCase.
   virtual ~TestCase();
 
-  // Gets the name of the TestCase.
+  // Gets the fName of the TestCase.
   const char* name() const { return name_.c_str(); }
 
-  // Returns the name of the parameter type, or NULL if this is not a
-  // type-parameterized test case.
+  // Returns the fName of the parameter fType, or NULL if this is not a
+  // fType-parameterized test case.
   const char* type_param() const {
     if (type_param_.get() != NULL)
       return type_param_->c_str();
@@ -897,8 +897,8 @@ class GTEST_API_ TestCase {
 
   // Name of the test case.
   std::string name_;
-  // Name of the parameter type, or NULL if this is not a typed or a
-  // type-parameterized test.
+  // Name of the parameter fType, or NULL if this is not a typed or a
+  // fType-parameterized test.
   const internal::scoped_ptr<const ::std::string> type_param_;
   // The vector of TestInfos in their original order.  It owns the
   // elements in the vector.
@@ -1337,8 +1337,8 @@ GTEST_API_ void InitGoogleTest(int* argc, wchar_t** argv);
 namespace internal {
 
 // FormatForComparison<ToPrint, OtherOperand>::Format(value) formats a
-// value of type ToPrint that is an operand of a comparison assertion
-// (e.g. ASSERT_EQ).  OtherOperand is the type of the other operand in
+// value of fType ToPrint that is an operand of a comparison assertion
+// (e.g. ASSERT_EQ).  OtherOperand is the fType of the other operand in
 // the comparison, and is used to help determine the best way to
 // format the value.  In particular, when the value is a C string
 // (char pointer) and the other operand is an STL string object, we
@@ -1420,7 +1420,7 @@ GTEST_IMPL_FORMAT_C_STRING_AS_STRING_(const wchar_t, ::std::wstring);
 #undef GTEST_IMPL_FORMAT_C_STRING_AS_STRING_
 
 // Formats a comparison assertion (e.g. ASSERT_EQ, EXPECT_LT, and etc)
-// operand to be used in a failure message.  The type (but not value)
+// operand to be used in a failure message.  The fType (but not value)
 // of the other operand may affect the format.  This allows us to
 // print a char* as a raw pointer when it is compared against another
 // char* or void*, and print it as a C string when it is compared
@@ -1516,7 +1516,7 @@ class EqHelper<true> {
       const T1& expected,
       const T2& actual,
       // The following line prevents this overload from being considered if T2
-      // is not a pointer type.  We need this because ASSERT_EQ(NULL, my_ptr)
+      // is not a pointer fType.  We need this because ASSERT_EQ(NULL, my_ptr)
       // expands to Compare("", "", NULL, my_ptr), which requires a conversion
       // to match the Secret* in the other overload, which would otherwise make
       // this template match better.
@@ -1679,7 +1679,7 @@ namespace internal {
 //
 // Template parameter:
 //
-//   RawType: the raw floating-point type (either float or double)
+//   RawType: the raw floating-point fType (either float or double)
 //
 // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
 template <typename RawType>
@@ -1806,7 +1806,7 @@ class WithParamInterface {
   // constructor. This member function is non-static, even though it only
   // references static data, to reduce the opportunity for incorrect uses
   // like writing 'WithParamInterface<bool>::GetParam()' for a test that
-  // uses a fixture whose parameter type is int.
+  // uses a fixture whose parameter fType is int.
   const ParamType& GetParam() const {
     GTEST_CHECK_(parameter_ != NULL)
         << "GetParam() can only be called inside a value-parameterized test "
@@ -1872,7 +1872,7 @@ class TestWithParam : public Test, public WithParamInterface<T> {
 #define GTEST_FAIL() GTEST_FATAL_FAILURE_("Failed")
 
 // Define this macro to 1 to omit the definition of FAIL(), which is a
-// generic name and clashes with some other libraries.
+// generic fName and clashes with some other libraries.
 #if !GTEST_DONT_DEFINE_FAIL
 # define FAIL() GTEST_FAIL()
 #endif
@@ -1881,7 +1881,7 @@ class TestWithParam : public Test, public WithParamInterface<T> {
 #define GTEST_SUCCEED() GTEST_SUCCESS_("Succeeded")
 
 // Define this macro to 1 to omit the definition of SUCCEED(), which
-// is a generic name and clashes with some other libraries.
+// is a generic fName and clashes with some other libraries.
 #if !GTEST_DONT_DEFINE_SUCCEED
 # define SUCCEED() GTEST_SUCCEED()
 #endif
@@ -1944,7 +1944,7 @@ class TestWithParam : public Test, public WithParamInterface<T> {
 //
 // Note:
 //
-//   1. It is possible to make a user-defined type work with
+//   1. It is possible to make a user-defined fType work with
 //   {ASSERT|EXPECT}_??(), but that requires overloading the
 //   comparison operators and is thus discouraged by the Google C++
 //   Usage Guide.  Therefore, you are advised to use the
@@ -2164,21 +2164,21 @@ GTEST_API_ AssertionResult DoubleLE(const char* expr1, const char* expr2,
 // The message argument can be anything streamable to std::ostream.
 //
 // In the implementation, we include the current line number as part
-// of the dummy variable name, thus allowing multiple SCOPED_TRACE()s
+// of the dummy variable fName, thus allowing multiple SCOPED_TRACE()s
 // to appear in the same block - as long as they are on different
 // lines.
 #define SCOPED_TRACE(message) \
   ::testing::internal::ScopedTrace GTEST_CONCAT_TOKEN_(gtest_trace_, __LINE__)(\
     __FILE__, __LINE__, ::testing::Message() << (message))
 
-// Compile-time assertion for type equality.
+// Compile-time assertion for fType equality.
 // StaticAssertTypeEq<type1, type2>() compiles iff type1 and type2 are
-// the same type.  The value it returns is not interesting.
+// the same fType.  The value it returns is not interesting.
 //
 // Instead of making StaticAssertTypeEq a class template, we make it a
 // function template that invokes a helper class template.  This
 // prevents a user from misusing StaticAssertTypeEq<T1, T2> by
-// defining objects of that type.
+// defining objects of that fType.
 //
 // CAVEAT:
 //
@@ -2209,10 +2209,10 @@ bool StaticAssertTypeEq() {
 
 // Defines a test.
 //
-// The first parameter is the name of the test case, and the second
-// parameter is the name of the test within the test case.
+// The first parameter is the fName of the test case, and the second
+// parameter is the fName of the test within the test case.
 //
-// The convention is to end the test case name with "Test".  For
+// The convention is to end the test case fName with "Test".  For
 // example, a test case for the Foo class can be named FooTest.
 //
 // The user should put his test code between braces after using this
@@ -2224,7 +2224,7 @@ bool StaticAssertTypeEq() {
 //   }
 
 // Note that we call GetTestTypeId() instead of GetTypeId<
-// ::testing::Test>() here to get the type ID of testing::Test.  This
+// ::testing::Test>() here to get the fType ID of testing::Test.  This
 // is to work around a suspected linker bug when using Google Test as
 // a framework on Mac OS X.  The bug causes GetTypeId<
 // ::testing::Test>() to return different values depending on whether
@@ -2237,16 +2237,16 @@ bool StaticAssertTypeEq() {
               ::testing::Test, ::testing::internal::GetTestTypeId())
 
 // Define this macro to 1 to omit the definition of TEST(), which
-// is a generic name and clashes with some other libraries.
+// is a generic fName and clashes with some other libraries.
 #if !GTEST_DONT_DEFINE_TEST
 # define TEST(test_case_name, test_name) GTEST_TEST(test_case_name, test_name)
 #endif
 
 // Defines a test that uses a test fixture.
 //
-// The first parameter is the name of the test fixture class, which
-// also doubles as the test case name.  The second parameter is the
-// name of the test within the test case.
+// The first parameter is the fName of the test fixture class, which
+// also doubles as the test case fName.  The second parameter is the
+// fName of the test within the test case.
 //
 // A test fixture class must be declared earlier.  The user should put
 // his test code between braces after using this macro.  Example:
@@ -2281,7 +2281,7 @@ bool StaticAssertTypeEq() {
 // parsed by InitGoogleTest().
 //
 // This function was formerly a macro; thus, it is in the global
-// namespace and has an all-caps name.
+// namespace and has an all-caps fName.
 int RUN_ALL_TESTS() GTEST_MUST_USE_RESULT_;
 
 inline int RUN_ALL_TESTS() {

@@ -9,8 +9,8 @@
 
 class VehicleType{
 private:
-    int length;
-    std::string name;
+    int fLength;
+    std::string fName;
 public:
     explicit VehicleType(const std::string &name);
 
@@ -22,11 +22,11 @@ public:
 class Vehicle {
     /**section reserved for variables*/
 private:
-    unsigned int speed;
-    unsigned int position;
-    std::string license_plate;
-    Road *current_road;
-    VehicleType* type;
+    unsigned int fSpeed;
+    unsigned int fPosition;
+    const std::string kLicencePlate;
+    Road *fCurrentRoad;
+    VehicleType* fType;
     Vehicle* _initCheck;
 
 
@@ -43,13 +43,11 @@ public:
 
     void setPosition(unsigned int position);
 
-    const std::string &getLicense_plate() const;
+    const std::string &getLicencePlate() const;
 
-    void setLicense_plate(const std::string &license_plate);
+    Road *getCurrentRoad() const;
 
-    Road *getCurrent_road() const;
-
-    void setCurrent_road(Road *current_road);
+    void setCurrentRoad(Road *currentRoad);
 
     bool properlyInitialized();
 
@@ -59,8 +57,8 @@ public:
      * Speed cannot be greater than the speed limit of the the road!
      * */
 
-    Vehicle(unsigned int speed, unsigned int position, const std::string &license_plate,
-            Road *current_road, VehicleType* type);
+    Vehicle(unsigned int speed, unsigned int position, const std::string &licenePlate,
+            Road *currentRoad, VehicleType* type);
 
     virtual ~Vehicle();
 
@@ -74,15 +72,15 @@ public:
 
     /**section for public functions*/
 public:
-    bool collides(Vehicle* second_car);
+    bool collides(Vehicle* secondCar);
 
-    bool collides(double position, std::string road_name);
+    bool collides(double position, std::string roadName);
 
-    bool set_new_position(unsigned int time_spent = 1); // time spent
+    bool setNewPosition(unsigned int timeSpent = 1); // time spent
 
-    void set_new_speed(double acceleration);
+    void setAcceleration(double acceleration);
 
-    double get_acceleration(std::vector<Vehicle*> vehicles);
+    double getAcceleration(std::vector<Vehicle *> vehicles);
 };
 
 

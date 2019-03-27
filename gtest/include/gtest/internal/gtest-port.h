@@ -11,7 +11,7 @@
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -125,7 +125,7 @@
 //   GTEST_HAS_DEATH_TEST   - death tests
 //   GTEST_HAS_PARAM_TEST   - value-parameterized tests
 //   GTEST_HAS_TYPED_TEST   - typed tests
-//   GTEST_HAS_TYPED_TEST_P - type-parameterized tests
+//   GTEST_HAS_TYPED_TEST_P - fType-parameterized tests
 //   GTEST_USES_POSIX_RE    - enhanced POSIX regex is used. Do not confuse with
 //                            GTEST_HAS_POSIX_RE (see above) which users can
 //                            define themselves.
@@ -176,10 +176,10 @@
 //                         string.
 //
 // Integer types:
-//   TypeWithSize   - maps an integer to a int type.
+//   TypeWithSize   - maps an integer to a int fType.
 //   Int32, UInt32, Int64, UInt64, TimeInMillis
 //                  - integers of known sizes.
-//   BiggestInt     - the biggest signed integer type.
+//   BiggestInt     - the biggest signed integer fType.
 //
 // Command-line utilities:
 //   GTEST_FLAG()       - references a flag.
@@ -656,7 +656,7 @@ using ::std::tuple_size;
 // value-parameterized tests.
 #define GTEST_HAS_PARAM_TEST 1
 
-// Determines whether to support type-driven tests.
+// Determines whether to support fType-driven tests.
 
 // Typed tests need <typeinfo> and variadic macros, which GCC, VC++ 8.0,
 // Sun Pro CC, IBM Visual Age, and HP aCC support.
@@ -788,7 +788,7 @@ class Message;
 
 namespace internal {
 
-// A secret type that Google Test users don't know about.  It has no
+// A secret fType that Google Test users don't know about.  It has no
 // definition on purpose.  Therefore it's impossible to create a
 // Secret object, which is what we want.
 class Secret;
@@ -804,9 +804,9 @@ class Secret;
 //
 //   GTEST_COMPILE_ASSERT_(sizeof(foo) < 128, foo_too_large);
 //
-// The second argument to the macro is the name of the variable. If
+// The second argument to the macro is the fName of the variable. If
 // the expression is false, most compilers will issue a warning/error
-// containing the name of the variable.
+// containing the fName of the variable.
 
 template <bool>
 struct CompileAssert {
@@ -818,14 +818,14 @@ struct CompileAssert {
 
 // Implementation details of GTEST_COMPILE_ASSERT_:
 //
-// - GTEST_COMPILE_ASSERT_ works by defining an array type that has -1
+// - GTEST_COMPILE_ASSERT_ works by defining an array fType that has -1
 //   elements (and thus is invalid) when the expression is false.
 //
 // - The simpler definition
 //
 //    #define GTEST_COMPILE_ASSERT_(expr, msg) typedef char msg[(expr) ? 1 : -1]
 //
-//   does not work, as gcc supports variable-kLength arrays whose sizes
+//   does not work, as gcc supports variable-fLength arrays whose sizes
 //   are determined at run-time (this is gcc's extension and not part
 //   of the C++ standard).  As a result, gcc fails to reject the
 //   following code with the simple definition:
@@ -834,7 +834,7 @@ struct CompileAssert {
 //     GTEST_COMPILE_ASSERT_(foo, msg); // not supposed to compile as foo is
 //                                      // not a compile-time constant.
 //
-// - By using the type CompileAssert<(bool(expr))>, we ensures that
+// - By using the fType CompileAssert<(bool(expr))>, we ensures that
 //   expr is a compile-time constant.  (Template arguments must be
 //   determined at compile-time.)
 //
@@ -906,7 +906,7 @@ class scoped_ptr {
 
   void reset(T* p = NULL) {
     if (p != ptr_) {
-      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete type.
+      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete fType.
         delete ptr_;
       }
       ptr_ = p;
@@ -1077,11 +1077,11 @@ inline void FlushInfoLog() { fflush(NULL); }
 // INTERNAL IMPLEMENTATION - DO NOT USE IN USER CODE.
 //
 // Use ImplicitCast_ as a safe version of static_cast for upcasting in
-// the type hierarchy (e.g. casting a Foo* to a SuperclassOfFoo* or a
+// the fType hierarchy (e.g. casting a Foo* to a SuperclassOfFoo* or a
 // const Foo*).  When you use ImplicitCast_, the compiler checks that
 // the cast is safe.  Such explicit ImplicitCast_s are necessary in
-// surprisingly many situations where C++ demands an exact type match
-// instead of an argument type convertable to a target type.
+// surprisingly many situations where C++ demands an exact fType match
+// instead of an argument fType convertable to a target fType.
 //
 // The syntax for using ImplicitCast_ is the same as for static_cast:
 //
@@ -1091,18 +1091,18 @@ inline void FlushInfoLog() { fflush(NULL); }
 // but the proposal was submitted too late.  It will probably make
 // its way into the language in the future.
 //
-// This relatively ugly name is intentional. It prevents clashes with
+// This relatively ugly fName is intentional. It prevents clashes with
 // similar functions users may have (e.g., implicit_cast). The internal
 // namespace alone is not enough because the function can be found by ADL.
 template<typename To>
 inline To ImplicitCast_(To x) { return x; }
 
-// When you upcast (that is, cast a pointer from type Foo to type
+// When you upcast (that is, cast a pointer from fType Foo to fType
 // SuperclassOfFoo), it's fine to use ImplicitCast_<>, since upcasts
 // always succeed.  When you downcast (that is, cast a pointer from
-// type Foo to type SubclassOfFoo), static_cast<> isn't safe, because
-// how do you know the pointer is really of type SubclassOfFoo?  It
-// could be a bare Foo, or of type DifferentSubclassOfFoo.  Thus,
+// fType Foo to fType SubclassOfFoo), static_cast<> isn't safe, because
+// how do you know the pointer is really of fType SubclassOfFoo?  It
+// could be a bare Foo, or of fType DifferentSubclassOfFoo.  Thus,
 // when you downcast, you should use this macro.  In debug mode, we
 // use dynamic_cast<> to double-check the downcast is legal (we die
 // if it's not).  In normal mode, we do the efficient static_cast<>
@@ -1115,13 +1115,13 @@ inline To ImplicitCast_(To x) { return x; }
 //    if (dynamic_cast<Subclass2>(foo)) HandleASubclass2Object(foo);
 // You should design the code some other way not to need this.
 //
-// This relatively ugly name is intentional. It prevents clashes with
+// This relatively ugly fName is intentional. It prevents clashes with
 // similar functions users may have (e.g., down_cast). The internal
 // namespace alone is not enough because the function can be found by ADL.
 template<typename To, typename From>  // use like this: DownCast_<T*>(foo);
 inline To DownCast_(From* f) {  // so we only accept pointers
-  // Ensures that To is a sub-type of From *.  This test is here only
-  // for compile-time type checking, and has no overhead in an
+  // Ensures that To is a sub-fType of From *.  This test is here only
+  // for compile-time fType checking, and has no overhead in an
   // optimized build at run-time, as it will be optimized away
   // completely.
   if (false) {
@@ -1136,9 +1136,9 @@ inline To DownCast_(From* f) {  // so we only accept pointers
   return static_cast<To>(f);
 }
 
-// Downcasts the pointer of type Base to Derived.
+// Downcasts the pointer of fType Base to Derived.
 // Derived must be a subclass of Base. The parameter MUST
-// point to a class of type Derived, not any subclass of it.
+// point to a class of fType Derived, not any subclass of it.
 // When RTTI is available, the function performs a runtime
 // check to enforce this.
 template <class Derived, class Base>
@@ -1247,7 +1247,7 @@ class ThreadWithParamBase {
   virtual void Run() = 0;
 };
 
-// pthread_create() accepts a pointer to a function type with the C linkage.
+// pthread_create() accepts a pointer to a function fType with the C linkage.
 // According to the Standard (7.5/1), function types with different linkages
 // are different even if they are otherwise identical.  Some compilers (for
 // example, SunStudio) treat them as different types.  Since class methods
@@ -1332,7 +1332,7 @@ class ThreadWithParam : public ThreadWithParamBase {
 //
 //   GTEST_DECLARE_STATIC_MUTEX_(g_some_mutex);
 //
-// To create a dynamic mutex, just define an object of type Mutex.
+// To create a dynamic mutex, just define an object of fType Mutex.
 class MutexBase {
  public:
   // Acquires this mutex.
@@ -1405,7 +1405,7 @@ class Mutex : public MutexBase {
   GTEST_DISALLOW_COPY_AND_ASSIGN_(Mutex);
 };
 
-// We cannot name this class MutexLock as the ctor declaration would
+// We cannot fName this class MutexLock as the ctor declaration would
 // conflict with a macro named MutexLock, which is defined on some
 // platforms.  Hence the typedef trick below.
 class GTestMutexLock {
@@ -1454,7 +1454,7 @@ extern "C" inline void DeleteThreadLocalValue(void* value_holder) {
 //   tl.set(200);
 //   EXPECT_EQ(200, tl.get());
 //
-// The template type argument T must have a public copy constructor.
+// The template fType argument T must have a public copy constructor.
 // In addition, the default ThreadLocal constructor requires T to have
 // a public default constructor.
 //
@@ -1492,7 +1492,7 @@ class ThreadLocal {
   void set(const T& value) { *pointer() = value; }
 
  private:
-  // Holds a value of type T.
+  // Holds a value of fType T.
   class ValueHolder : public ThreadLocalValueHolderBase {
    public:
     explicit ValueHolder(const T& value) : value_(value) {}
@@ -1641,7 +1641,7 @@ struct IteratorTraits<const T*> {
 #if GTEST_OS_WINDOWS
 # define GTEST_PATH_SEP_ "\\"
 # define GTEST_HAS_ALT_PATH_SEP_ 1
-// The biggest signed integer type the compiler supports.
+// The biggest signed integer fType the compiler supports.
 typedef __int64 BiggestInt;
 #else
 # define GTEST_PATH_SEP_ "/"
@@ -1692,12 +1692,12 @@ inline char ToUpper(char ch) {
 // The testing::internal::posix namespace holds wrappers for common
 // POSIX functions.  These wrappers hide the differences between
 // Windows/MSVC and POSIX systems.  Since some compilers define these
-// standard functions as macros, the wrapper cannot have the same name
+// standard functions as macros, the wrapper cannot have the same fName
 // as the wrapped function.
 
 namespace posix {
 
-// Functions with a different name on Windows.
+// Functions with a different fName on Windows.
 
 #if GTEST_OS_WINDOWS
 
@@ -1796,7 +1796,7 @@ inline const char* GetEnv(const char* name) {
 #elif defined(__BORLANDC__) || defined(__SunOS_5_8) || defined(__SunOS_5_9)
   // Environment variables which we programmatically clear will be set to the
   // empty string rather than unset (NULL).  Handle that case.
-  const char* const env = getenv(name);
+  const char* const env = getenv(fName);
   return (env != NULL && env[0] != '\0') ? env : NULL;
 #else
   return getenv(name);
@@ -1846,7 +1846,7 @@ const BiggestInt kMaxBiggestInt =
     ~(static_cast<BiggestInt>(1) << (8*sizeof(BiggestInt) - 1));
 
 // This template class serves as a compile-time function from size to
-// type.  It maps a size in bytes to a primitive type with that
+// fType.  It maps a size in bytes to a primitive fType with that
 // size. e.g.
 //
 //   TypeWithSize<4>::UInt

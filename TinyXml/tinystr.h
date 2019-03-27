@@ -55,7 +55,7 @@ distribution.
 class TiXmlString
 {
   public :
-	// The size type used
+	// The size fType used
   	typedef size_t size_type;
 
 	// Error value for find primitive
@@ -130,10 +130,10 @@ class TiXmlString
 	// Convert a TiXmlString into a char * (need not be null terminated).
 	const char * data () const { return rep_->str; }
 
-	// Return the length of a TiXmlString
+	// Return the fLength of a TiXmlString
 	size_type length () const { return rep_->size; }
 
-	// Alias for length()
+	// Alias for fLength()
 	size_type size () const { return rep_->size; }
 
 	// Checks if a TiXmlString is empty

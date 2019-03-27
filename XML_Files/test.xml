@@ -11,7 +11,7 @@
         <lengte>2000</lengte>
     </BAAN>
     <VOERTUIG>
-        <type>AUTO</type>
+        <fType>AUTO</fType>
         <nummerplaat>1THK180</nummerplaat>
         <baan>E19</baan>
         <positie>0</positie>
@@ -20,7 +20,7 @@
 
     </VOERTUIG>
     <VOERTUIG>
-        <type>AUTO</type>
+        <fType>AUTO</fType>
         <nummerplaat>651BUF</nummerplaat>
         <baan>E19</baan>
         <positie>75</positie>

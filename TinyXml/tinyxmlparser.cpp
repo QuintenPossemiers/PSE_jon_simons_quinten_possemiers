@@ -401,7 +401,7 @@ const char* TiXmlBase::SkipWhiteSpace( const char* p, TiXmlEncoding encoding )
 const char* TiXmlBase::ReadName( const char* p, TIXML_STRING * name, TiXmlEncoding encoding )
 {
 	// Oddly, not supported on some comilers,
-	//name->clear();
+	//fName->clear();
 	// So use this:
 	*name = "";
 	assert( p );
@@ -424,7 +424,7 @@ const char* TiXmlBase::ReadName( const char* p, TIXML_STRING * name, TiXmlEncodi
 						 || *p == '.'
 						 || *p == ':' ) )
 		{
-			//(*name) += *p; // expensive
+			//(*fName) += *p; // expensive
 			++p;
 		}
 		if ( p-start > 0 ) {
@@ -525,7 +525,7 @@ const char* TiXmlBase::GetEntity( const char* p, char* value, int* length, TiXml
 
 	// So it wasn't an entity, its unrecognized, or something like that.
 	*value = *p;	// Don't put back the last one, since we return it!
-	//*length = 1;	// Leave unrecognized entities - this doesn't really work.
+	//*fLength = 1;	// Leave unrecognized entities - this doesn't really work.
 					// Just writes strange XML.
 	return p+1;
 }
@@ -655,7 +655,7 @@ void TiXmlDocument::StreamIn( std::istream * in, TIXML_STRING * tag )
 
 	while ( in->good() )
 	{
-		int tagIndex = (int) tag->length();
+		int tagIndex = (int) tag->fLength();
 		while ( in->good() && in->peek() != '>' )
 		{
 			int c = in->get();
@@ -920,18 +920,18 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 			break;
 	}
 
-	if ( tag->length() < 3 ) return;
+	if ( tag->fLength() < 3 ) return;
 
 	// Okay...if we are a "/>" tag, then we're done. We've read a complete tag.
 	// If not, identify and stream.
 
-	if (    tag->at( tag->length() - 1 ) == '>' 
-		 && tag->at( tag->length() - 2 ) == '/' )
+	if (    tag->at( tag->fLength() - 1 ) == '>'
+		 && tag->at( tag->fLength() - 2 ) == '/' )
 	{
 		// All good!
 		return;
 	}
-	else if ( tag->at( tag->length() - 1 ) == '>' )
+	else if ( tag->at( tag->fLength() - 1 ) == '>' )
 	{
 		// There is more. Could be:
 		//		text
@@ -958,7 +958,7 @@ void TiXmlElement::StreamIn (std::istream * in, TIXML_STRING * tag)
 			// We should be at a "<", regardless.
 			if ( !in->good() ) return;
 			assert( in->peek() == '<' );
-			int tagIndex = (int) tag->length();
+			int tagIndex = (int) tag->fLength();
 
 			bool closingTag = false;
 			bool firstCharFound = false;
@@ -1065,7 +1065,7 @@ const char* TiXmlElement::Parse( const char* p, TiXmlParsingData* data, TiXmlEnc
 
 	p = SkipWhiteSpace( p+1, encoding );
 
-	// Read the name.
+	// Read the fName.
 	const char* pErr = p;
 
     p = ReadName( p, &value, encoding );
@@ -1323,8 +1323,8 @@ void TiXmlComment::StreamIn( std::istream * in, TIXML_STRING * tag )
 		(*tag) += (char) c;
 
 		if ( c == '>' 
-			 && tag->at( tag->length() - 2 ) == '-'
-			 && tag->at( tag->length() - 3 ) == '-' )
+			 && tag->at( tag->fLength() - 2 ) == '-'
+			 && tag->at( tag->fLength() - 3 ) == '-' )
 		{
 			// All is well.
 			return;		
@@ -1364,7 +1364,7 @@ const char* TiXmlComment::Parse( const char* p, TiXmlParsingData* data, TiXmlEnc
 	// from the XML spec:
 	/*
 	 [Definition: Comments may appear anywhere in a document outside other markup; in addition, 
-	              they may appear within the document type declaration at places allowed by the grammar. 
+	              they may appear within the document fType declaration at places allowed by the grammar.
 				  They are not part of the document's character data; an XML processor MAY, but need not, 
 				  make it possible for an application to retrieve the text of comments. For compatibility, 
 				  the string "--" (double-hyphen) MUST NOT occur within comments.] Parameter entity 
@@ -1399,7 +1399,7 @@ const char* TiXmlAttribute::Parse( const char* p, TiXmlParsingData* data, TiXmlE
 		data->Stamp( p, encoding );
 		location = data->Cursor();
 	}
-	// Read the name, the '=' and the value.
+	// Read the fName, the '=' and the value.
 	const char* pErr = p;
 	p = ReadName( p, &name, encoding );
 	if ( !p || !*p )

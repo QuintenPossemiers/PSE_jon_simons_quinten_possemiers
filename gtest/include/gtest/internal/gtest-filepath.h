@@ -11,7 +11,7 @@
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -110,8 +110,8 @@ class GTEST_API_ FilePath {
   // Returns true iff the path is "".
   bool IsEmpty() const { return pathname_.empty(); }
 
-  // If input name has a trailing separator character, removes it and returns
-  // the name, otherwise return the name string unmodified.
+  // If input fName has a trailing separator character, removes it and returns
+  // the fName, otherwise return the fName string unmodified.
   // On Windows platform, uses \ as the separator, other platforms use /.
   FilePath RemoveTrailingPathSeparator() const;
 

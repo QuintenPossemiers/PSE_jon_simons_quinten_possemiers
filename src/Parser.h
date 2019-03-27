@@ -11,36 +11,29 @@ class SimulationModel;
 #include "SimulationModel.h"
 #include "../TinyXml/tinyxml.h"
 
-static std::string connection_delimiter = "::"; //required size == 2
+static std::string gConnectionDelimiter = "::"; //required size == 2
 class Parser {
 
-    /**section reserved for variables*/
 private:
-    const char *xml_path;
-
-
-
-
-    /**section reserved for the constructor and destructor
-     *
-     * The constructor requires only a path to the xml file
-     * */
+    const char *kXmlPath;
 public:
 
-    explicit Parser(const char *xml_path);
-
-    /**section reserved for private functions*/
+    explicit Parser(const char *kXmlPath);
 private:
 
-    void initialise_roads(TiXmlElement * elements_of_roads, SimulationModel *simulationModel, std::vector<std::string> &connections);
+    void initialiseRoads(TiXmlElement *roadElements, SimulationModel *simulationModel,
+                         std::vector<std::string> &connections);
 
-    void initialise_vehicles(TiXmlElement * elements_of_vehicles, SimulationModel *simulationModel);
+    void initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *simulationModel);
 
-    void initialise_connections(SimulationModel *simulationModel, std::vector<std::string> &connections);
+    void initialiseConnections(SimulationModel *simulationModel, std::vector<std::string> &connections);
 
-    /**section reserved for public functions*/
 public:
-    void initialise_roads_and_vehicles(SimulationModel *simulationModel);
+    void initialiseRoadsAndVehicles(SimulationModel *simulationModel);
+    /*!
+     * Fills simulation model with data from the file!
+     * @param simulationModel pointer to current simulation model
+     */
 
 };
 

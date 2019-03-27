@@ -14,7 +14,7 @@ $$ This meta comment fixes auto-indentation in Emacs. }}
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -56,7 +56,7 @@ $$ This meta comment fixes auto-indentation in Emacs. }}
 $range i 0..n-1
 $range j 0..n
 $range k 1..n
-// GTEST_n_TUPLE_(T) is the type of an n-tuple.
+// GTEST_n_TUPLE_(T) is the fType of an n-tuple.
 #define GTEST_0_TUPLE_(T) tuple<>
 
 $for k [[
@@ -88,30 +88,30 @@ class tuple;
 // IMPLEMENTATION DETAIL and MUST NOT BE USED DIRECTLY in user code.
 namespace gtest_internal {
 
-// ByRef<T>::type is T if T is a reference; otherwise it's const T&.
+// ByRef<T>::fType is T if T is a reference; otherwise it's const T&.
 template <typename T>
-struct ByRef { typedef const T& type; };  // NOLINT
+struct ByRef { typedef const T& fType; };  // NOLINT
 template <typename T>
-struct ByRef<T&> { typedef T& type; };  // NOLINT
+struct ByRef<T&> { typedef T& fType; };  // NOLINT
 
 // A handy wrapper for ByRef.
-#define GTEST_BY_REF_(T) typename ::std::tr1::gtest_internal::ByRef<T>::type
+#define GTEST_BY_REF_(T) typename ::std::tr1::gtest_internal::ByRef<T>::fType
 
-// AddRef<T>::type is T if T is a reference; otherwise it's T&.  This
-// is the same as tr1::add_reference<T>::type.
+// AddRef<T>::fType is T if T is a reference; otherwise it's T&.  This
+// is the same as tr1::add_reference<T>::fType.
 template <typename T>
-struct AddRef { typedef T& type; };  // NOLINT
+struct AddRef { typedef T& fType; };  // NOLINT
 template <typename T>
-struct AddRef<T&> { typedef T& type; };  // NOLINT
+struct AddRef<T&> { typedef T& fType; };  // NOLINT
 
 // A handy wrapper for AddRef.
-#define GTEST_ADD_REF_(T) typename ::std::tr1::gtest_internal::AddRef<T>::type
+#define GTEST_ADD_REF_(T) typename ::std::tr1::gtest_internal::AddRef<T>::fType
 
 // A helper for implementing get<k>().
 template <int k> class Get;
 
 // A helper for implementing tuple_element<k, T>.  kIndexValid is true
-// iff k < the number of fields in tuple type T.
+// iff k < the number of fields in tuple fType T.
 template <bool kIndexValid, int kIndex, class Tuple>
 struct TupleElement;
 
@@ -119,7 +119,7 @@ struct TupleElement;
 $for i [[
 template <GTEST_$(n)_TYPENAMES_(T)>
 struct TupleElement<true, $i, GTEST_$(n)_TUPLE_(T) > {
-  typedef T$i type;
+  typedef T$i fType;
 };
 
 
@@ -230,10 +230,10 @@ struct tuple_size<GTEST_$(j)_TUPLE_(T) > {
 template <int k, class Tuple>
 struct tuple_element {
   typedef typename gtest_internal::TupleElement<
-      k < (tuple_size<Tuple>::value), k, Tuple>::type type;
+      k < (tuple_size<Tuple>::value), k, Tuple>::fType fType;
 };
 
-#define GTEST_TUPLE_ELEMENT_(k, Tuple) typename tuple_element<k, Tuple >::type
+#define GTEST_TUPLE_ELEMENT_(k, Tuple) typename tuple_element<k, Tuple >::fType
 
 // 6.1.3.4 Element access.
 

@@ -256,35 +256,35 @@ TinyXml/tinyxmlparser.cpp.s:
 	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.s
 .PHONY : TinyXml/tinyxmlparser.cpp.s
 
-src/Exeptions/ParsingExc.o: src/Exeptions/ParsingExc.cpp.o
+src/Exeptions/Exceptions.o: src/Exeptions/Exceptions.cpp.o
 
-.PHONY : src/Exeptions/ParsingExc.o
+.PHONY : src/Exeptions/Exceptions.o
 
 # target to build an object file
-src/Exeptions/ParsingExc.cpp.o:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/ParsingExc.cpp.o
-	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/ParsingExc.cpp.o
-.PHONY : src/Exeptions/ParsingExc.cpp.o
+src/Exeptions/Exceptions.cpp.o:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/Exceptions.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/Exceptions.cpp.o
+.PHONY : src/Exeptions/Exceptions.cpp.o
 
-src/Exeptions/ParsingExc.i: src/Exeptions/ParsingExc.cpp.i
+src/Exeptions/Exceptions.i: src/Exeptions/Exceptions.cpp.i
 
-.PHONY : src/Exeptions/ParsingExc.i
+.PHONY : src/Exeptions/Exceptions.i
 
 # target to preprocess a source file
-src/Exeptions/ParsingExc.cpp.i:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/ParsingExc.cpp.i
-	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/ParsingExc.cpp.i
-.PHONY : src/Exeptions/ParsingExc.cpp.i
+src/Exeptions/Exceptions.cpp.i:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/Exceptions.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/Exceptions.cpp.i
+.PHONY : src/Exeptions/Exceptions.cpp.i
 
-src/Exeptions/ParsingExc.s: src/Exeptions/ParsingExc.cpp.s
+src/Exeptions/Exceptions.s: src/Exeptions/Exceptions.cpp.s
 
-.PHONY : src/Exeptions/ParsingExc.s
+.PHONY : src/Exeptions/Exceptions.s
 
 # target to generate assembly for a file
-src/Exeptions/ParsingExc.cpp.s:
-	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/ParsingExc.cpp.s
-	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/ParsingExc.cpp.s
-.PHONY : src/Exeptions/ParsingExc.cpp.s
+src/Exeptions/Exceptions.cpp.s:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/Exeptions/Exceptions.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/Exeptions/Exceptions.cpp.s
+.PHONY : src/Exeptions/Exceptions.cpp.s
 
 src/Parser.o: src/Parser.cpp.o
 
@@ -482,9 +482,9 @@ help:
 	@echo "... TinyXml/tinyxmlparser.o"
 	@echo "... TinyXml/tinyxmlparser.i"
 	@echo "... TinyXml/tinyxmlparser.s"
-	@echo "... src/Exeptions/ParsingExc.o"
-	@echo "... src/Exeptions/ParsingExc.i"
-	@echo "... src/Exeptions/ParsingExc.s"
+	@echo "... src/Exeptions/Exceptions.o"
+	@echo "... src/Exeptions/Exceptions.i"
+	@echo "... src/Exeptions/Exceptions.s"
 	@echo "... src/Parser.o"
 	@echo "... src/Parser.i"
 	@echo "... src/Parser.s"

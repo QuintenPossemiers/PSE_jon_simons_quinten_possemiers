@@ -11,7 +11,7 @@
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -55,7 +55,7 @@ namespace internal {
 //
 // Outputs a message explaining invalid registration of different
 // fixture class for the same test case. This may happen when
-// TEST_P macro is used to define two tests with the same name
+// TEST_P macro is used to define two tests with the same fName
 // but in different namespaces.
 GTEST_API_ void ReportInvalidTestCaseType(const char* test_case_name,
                                           const char* file, int line);
@@ -215,7 +215,7 @@ class RangeGenerator : public ParamGeneratorInterface<T> {
     virtual const T* Current() const { return &value_; }
     virtual bool Equals(const ParamIteratorInterface<T>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -300,7 +300,7 @@ class ValuesInIteratorRangeGenerator : public ParamGeneratorInterface<T> {
       return new Iterator(*this);
     }
     // We need to use cached value referenced by iterator_ because *iterator_
-    // can return a temporary object (and of type other then T), so just
+    // can return a temporary object (and of fType other then T), so just
     // having "return &*iterator_;" doesn't work.
     // value_ is updated here and not in Advance() because Advance()
     // can advance iterator_ beyond the end of the range, and we cannot
@@ -313,7 +313,7 @@ class ValuesInIteratorRangeGenerator : public ParamGeneratorInterface<T> {
     }
     virtual bool Equals(const ParamIteratorInterface<T>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -416,7 +416,7 @@ class ParameterizedTestCaseInfoBase {
  public:
   virtual ~ParameterizedTestCaseInfoBase() {}
 
-  // Base part of test case name for display purposes.
+  // Base part of test case fName for display purposes.
   virtual const string& GetTestCaseName() const = 0;
   // Test case id to verify identity.
   virtual TypeId GetTestCaseTypeId() const = 0;
@@ -447,22 +447,22 @@ class ParameterizedTestCaseInfo : public ParameterizedTestCaseInfoBase {
   // for declarations of public methods AddTestPattern() and
   // AddTestCaseInstantiation().
   typedef typename TestCase::ParamType ParamType;
-  // A function that returns an instance of appropriate generator type.
+  // A function that returns an instance of appropriate generator fType.
   typedef ParamGenerator<ParamType>(GeneratorCreationFunc)();
 
   explicit ParameterizedTestCaseInfo(const char* name)
       : test_case_name_(name) {}
 
-  // Test case base name for display purposes.
+  // Test case base fName for display purposes.
   virtual const string& GetTestCaseName() const { return test_case_name_; }
   // Test case id to verify identity.
   virtual TypeId GetTestCaseTypeId() const { return GetTypeId<TestCase>(); }
   // TEST_P macro uses AddTestPattern() to record information
   // about a single test in a LocalTestInfo structure.
-  // test_case_name is the base name of the test case (without invocation
-  // prefix). test_base_name is the name of an individual test without
+  // test_case_name is the base fName of the test case (without invocation
+  // prefix). test_base_name is the fName of an individual test without
   // parameter index. For the test SequenceA/FooTest.DoBar/1 FooTest is
-  // test case base name and DoBar is test base name.
+  // test case base fName and DoBar is test base fName.
   void AddTestPattern(const char* test_case_name,
                       const char* test_base_name,
                       TestMetaFactoryBase<ParamType>* meta_factory) {
@@ -508,7 +508,7 @@ class ParameterizedTestCaseInfo : public ParameterizedTestCaseInfoBase {
           MakeAndRegisterTestInfo(
               test_case_name.c_str(),
               test_name_stream.GetString().c_str(),
-              NULL,  // No type parameter.
+              NULL,  // No fType parameter.
               PrintToString(*param_it).c_str(),
               GetTestCaseTypeId(),
               TestCase::SetUpTestCase,
@@ -535,7 +535,7 @@ class ParameterizedTestCaseInfo : public ParameterizedTestCaseInfoBase {
     const scoped_ptr<TestMetaFactoryBase<ParamType> > test_meta_factory;
   };
   typedef ::std::vector<linked_ptr<TestInfo> > TestInfoContainer;
-  // Keeps pairs of <Instantiation name, Sequence generator creation function>
+  // Keeps pairs of <Instantiation fName, Sequence generator creation function>
   // received from INSTANTIATE_TEST_CASE_P macros.
   typedef ::std::vector<std::pair<string, GeneratorCreationFunc*> >
       InstantiationContainer;
@@ -582,7 +582,7 @@ class ParameterizedTestCaseRegistry {
           posix::Abort();
         } else {
           // At this point we are sure that the object we found is of the same
-          // type we are looking for, so we downcast it to that type
+          // fType we are looking for, so we downcast it to that fType
           // without further checks.
           typed_test_info = CheckedDowncastToActualType<
               ParameterizedTestCaseInfo<TestCase> >(*it);

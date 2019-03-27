@@ -11,7 +11,7 @@
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -84,7 +84,7 @@ namespace testing {
 // "(null)".
 class GTEST_API_ Message {
  private:
-  // The type of basic IO manipulators (endl, ends, and flush) for
+  // The fType of basic IO manipulators (endl, ends, and flush) for
   // narrow streams.
   typedef std::ostream& (*BasicNarrowIoManip)(std::ostream&);
 
@@ -106,7 +106,7 @@ class GTEST_API_ Message {
   // Streams a value (either a pointer or not) to this object.
   template <typename T>
   inline Message& operator <<(const T& value) {
-    StreamHelper(typename internal::is_pointer<T>::type(), value);
+    StreamHelper(typename internal::is_pointer<T>::fType(), value);
     return *this;
   }
 #else

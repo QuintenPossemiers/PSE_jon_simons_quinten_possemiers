@@ -1,43 +1,43 @@
 
 #include "Road.h"
 #include <stdexcept>
-#include "Exeptions/AllExceptions.h"
+#include "Exeptions/Exceptions.h"
 
-Road::Road(const std::string &name, unsigned int speed_limit, unsigned int length) :
-        name(name),
-        speed_limit(speed_limit),
-        length(length),
+Road::Road(const std::string &name, unsigned int speedLimit, unsigned int length) :
+        fName(name),
+        fSpeedLimit(speedLimit),
+        fLength(length),
         _initCheck(this){
-    if (length == 0)throw ParsingExc(road_length_null);
-    if (speed_limit == 0)throw ParsingExc(road_speed_limit_null);
+    if (length == 0)throw NonFatalException(road_length_null);
+    if (speedLimit == 0)throw NonFatalException(road_speed_limit_null);
 }
 
 const std::string &Road::getName() const {
-    return name;
+    return fName;
 }
 
 void Road::setName(const std::string &name) {
-    Road::name = name;
+    Road::fName = name;
 }
 
-unsigned int Road::getSpeed_limit() const {
-    return speed_limit;
+unsigned int Road::getSpeedLimit() const {
+    return fSpeedLimit;
 }
 
-void Road::setSpeed_limit(unsigned int speed_limit) {
-    Road::speed_limit = speed_limit;
+void Road::setSpeedLimit(unsigned int speed_limit) {
+    Road::fSpeedLimit = speed_limit;
 }
 
 unsigned int Road::getLength() const {
-    return length;
+    return fLength;
 }
 
 const std::vector<Road *> &Road::getConnections() const {
-    return connections;
+    return fConnections;
 }
 
 bool Road::operator==(const Road &rhs) const {
-    return name == rhs.name;
+    return fName == rhs.fName;
 }
 
 bool Road::operator!=(const Road &rhs) const {
@@ -45,9 +45,9 @@ bool Road::operator!=(const Road &rhs) const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Road &road) {
-    os << "Baan: " << road.name << std::endl;
-    os << " --> snelheidslimiet  : " << road.speed_limit << std::endl;
-    os << " --> lengte           : " << road.length << std::endl;
+    os << "Baan: " << road.fName << std::endl;
+    os << " --> snelheidslimiet  : " << road.fSpeedLimit << std::endl;
+    os << " --> lengte           : " << road.fLength << std::endl;
     for (unsigned int i = 0; i < road.getConnections().size(); ++i) {
         os << " --> verbinding       : " << road.getConnections()[i]->getName() << std::endl;
     }
@@ -55,9 +55,9 @@ std::ostream &operator<<(std::ostream &os, const Road &road) {
     return os;
 }
 
-void Road::add_connection(Road *road) {
-    if (road == this) throw ParsingExc(road_self_connection);
-    connections.push_back(road);
+void Road::addConnection(Road *road) {
+    if (road == this) throw NonFatalException(road_self_connection);
+    fConnections.push_back(road);
 }
 
 bool Road::properlyInitialized() {

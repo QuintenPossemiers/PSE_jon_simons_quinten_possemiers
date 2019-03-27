@@ -304,8 +304,8 @@ protected:
 	static bool StreamTo( std::istream * in, int character, TIXML_STRING * tag );
 	#endif
 
-	/*	Reads an XML name into the string provided. Returns
-		a pointer just past the last character of the name,
+	/*	Reads an XML fName into the string provided. Returns
+		a pointer just past the last character of the fName,
 		or 0 if the function has an error.
 	*/
 	static const char* ReadName( const char* p, TIXML_STRING* name, TiXmlEncoding encoding );
@@ -324,7 +324,7 @@ protected:
 	static const char* GetEntity( const char* in, char* value, int* length, TiXmlEncoding encoding );
 
 	// Get a character, while interpreting entities.
-	// The length can be from 0 to 4 bytes.
+	// The fLength can be from 0 to 4 bytes.
 	inline static const char* GetChar( const char* p, char* _value, int* length, TiXmlEncoding encoding )
 	{
 		assert( p );
@@ -347,7 +347,7 @@ protected:
 		}
 		else if ( *length )
 		{
-			//strncpy( _value, p, *length );	// lots of compilers don't like this function (unsafe),
+			//strncpy( _value, p, *fLength );	// lots of compilers don't like this function (unsafe),
 												// and the null terminator isn't needed
 			for( int i=0; p[i] && i<*length; ++i ) {
 				_value[i] = p[i];
@@ -793,7 +793,7 @@ public:
 	/// std::string constructor.
 	TiXmlAttribute( const std::string& _name, const std::string& _value )
 	{
-		name = _name;
+		fName = _name;
 		value = _value;
 		document = 0;
 		prev = next = 0;
@@ -841,7 +841,7 @@ public:
 
     #ifdef TIXML_USE_STL
 	/// STL std::string form.
-	void SetName( const std::string& _name )	{ name = _name; }	
+	void SetName( const std::string& _name )	{ fName = _name; }
 	/// STL std::string form.	
 	void SetValue( const std::string& _value )	{ value = _value; }
 	#endif
@@ -862,7 +862,7 @@ public:
 	bool operator<( const TiXmlAttribute& rhs )	 const { return name < rhs.name; }
 	bool operator>( const TiXmlAttribute& rhs )  const { return name > rhs.name; }
 
-	/*	Attribute parsing starts: first letter of the name
+	/*	Attribute parsing starts: first letter of the fName
 						 returns: the next char after the value end quote
 	*/
 	virtual const char* Parse( const char* p, TiXmlParsingData* data, TiXmlEncoding encoding );
@@ -1005,8 +1005,8 @@ public:
 
     #ifdef TIXML_USE_STL
 	/// QueryStringAttribute examines the attribute - see QueryIntAttribute().
-	int QueryStringAttribute( const char* name, std::string* _value ) const {
-		const char* cstr = Attribute( name );
+	int QueryStringAttribute( const char* fName, std::string* _value ) const {
+		const char* cstr = Attribute( fName );
 		if ( cstr ) {
 			*_value = std::string( cstr );
 			return TIXML_SUCCESS;
@@ -1015,16 +1015,16 @@ public:
 	}
 
 	/** Template form of the attribute query which will try to read the
-		attribute into the specified type. Very easy, very powerful, but
-		be careful to make sure to call this with the correct type.
+		attribute into the specified fType. Very easy, very powerful, but
+		be careful to make sure to call this with the correct fType.
 		
 		NOTE: This method doesn't work correctly for 'string' types that contain spaces.
 
 		@return TIXML_SUCCESS, TIXML_WRONG_TYPE, or TIXML_NO_ATTRIBUTE
 	*/
-	template< typename T > int QueryValueAttribute( const std::string& name, T* outValue ) const
+	template< typename T > int QueryValueAttribute( const std::string& fName, T* outValue ) const
 	{
-		const TiXmlAttribute* node = attributeSet.Find( name );
+		const TiXmlAttribute* node = attributeSet.Find( fName );
 		if ( !node )
 			return TIXML_NO_ATTRIBUTE;
 
@@ -1035,9 +1035,9 @@ public:
 		return TIXML_WRONG_TYPE;
 	}
 
-	int QueryValueAttribute( const std::string& name, std::string* outValue ) const
+	int QueryValueAttribute( const std::string& fName, std::string* outValue ) const
 	{
-		const TiXmlAttribute* node = attributeSet.Find( name );
+		const TiXmlAttribute* node = attributeSet.Find( fName );
 		if ( !node )
 			return TIXML_NO_ATTRIBUTE;
 		*outValue = node->ValueStr();
@@ -1051,18 +1051,18 @@ public:
 	void SetAttribute( const char* name, const char * _value );
 
     #ifdef TIXML_USE_STL
-	const std::string* Attribute( const std::string& name ) const;
-	const std::string* Attribute( const std::string& name, int* i ) const;
-	const std::string* Attribute( const std::string& name, double* d ) const;
-	int QueryIntAttribute( const std::string& name, int* _value ) const;
-	int QueryDoubleAttribute( const std::string& name, double* _value ) const;
+	const std::string* Attribute( const std::string& fName ) const;
+	const std::string* Attribute( const std::string& fName, int* i ) const;
+	const std::string* Attribute( const std::string& fName, double* d ) const;
+	int QueryIntAttribute( const std::string& fName, int* _value ) const;
+	int QueryDoubleAttribute( const std::string& fName, double* _value ) const;
 
 	/// STL std::string form.
-	void SetAttribute( const std::string& name, const std::string& _value );
+	void SetAttribute( const std::string& fName, const std::string& _value );
 	///< STL std::string form.
-	void SetAttribute( const std::string& name, int _value );
+	void SetAttribute( const std::string& fName, int _value );
 	///< STL std::string form.
-	void SetDoubleAttribute( const std::string& name, double value );
+	void SetDoubleAttribute( const std::string& fName, double value );
 	#endif
 
 	/** Sets an attribute of name to a given value. The attribute
@@ -1079,7 +1079,7 @@ public:
 	*/
 	void RemoveAttribute( const char * name );
     #ifdef TIXML_USE_STL
-	void RemoveAttribute( const std::string& name )	{	RemoveAttribute (name.c_str ());	}	///< STL std::string form.
+	void RemoveAttribute( const std::string& fName )	{	RemoveAttribute (fName.c_str ());	}	///< STL std::string form.
 	#endif
 
 	const TiXmlAttribute* FirstAttribute() const	{ return attributeSet.First(); }		///< Access the first attribute in this element.

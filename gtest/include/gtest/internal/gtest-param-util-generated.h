@@ -15,7 +15,7 @@
 // copyright notice, this list of conditions and the following disclaimer
 // in the documentation and/or other materials provided with the
 // distribution.
-//     * Neither the name of Google Inc. nor the names of its
+//     * Neither the fName of Google Inc. nor the names of its
 // contributors may be used to endorse or promote products derived from
 // this software without specific prior written permission.
 //
@@ -3208,7 +3208,7 @@ class CartesianProductGenerator2
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -3331,7 +3331,7 @@ class CartesianProductGenerator3
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -3472,7 +3472,7 @@ class CartesianProductGenerator4
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -3630,7 +3630,7 @@ class CartesianProductGenerator5
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -3807,7 +3807,7 @@ class CartesianProductGenerator6
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -4001,7 +4001,7 @@ class CartesianProductGenerator7
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -4214,7 +4214,7 @@ class CartesianProductGenerator8
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -4443,7 +4443,7 @@ class CartesianProductGenerator9
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
@@ -4690,7 +4690,7 @@ class CartesianProductGenerator10
     virtual const ParamType* Current() const { return &current_value_; }
     virtual bool Equals(const ParamIteratorInterface<ParamType>& other) const {
       // Having the same base generator guarantees that the other
-      // iterator is of the same type and we can downcast.
+      // iterator is of the same fType and we can downcast.
       GTEST_CHECK_(BaseGenerator() == other.BaseGenerator())
           << "The program attempted to compare iterators "
           << "from different generators." << std::endl;
