@@ -9,6 +9,7 @@ class SimulationModel;
 #include "Road.h"
 #include "Vehicle.h"
 #include "SimulationModel.h"
+#include "DesignByContract.h"
 #include "../TinyXml/tinyxml.h"
 
 static std::string gConnectionDelimiter = "::"; //required size == 2
@@ -16,9 +17,11 @@ class Parser {
 
 private:
     const char *kXmlPath;
+    Parser* _initCheck;
 public:
 
     explicit Parser(const char *kXmlPath);
+    //ENSURE(properlyInitialized(),"parser niet succesful");
 private:
 
     void initialiseRoads(TiXmlElement *roadElements, SimulationModel *simulationModel,
@@ -34,6 +37,13 @@ public:
      * Fills simulation model with data from the file!
      * @param simulationModel pointer to current simulation model
      */
+    //REQUIRE(simulationModel != NULL, "Ongeldig simulatie model!")
+
+    bool properlyInitialized();
+    /*!
+     *Checkt of parser goed geinitialiseerd is!
+     *@return bool is het goed geinitialiseerd of niet
+     **/
 
 };
 

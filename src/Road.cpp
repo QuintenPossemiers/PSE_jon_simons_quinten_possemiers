@@ -7,44 +7,46 @@ Road::Road(const std::string &name, unsigned int speedLimit, unsigned int length
         fName(name),
         fSpeedLimit(speedLimit),
         fLength(length),
-        _initCheck(this){
+        _initCheck(this) {
     if (length == 0)throw NonFatalException(road_length_null);
     if (speedLimit == 0)throw NonFatalException(road_speed_limit_null);
+    ENSURE(properlyInitialized(), "baan niet goed geinitializeerd");
 }
 
-const std::string &Road::getName() const {
+const std::string &Road::getName() {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return fName;
 }
 
-void Road::setName(const std::string &name) {
-    Road::fName = name;
-}
-
-unsigned int Road::getSpeedLimit() const {
+unsigned int Road::getSpeedLimit() {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return fSpeedLimit;
 }
 
-void Road::setSpeedLimit(unsigned int speed_limit) {
-    Road::fSpeedLimit = speed_limit;
-}
 
-unsigned int Road::getLength() const {
+unsigned int Road::getLength() {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return fLength;
 }
 
-const std::vector<Road *> &Road::getConnections() const {
+const std::vector<Road *> &Road::getConnections() {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return fConnections;
 }
 
-bool Road::operator==(const Road &rhs) const {
-    return fName == rhs.fName;
+bool Road::operator==(Road &road) {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+    return fName == road.fName;
 }
 
-bool Road::operator!=(const Road &rhs) const {
-    return !(rhs == *this);
+bool Road::operator!=(Road &road) {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+
+    return !(road == *this);
 }
 
-std::ostream &operator<<(std::ostream &os, const Road &road) {
+std::ostream &operator<<(std::ostream &os, Road &road) {
+    REQUIRE(road.properlyInitialized(), "baan is niet geinitialiseerd");
     os << "Baan: " << road.fName << std::endl;
     os << " --> snelheidslimiet  : " << road.fSpeedLimit << std::endl;
     os << " --> lengte           : " << road.fLength << std::endl;
@@ -56,8 +58,14 @@ std::ostream &operator<<(std::ostream &os, const Road &road) {
 }
 
 void Road::addConnection(Road *road) {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+    REQUIRE(road != NULL, "geen geldige baan");
+
+    unsigned int i = (unsigned int) fConnections.size() + 1;
+
     if (road == this) throw NonFatalException(road_self_connection);
     fConnections.push_back(road);
+    ENSURE(fConnections.size() == i, "connectie niet toegevoegd");
 }
 
 bool Road::properlyInitialized() {

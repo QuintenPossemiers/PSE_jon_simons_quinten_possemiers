@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <ostream>
+#include "DesignByContract.h"
 
 class Road {
 private:
@@ -13,32 +14,44 @@ private:
     unsigned int fSpeedLimit;
     unsigned int fLength;
     std::vector<Road *> fConnections;
-    Road* _initCheck;
+    Road *_initCheck;
 
 public:
-    const std::string &getName() const;
+    const std::string &getName();
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    void setName(const std::string &name);
+    unsigned int getSpeedLimit();
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    unsigned int getSpeedLimit() const;
+    unsigned int getLength();
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    void setSpeedLimit(unsigned int speed_limit);
-
-    unsigned int getLength() const;
-
-    const std::vector<Road *> &getConnections() const;
+    const std::vector<Road *> &getConnections();
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
     bool properlyInitialized();
 
     Road(const std::string &name, unsigned int speedLimit, unsigned int length);
+    //ENSURE(properlyInitialized(), "baan niet goed geinitializeerd");
 
-    friend std::ostream &operator<<(std::ostream &os, const Road &road);
+    friend std::ostream &operator<<(std::ostream &os, Road &road);
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    bool operator==(const Road &rhs) const;
+    bool operator==(Road &road);
+    /**
+     * Works based on name
+     */
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    bool operator!=(const Road &rhs) const;
+    bool operator!=(Road &road);
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+
 
     void addConnection(Road *road);
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    //REQUIRE(road != NULL, "geen geldige baan");
+    //ENSURE(fConnections.size()=i);
+
 };
 
 

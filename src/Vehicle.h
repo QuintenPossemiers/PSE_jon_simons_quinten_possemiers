@@ -6,8 +6,9 @@
 #include <ostream>
 #include "Road.h"
 #include <set>
+#include "DesignByContract.h"
 
-class VehicleType{
+class VehicleType {
 private:
     int fLength;
     std::string fName;
@@ -20,67 +21,91 @@ public:
 };
 
 class Vehicle {
-    /**section reserved for variables*/
 private:
     unsigned int fSpeed;
     unsigned int fPosition;
     const std::string kLicencePlate;
     Road *fCurrentRoad;
-    VehicleType* fType;
-    Vehicle* _initCheck;
+    VehicleType *fType;
+    Vehicle *_initCheck;
 
 
-
-    /**section for getters and setters*/
 public:
-    unsigned int getLength() const;
+    unsigned int getLength();
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd")
+    //REQUIRE(fType != NULL,"voertuig heeft geen geldig type")
 
-    unsigned int getSpeed() const;
+    unsigned int getSpeed();
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd")
 
     void setSpeed(unsigned int speed);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //mss is een max speed ook wel leuk
+    //ENSURE(speed == fSpeed, "snelheid niet aangepast");
 
-    unsigned int getPosition() const;
+    unsigned int getPosition();
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     void setPosition(unsigned int position);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //ENSURE(position == fPosition,"positie niet aangepast");
 
-    const std::string &getLicencePlate() const;
-
-    Road *getCurrentRoad() const;
+    Road *getCurrentRoad();
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     void setCurrentRoad(Road *currentRoad);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //REQUIRE(currentRoad!= NULL,"baan moet bestaan");
+    //ENSURE(fCurrentRoad == currentRoad, "baan niet aangepast");
 
     bool properlyInitialized();
 
-    /**section reserved for constructor
-     *
-     * Position cannot be greater than the size of the road!
-     * Speed cannot be greater than the speed limit of the the road!
-     * */
-
     Vehicle(unsigned int speed, unsigned int position, const std::string &licenePlate,
-            Road *currentRoad, VehicleType* type);
+            Road *currentRoad, VehicleType *type);
+    //ENSURE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //REQUIRE(currentRoad!= NULL,"baan moet bestaan");
+    //REQUIRE(type!= NULL,"type moet bestaan");
 
     virtual ~Vehicle();
 
-    /**section for overloading operators*/
-public:
-    friend std::ostream &operator<<(std::ostream &os, const Vehicle &vehicle);
+    friend std::ostream &operator<<(std::ostream &os, Vehicle &vehicle);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //REQUIRE(vehicle!=NULL,"voertuig moet bestaan");
 
-    bool operator==(const Vehicle &rhs) const;
+    bool operator==(Vehicle &rhs);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
-    bool operator!=(const Vehicle &rhs) const;
+    bool operator!=(Vehicle &rhs);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
-    /**section for public functions*/
-public:
-    bool collides(Vehicle* secondCar);
+    bool collides(Vehicle *secondCar);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //REQUIRE(secondCar!=NULL,"voertuig moet bestaan");
 
     bool collides(double position, std::string roadName);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
-    bool setNewPosition(unsigned int timeSpent = 1); // time spent
+
+    bool setNewPosition(unsigned int timeSpent = 1);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+
 
     void setAcceleration(double acceleration);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //REQUIRE(acceleration > 2,"acceleration hoger dan 2");
+    //REQUIRE(acceleration < -8, " acceleration lager dan -8");
+
 
     double getAcceleration(std::vector<Vehicle *> vehicles);
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //ENSURE(acceleration >= 2,"acceleration hoger dan 2");
+    //ENSURE(acceleration <= -8, " acceleration lager dan -8");
+
+    void leaveRoad();
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
+    //ENSURE(fCurrentRoad ==NULL, "voertuig heeft baan niet verlaten");
+
+
 };
 
 

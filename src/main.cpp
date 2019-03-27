@@ -17,7 +17,7 @@ void initSimulation() {
      * Function to initialise the engine handling the simulation
      * */
     try {
-        std::string location = "XML_Files/" + fileName + ".xml";
+        std::string location = "../XML_Files/" + fileName + ".xml";
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
         std::cout << simulation;

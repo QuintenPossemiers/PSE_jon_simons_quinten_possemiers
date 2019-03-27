@@ -4,9 +4,12 @@
 #include "Parser.h"
 #include "Exceptions.h"
 
-Parser::Parser(const char *kXmlPath) : kXmlPath(kXmlPath) {}
+Parser::Parser(const char *kXmlPath) : kXmlPath(kXmlPath), _initCheck(this) {
+    ENSURE(properlyInitialized(), "parser niet succesvol");
+}
 
 void Parser::initialiseRoadsAndVehicles(SimulationModel *simulationModel) {
+    REQUIRE(simulationModel != NULL, "Ongeldig simulatie model!");
 
     TiXmlDocument doc;
     TiXmlElement *root;
@@ -28,7 +31,7 @@ void Parser::initialiseRoadsAndVehicles(SimulationModel *simulationModel) {
 
 void Parser::initialiseRoads(TiXmlElement *roadElements, SimulationModel *simulationModel,
                              std::vector<std::string> &connections) {
-    unsigned int currentIndex=0;
+    unsigned int currentIndex = 0;
     for (TiXmlElement *road = roadElements; road != NULL; road = road->NextSiblingElement("BAAN")) {
         try {
             std::string name = road->FirstChildElement("naam")->GetText();
@@ -47,7 +50,7 @@ void Parser::initialiseRoads(TiXmlElement *roadElements, SimulationModel *simula
                 connections[i].append(gConnectionDelimiter);
                 connections[i].append(name);
             }
-            currentIndex = (unsigned int)connections.size();
+            currentIndex = (unsigned int) connections.size();
         } catch (const std::invalid_argument &e) {
             std::cerr << e.what() << std::endl;
         }
@@ -64,7 +67,7 @@ void Parser::initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *
             type = element->FirstChildElement("fType")->GetText();
             licensePlate = element->FirstChildElement("nummerplaat")->GetText();
             roadName = element->FirstChildElement("baan")->GetText();
-            position = (unsigned int)std::atoi(element->FirstChildElement("positie")->GetText());
+            position = (unsigned int) std::atoi(element->FirstChildElement("positie")->GetText());
 
             std::string speed_str = element->FirstChildElement("snelheid")->GetText();
             char *writable = new char[speed_str.size() + 1];
@@ -100,5 +103,9 @@ void Parser::initialiseConnections(SimulationModel *simulationModel, std::vector
         else throw NonFatalException(road_non_ex_connection_from);
     }
 
+}
+
+bool Parser::properlyInitialized() {
+    return _initCheck == this;
 }
 

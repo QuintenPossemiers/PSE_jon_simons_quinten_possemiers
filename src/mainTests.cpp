@@ -52,6 +52,8 @@ TEST_F(SimulationModelTest, ProperlyInitialised) {
     EXPECT_TRUE(car2->properlyInitialized());
     EXPECT_TRUE(road1->properlyInitialized());
     EXPECT_TRUE(road->properlyInitialized());
+    Parser p = Parser("../XML_Files/test.xml");
+    EXPECT_TRUE(p.properlyInitialized());
 }
 
 TEST_F(SimulationModelTest, InputFileTest) {

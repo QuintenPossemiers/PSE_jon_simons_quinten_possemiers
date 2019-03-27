@@ -10,45 +10,53 @@ bool test(Vehicle *number) {
 #include "SimulationModel.h"
 
 SimulationModel::SimulationModel() : _initCheck(this) {
-
+    ENSURE(properlyInitialized(), "simulatie model niet geinitialiseerd");
 };
 
 void SimulationModel::addRoad(Road *road) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    REQUIRE(road != NULL, "geen geldige baan");
+    unsigned int i = (unsigned int) fRoads.size() + 1;
     if (doesRoadExist(road->getName()) != NULL)
         throw NonFatalException(road_dupe_name);
     fRoads.push_back(road);
+    ENSURE(fRoads.size() == i, "baan niet toegevoegd");
 }
 
 void SimulationModel::addVehicle(Vehicle *vehicle) {
-
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    REQUIRE(vehicle != NULL, "geen geldig voertuig");
+    unsigned int i = (unsigned int) fVehicles.size() + 1;
     if (NULL == doesRoadExist(vehicle->getCurrentRoad()->getName()))
         throw FatalException(non_existing_road);
     checkCollision(vehicle);
-
     fVehicles.push_back(vehicle);
+    ENSURE(fVehicles.size() == i, "voertuig niet toegevoegd");
 }
 
 
 Road *SimulationModel::doesRoadExist(std::string name) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     for (unsigned int i = 0; i < fRoads.size(); ++i) {
         if (fRoads[i]->getName() == name) return fRoads[i];
     }
     return NULL;
 }
 
-const std::vector<Vehicle *> &SimulationModel::getVehicles() const {
+std::vector<Vehicle *> &SimulationModel::getVehicles() {
     return fVehicles;
 }
 
 void SimulationModel::start(const char *xml_path) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     fVehicles.clear();
     fRoads.clear();
     Parser parser = Parser(xml_path);
     parser.initialiseRoadsAndVehicles(this);
 }
 
-std::ostream &operator<<(std::ostream &os, const SimulationModel &model) {
-
+std::ostream &operator<<(std::ostream &os, SimulationModel &model) {
+    REQUIRE(model.properlyInitialized(), "simulatie model niet geinitialiseerd");
     for (unsigned int i = 0; i < model.getRoads().size(); ++i) {
         os << *model.getRoads()[i] << std::endl;
     }
@@ -59,7 +67,7 @@ std::ostream &operator<<(std::ostream &os, const SimulationModel &model) {
     return os;
 }
 
-const std::vector<Road *> &SimulationModel::getRoads() const {
+std::vector<Road *> &SimulationModel::getRoads() {
     return fRoads;
 }
 
@@ -74,10 +82,10 @@ std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
 }
 
 void SimulationModel::tick(unsigned int time) {
-
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     for (unsigned int i = 0; i < fVehicles.size(); ++i) {
         if (!fVehicles[i]->setNewPosition(time)) {
-            fVehicles[i]->setCurrentRoad(NULL);
+            fVehicles[i]->leaveRoad();
         } else if (fVehicles[i] != NULL) {
             fVehicles[i]->setAcceleration(
                     fVehicles[i]->getAcceleration(get_vehicle_on_road(fVehicles[i]->getCurrentRoad())));
@@ -92,21 +100,32 @@ bool SimulationModel::properlyInitialized() {
 }
 
 void SimulationModel::checkCollision(Vehicle *vehicle) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    REQUIRE(vehicle != NULL, "geen geldig voertuig");
     for (unsigned int i = 0; i < fVehicles.size(); ++i) {
         if (fVehicles[i]->collides(vehicle) and vehicle != fVehicles[i])throw FatalException(vehicle_collision_error);
     }
 }
 
 void SimulationModel::addConnection(Road *from, Road *to) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    REQUIRE(from != NULL, "geen geldige baan waarvan je vertrekt");
+    REQUIRE(to != NULL, "geen geldige baan waar je naartoe gaat");
     if (to == NULL or !doesRoadExist(to->getName())) throw FatalException(road_non_ex_connection_to);
+    unsigned int i = (unsigned int) from->getConnections().size() + 1;
     if (from == NULL or !doesRoadExist(from->getName()))throw NonFatalException(road_non_ex_connection_from);
     from->addConnection(to);
+    ENSURE(from->getConnections().size() == i, "connectie niet toegevoegd");
 }
 
 void SimulationModel::automaticSimulation() {
-    while (!fVehicles.empty()) {tick();
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    while (!fVehicles.empty()) {
+        tick();
     }
+    ENSURE(fVehicles.empty(), "simulatie mislukt");
 }
+
 
 
 
