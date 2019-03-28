@@ -1,5 +1,7 @@
 #include "Vehicle.h"
 #include "Exceptions.h"
+#include <fstream>
+
 
 bool test(Vehicle *number) {
     return number->getCurrentRoad() == NULL;
@@ -33,6 +35,13 @@ void SimulationModel::addVehicle(Vehicle *vehicle) {
     fVehicles.push_back(vehicle);
     ENSURE(fVehicles.size() == i, "voertuig niet toegevoegd");
 }
+
+void SimulationModel::printToFile(){
+    std::ofstream myfile;
+    myfile.open ("outputTest.txt");
+    myfile << *this;
+    myfile.close();
+};
 
 
 Road *SimulationModel::doesRoadExist(std::string name) {

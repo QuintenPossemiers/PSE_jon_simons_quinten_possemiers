@@ -21,6 +21,7 @@ void initSimulation() {
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
         std::cout << simulation;
+        simulation.printToFile();
 
 
     } catch (FatalException &e) {
