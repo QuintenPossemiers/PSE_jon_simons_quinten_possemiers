@@ -18,9 +18,19 @@ const std::string &Road::getName() {
     return fName;
 }
 
-unsigned int Road::getSpeedLimit() {
+unsigned int Road::getSpeedLimit(unsigned int position) {
     REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
-    return fSpeedLimit;
+    REQUIRE(position <= this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    if (zones.empty() or zones.begin()->first > position)return fSpeedLimit;
+
+    else{
+        for (std::set< std::pair<unsigned int, unsigned int> >::iterator it = zones.begin(); it != zones.end();) {
+            if(it->first > position) return (--it)->second;
+            else if(it->first == position)return it->second;
+            if(++it == zones.end()) return (--it)->second;
+        }
+    }
+    return zones.end()->second;//cannot be reached
 }
 
 
@@ -87,4 +97,19 @@ int Road::getNextBusStop(unsigned int currentPosition) {
     return -1;
 
 
+}
+
+void Road::addZone(unsigned int position, unsigned int speedLimit) {
+    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    REQUIRE(fSpeedLimit >= speedLimit, "snelheidslimiet van de baan wordt overschreden");
+
+    zones.insert(std::make_pair(position, speedLimit));
+    ENSURE(zones.count(std::make_pair(position, speedLimit))==1,"zone kan niet worden toegevoegd");
+}
+
+void Road::addTrafficLight(unsigned int position) {
+    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    fTrafficLights.insert(TrafficLight(position));
 }

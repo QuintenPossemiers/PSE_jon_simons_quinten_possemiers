@@ -26,7 +26,11 @@ public:
 
     virtual const int getKLength() = 0;
 
-    virtual const int getKMaxSpeed() = 0;
+    virtual const unsigned int getKMaxSpeed() = 0;
+
+    virtual const int getKMaxVersnelling() = 0;
+
+    virtual const int getKMinVersnelling() = 0;
 
     virtual const char* getKTypeName() = 0;
 
@@ -71,13 +75,13 @@ public:
     bool collides(double position, std::string roadName);
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
-    bool setNewPosition();
+    bool updatePosition();
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     void updateSpeed();
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
-    //REQUIRE(acceleration > 2,"acceleration hoger dan 2");
-    //REQUIRE(acceleration < -8, " acceleration lager dan -8");
+    //ENSURE(acceleration > getMaxVersnelling(),"acceleration hoger dan max versnelling");
+    //ENSURE(acceleration < getMinVersnelling(), " acceleration lager dan min versnelling");
 
     void leaveRoad();
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
@@ -92,14 +96,23 @@ public:
 
     static const int kLength = 3;
 
-    static const int kMaxSpeed = 150;
+    static const unsigned int kMaxSpeed = 150;
+
+    static const int kMinVersnelling =-8;
+
+    static const int kMaxVersnelling =2;
+
 
 public:
     virtual const int getKLength();
 
-    virtual const int getKMaxSpeed();
+    virtual const unsigned int getKMaxSpeed();
 
     virtual const char* getKTypeName();
+
+    virtual const int getKMaxVersnelling();
+
+    virtual const int getKMinVersnelling();
 };
 
 class Bus : public Vehicle {
@@ -108,12 +121,20 @@ public:
 
     static const int kLength = 10;
 
-    static const int kMaxSpeed = 70;
+    static const unsigned int kMaxSpeed = 70;
+
+    static const int kMinVersnelling =-7;
+
+    static const int kMaxVersnelling =1;
+
+    virtual const int getKMaxVersnelling();
+
+    virtual const int getKMinVersnelling();
 
 public:
     virtual const int getKLength();
 
-    virtual const int getKMaxSpeed();
+    virtual const unsigned int getKMaxSpeed();
 
     virtual const char* getKTypeName();
 };
@@ -124,12 +145,20 @@ public:
 
     static const int kLength = 15;
 
-    static const int kMaxSpeed = 90;
+    static const unsigned int kMaxSpeed = 90;
+
+    static const int kMinVersnelling =-6;
+
+    static const int kMaxVersnelling =1;
+
+    virtual const int getKMaxVersnelling();
+
+    virtual const int getKMinVersnelling();
 
 public:
     virtual const int getKLength();
 
-    virtual const int getKMaxSpeed();
+    virtual const unsigned int getKMaxSpeed();
 
     virtual const char* getKTypeName();
 };
@@ -141,10 +170,18 @@ public:
 
     static const int kMaxSpeed = 180;
 
+    static const int kMinVersnelling =-10;
+
+    static const int kMaxVersnelling =4;
+
+    virtual const int getKMaxVersnelling();
+
+    virtual const int getKMinVersnelling();
+
 public:
     virtual const int getKLength();
 
-    virtual const int getKMaxSpeed();
+    virtual const unsigned int getKMaxSpeed();
 
     virtual const char* getKTypeName();
 };

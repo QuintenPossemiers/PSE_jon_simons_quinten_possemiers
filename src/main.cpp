@@ -3,7 +3,7 @@
 #include "SimulationModel.h"
 #include "Exceptions.h"
 
-const std::string fileName = "test";
+const std::string fileName = "test123";
 
 void initSimulation();
 
@@ -21,8 +21,8 @@ void initSimulation() {
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
         std::cout << simulation;
-        simulation.printToFile();
         simulation.automaticSimulation();
+        simulation.printToFile();
 
 
     } catch (FatalException &e) {

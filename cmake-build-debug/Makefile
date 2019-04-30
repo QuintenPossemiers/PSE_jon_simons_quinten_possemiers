@@ -376,6 +376,36 @@ src/SimulationModel.cpp.s:
 	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/SimulationModel.cpp.s
 .PHONY : src/SimulationModel.cpp.s
 
+src/TrafficLight.o: src/TrafficLight.cpp.o
+
+.PHONY : src/TrafficLight.o
+
+# target to build an object file
+src/TrafficLight.cpp.o:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/TrafficLight.cpp.o
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/TrafficLight.cpp.o
+.PHONY : src/TrafficLight.cpp.o
+
+src/TrafficLight.i: src/TrafficLight.cpp.i
+
+.PHONY : src/TrafficLight.i
+
+# target to preprocess a source file
+src/TrafficLight.cpp.i:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/TrafficLight.cpp.i
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/TrafficLight.cpp.i
+.PHONY : src/TrafficLight.cpp.i
+
+src/TrafficLight.s: src/TrafficLight.cpp.s
+
+.PHONY : src/TrafficLight.s
+
+# target to generate assembly for a file
+src/TrafficLight.cpp.s:
+	$(MAKE) -f CMakeFiles/pse_debug.dir/build.make CMakeFiles/pse_debug.dir/src/TrafficLight.cpp.s
+	$(MAKE) -f CMakeFiles/pse.dir/build.make CMakeFiles/pse.dir/src/TrafficLight.cpp.s
+.PHONY : src/TrafficLight.cpp.s
+
 src/Vehicle.o: src/Vehicle.cpp.o
 
 .PHONY : src/Vehicle.o
@@ -494,6 +524,9 @@ help:
 	@echo "... src/SimulationModel.o"
 	@echo "... src/SimulationModel.i"
 	@echo "... src/SimulationModel.s"
+	@echo "... src/TrafficLight.o"
+	@echo "... src/TrafficLight.i"
+	@echo "... src/TrafficLight.s"
 	@echo "... src/Vehicle.o"
 	@echo "... src/Vehicle.i"
 	@echo "... src/Vehicle.s"

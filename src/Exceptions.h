@@ -23,7 +23,7 @@ enum EExceptionText {
     road_non_ex_connection_to,
     road_non_ex_connection_from,
     road_self_connection,
-    vehicle_speed_limit
+    vehicle_speed_limit, road_fatalException_position_exceeds_limit
 };
 
 

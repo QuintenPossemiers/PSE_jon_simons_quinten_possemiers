@@ -59,6 +59,11 @@ TEST_F(SimulationModelTest, ProperlyInitialised) {
 TEST_F(SimulationModelTest, RoadVerkeersTekens) {
     Road road = Road("A12", 120, 5000);
 
+    EXPECT_EQ((unsigned int )120, road.getSpeedLimit(0));
+    //EXPECT_THROW(road.getSpeedLimit(50000),FatalException); // todo fix tests
+    EXPECT_EQ((unsigned int) 120, road.getSpeedLimit(0));
+
+
     EXPECT_EQ(-1, road.getNextBusStop(1200));
 
     EXPECT_NO_FATAL_FAILURE(road.addBusStop(10));
@@ -69,9 +74,38 @@ TEST_F(SimulationModelTest, RoadVerkeersTekens) {
     EXPECT_EQ(10, road.getNextBusStop(0));
     EXPECT_EQ(150, road.getNextBusStop(120));
 
-    EXPECT_DEATH(road.getNextBusStop(50000),"positie moet kleiner zijn dan de lengte van de baan");
+    road.addZone(4000, 75);
+    road.addZone(2000, 50);
+    road.addZone(175, 90);
 
-    EXPECT_DEATH(road.addBusStop(50000), "positie moet kleiner zijn dan de lengte van de baan");
+    EXPECT_EQ((unsigned int) 75, road.getSpeedLimit(4001));
+    EXPECT_EQ((unsigned int) 120, road.getSpeedLimit(100));
+    EXPECT_EQ((unsigned int) 90, road.getSpeedLimit(180));
+    EXPECT_EQ((unsigned int) 50, road.getSpeedLimit(2500));
+
+
+    EXPECT_DEATH(road.addTrafficLight((unsigned int)5020), "positie moet kleiner zijn dan de lengte van de baan");
+    EXPECT_DEATH(road.addZone(5020, 50), "positie moet kleiner zijn dan de lengte van de baan");
+    EXPECT_DEATH(road.addZone(10, 250),  "snelheidslimiet van de baan wordt overschreden");
+
+    TrafficLight x = TrafficLight(0);
+    EXPECT_TRUE(x.properlyInitialised());
+    EXPECT_EQ("red", x.getColor());
+    for (int i = 0; i < 30; ++i)
+        x.clockCycle();
+    EXPECT_EQ("green", x.getColor());
+    for (int i = 0; i < 30; ++i)
+        x.clockCycle();
+    EXPECT_EQ("orange", x.getColor());
+    for (int i = 0; i < 5; ++i)
+        x.clockCycle();
+    EXPECT_EQ("red", x.getColor());
+
+    //todo tests on functionaliteit niet auto
+
+
+    //EXPECT_THROW(road.getNextBusStop(5001),FatalException);
+    //EXPECT_DEATH_IF_SUPPORTED(road.addBusStop(5001), "positie moet kleiner zijn dan de lengte van de baan");
 
 }
 
@@ -85,7 +119,6 @@ TEST_F(SimulationModelTest, InputFileTest) {
     std::string fileLocation = "../XML_Files/";
     std::string loc1 = fileLocation + "testWrongTags.xml";
     std::string loc2 = fileLocation + "testAmountOfCarsAndRoads.xml";
-    std::cout << loc1.c_str();
     Parser p1 = Parser(loc1.c_str());
     EXPECT_THROW(p1.initialiseRoadsAndVehicles(&simulationModel_),FatalException);
     SimulationModel * s1 = new SimulationModel();

@@ -93,7 +93,7 @@ std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
 void SimulationModel::tick(unsigned int time) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     for (unsigned int i = 0; i < fVehicles.size(); ++i) {
-        if (!fVehicles[i]->setNewPosition()) {
+        if (!fVehicles[i]->updatePosition()) {
             fVehicles[i]->leaveRoad();
         } else if (fVehicles[i] != NULL) {
             fVehicles[i]->updateSpeed();

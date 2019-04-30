@@ -193,6 +193,14 @@
 			<Option target="pse_debug"/>
 			<Option target="pse"/>
 		</Unit>
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/TrafficLight.cpp">
+			<Option target="pse_debug"/>
+			<Option target="pse"/>
+		</Unit>
+		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/TrafficLight.h">
+			<Option target="pse_debug"/>
+			<Option target="pse"/>
+		</Unit>
 		<Unit filename="/home/student/Desktop/PSE_jon_simons_quinten_possemiers/src/Vehicle.cpp">
 			<Option target="pse_debug"/>
 			<Option target="pse"/>

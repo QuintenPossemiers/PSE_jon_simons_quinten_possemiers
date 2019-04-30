@@ -19,6 +19,7 @@ static const char *exceptionToStr(const EExceptionText &error) {
         case road_non_ex_connection_from:   return "Road error: cannot start a connection from a not existing road!";
         case road_self_connection:          return "Road error: road cannot have a connection to itself!";
         case vehicle_speed_limit:           return "Vehicle error: vehicle is over fSpeed limit!";
+        case road_fatalException_position_exceeds_limit:   return "Road error: position exeeds the roads length!";
         default: {
             return "UNIDENTIFIED ERROR";
         }

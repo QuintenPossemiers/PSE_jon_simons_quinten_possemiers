@@ -1,7 +1,7 @@
 #include "Vehicle.h"
 #include <math.h>
 
-const int Car::getKMaxSpeed() {
+const unsigned int Car::getKMaxSpeed() {
     return kMaxSpeed;
 }
 
@@ -11,10 +11,20 @@ const char *Car::getKTypeName() {
 
 Car::Car(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad) : Vehicle(
         fSpeed, fPosition, kLicencePlate, fCurrentRoad) {
+    REQUIRE(fSpeed <= getKMaxSpeed(), "dit voertuig mag niet zo snel rijden");
+
 }
 
 const int Car::getKLength() {
     return kLength;
+}
+
+const int Car::getKMinVersnelling() {
+    return kMinVersnelling;
+}
+
+const int Car::getKMaxVersnelling() {
+    return kMaxVersnelling;
 }
 
 
@@ -46,7 +56,7 @@ Vehicle::Vehicle(unsigned int fSpeed, unsigned int fPosition, const std::string 
         : fSpeed(fSpeed), fPosition(fPosition), kLicencePlate(kLicencePlate), fCurrentRoad(fCurrentRoad),
           fPrevVehicle(NULL),_initCheck(this) {
     if (fCurrentRoad->getLength() < fPosition) throw FatalException(vehicle_illegal_position);
-    if (fCurrentRoad->getSpeedLimit() < fSpeed) throw NonFatalException(vehicle_speed_error);
+    if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed) throw NonFatalException(vehicle_speed_error);
     REQUIRE(fCurrentRoad != NULL, "baan moet bestaan");
     ENSURE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 }
@@ -98,7 +108,7 @@ bool Vehicle::collides(double position, std::string roadName) {
     //We veronderstellen dat we met de lengte rekening moeten houden
 }
 
-bool Vehicle::setNewPosition() {
+bool Vehicle::updatePosition() {
     fPosition += (unsigned int) round((fSpeed / 3.6));
     if (fPosition > fCurrentRoad->getLength()) {
         fPosition = 0;//je moet rekening houden met de overgang naar een andere baan
@@ -111,23 +121,20 @@ bool Vehicle::setNewPosition() {
 
 void Vehicle::updateSpeed() {
     REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
-    double acceleration = 2;
+    double acceleration = getKMaxVersnelling();
     if (fPrevVehicle){
 
     double deltaIdeal = 0.75 * this->fSpeed + fPrevVehicle->getKLength() + 2;
     double deltaReal = fPrevVehicle->fPosition - fPrevVehicle->getKLength() - fPosition;
     acceleration = 0.5 * (deltaReal - deltaIdeal);
-    if (-8 >= acceleration)acceleration = -8;
-    if (acceleration >= 2) acceleration = 2;
-    ENSURE(acceleration <= 2, "acceleration hoger dan 2");
-    ENSURE(acceleration >= -8, " acceleration lager dan -8");
+    if (getKMinVersnelling() >= acceleration)acceleration = getKMinVersnelling();
+    if (acceleration >= getKMaxVersnelling()) acceleration = getKMaxVersnelling();
+    ENSURE(acceleration <= getKMaxVersnelling(), "acceleration hoger dan max versnelling");
+    ENSURE(acceleration >= getKMinVersnelling(), " acceleration lager dan min versnelling");
     }
-
-    REQUIRE(acceleration <= 2, "acceleration hoger dan 2");
-    REQUIRE(acceleration >= -8, " acceleration lager dan -8");
     fSpeed += (unsigned int) round(acceleration);
-    if (fCurrentRoad->getSpeedLimit() < fSpeed)fSpeed = fCurrentRoad->getSpeedLimit();
-    if((unsigned int)getKMaxSpeed() < fSpeed) fSpeed = (unsigned int)getKMaxSpeed();
+    if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed)fSpeed = fCurrentRoad->getSpeedLimit(fPosition);
+    if((unsigned int)getKMaxSpeed() < fSpeed) fSpeed = (unsigned int)getKMaxSpeed();//todo afremmen ?
 }
 
 void Vehicle::leaveRoad() {
@@ -138,6 +145,7 @@ void Vehicle::leaveRoad() {
 
 Bus::Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad) : Vehicle(
         fSpeed, fPosition, kLicencePlate, fCurrentRoad) {
+    REQUIRE(fSpeed <= getKMaxSpeed(), "dit voertuig mag niet zo snel rijden");
 
 }
 
@@ -145,7 +153,7 @@ const int Bus::getKLength() {
     return kLength;
 }
 
-const int Bus::getKMaxSpeed() {
+const unsigned int Bus::getKMaxSpeed() {
     return kMaxSpeed;
 }
 
@@ -153,8 +161,17 @@ const char *Bus::getKTypeName() {
     return "bus";
 }
 
+const int Bus::getKMinVersnelling() {
+    return kMinVersnelling;
+}
+
+const int Bus::getKMaxVersnelling() {
+    return kMaxVersnelling;
+}
+
 Truck::Truck(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad)
         : Vehicle(fSpeed, fPosition, kLicencePlate, fCurrentRoad) {
+    REQUIRE(fSpeed <= getKMaxSpeed(), "dit voertuig mag niet zo snel rijden");
 
 }
 
@@ -162,7 +179,7 @@ const int Truck::getKLength() {
     return kLength;
 }
 
-const int Truck::getKMaxSpeed() {
+const unsigned int Truck::getKMaxSpeed() {
     return kMaxSpeed;
 }
 
@@ -170,8 +187,17 @@ const char *Truck::getKTypeName() {
     return "vrachtwagen";
 }
 
+const int Truck::getKMinVersnelling() {
+    return kMinVersnelling;
+}
+
+const int Truck::getKMaxVersnelling() {
+    return kMaxVersnelling;
+}
+
 Motorcycle::Motorcycle(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate,
                        Road *fCurrentRoad) : Vehicle(fSpeed, fPosition, kLicencePlate, fCurrentRoad) {
+    REQUIRE(fSpeed <= getKMaxSpeed(), "dit voertuig mag niet zo snel rijden");
 
 }
 
@@ -179,10 +205,18 @@ const int Motorcycle::getKLength() {
     return kLength;
 }
 
-const int Motorcycle::getKMaxSpeed() {
+const unsigned int Motorcycle::getKMaxSpeed() {
     return kMaxSpeed;
 }
 
 const char *Motorcycle::getKTypeName() {
     return "motorfiets";
+}
+
+const int Motorcycle::getKMinVersnelling() {
+    return kMinVersnelling;
+}
+
+const int Motorcycle::getKMaxVersnelling() {
+    return kMaxVersnelling;
 }

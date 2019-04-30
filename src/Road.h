@@ -7,6 +7,7 @@
 #include <vector>
 #include <set>
 #include <ostream>
+#include "TrafficLight.h"
 #include "DesignByContract.h"
 
 class Road {
@@ -16,6 +17,8 @@ private:
     unsigned int fLength;
     std::vector<Road *> fConnections;
     std::set<unsigned int> fBusStops;
+    std::set<std::pair<unsigned int, unsigned int> > zones;
+    std::set<TrafficLight> fTrafficLights;
 
     Road *_initCheck;
 
@@ -25,6 +28,18 @@ public:
     //REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
     //ENSURE(fBusStops.count(position)==1,"bushalte kan niet worden toegevoegd")
 
+    void addTrafficLight(unsigned int position);
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    //REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+
+
+
+    void addZone(unsigned int position, unsigned int speedLimit);
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    //REQUIRE(speedLimit < fSpeedLimit, "zone moet snelheidslimiet respecteren!")
+    //REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    //ENSURE(zones.count(std::make_pair(position, speedLimit))==1,"zone kan niet worden toegevoegd");
+
     int getNextBusStop(unsigned int currentPosition);
     //REQUIRE(currentPosition < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
@@ -33,8 +48,10 @@ public:
     const std::string &getName();
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    unsigned int getSpeedLimit();
+    unsigned int getSpeedLimit(unsigned int position);
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    //REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+
 
     unsigned int getLength();
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
