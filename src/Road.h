@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include <ostream>
 #include "DesignByContract.h"
 
@@ -14,9 +15,21 @@ private:
     unsigned int fSpeedLimit;
     unsigned int fLength;
     std::vector<Road *> fConnections;
+    std::set<unsigned int> fBusStops;
+
     Road *_initCheck;
 
 public:
+    void addBusStop(unsigned int position);
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    //REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    //ENSURE(fBusStops.count(position)==1,"bushalte kan niet worden toegevoegd")
+
+    int getNextBusStop(unsigned int currentPosition);
+    //REQUIRE(currentPosition < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+
+
     const std::string &getName();
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
@@ -50,8 +63,6 @@ public:
     void addConnection(Road *road);
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
     //REQUIRE(road != NULL, "geen geldige baan");
-    //ENSURE(fConnections.size()=i);
-
 };
 
 

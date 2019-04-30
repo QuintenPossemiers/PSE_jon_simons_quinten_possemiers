@@ -61,13 +61,30 @@ void Road::addConnection(Road *road) {
     REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     REQUIRE(road != NULL, "geen geldige baan");
 
-    unsigned int i = (unsigned int) fConnections.size() + 1;
-
     if (road == this) throw NonFatalException(road_self_connection);
     fConnections.push_back(road);
-    ENSURE(fConnections.size() == i, "connectie niet toegevoegd");
 }
 
 bool Road::properlyInitialized() {
     return _initCheck == this;
+}
+
+void Road::addBusStop(unsigned int position) {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+    REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    fBusStops.insert(position);
+    ENSURE(fBusStops.count(position) == 1, "bushalte kan niet worden toegevoegd");
+}
+
+int Road::getNextBusStop(unsigned int currentPosition) {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+    REQUIRE(currentPosition < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+
+
+    for (std::set<unsigned int>::iterator it = fBusStops.begin(); it != fBusStops.end(); ++it) {
+        if (currentPosition < *it)return *it;
+    }
+    return -1;
+
+
 }

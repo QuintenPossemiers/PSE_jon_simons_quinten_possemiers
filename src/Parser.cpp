@@ -15,7 +15,9 @@ void Parser::initialiseRoadsAndVehicles(SimulationModel *simulationModel) {
     TiXmlElement *root;
 
     //Open the file and throw an error message if the file could not be found!
-    if (!doc.LoadFile(kXmlPath)) throw NonFatalException(file_opening_error);
+    if (!doc.LoadFile(kXmlPath))
+        throw FatalException(doc.ErrorDesc());
+
 
     //Initialise the root of the xml file and check if it is not a null pointer
     root = doc.FirstChildElement();
@@ -64,7 +66,7 @@ void Parser::initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *
         unsigned int position = 0;
         unsigned int speed = 0;
         try {
-            type = element->FirstChildElement("fType")->GetText();
+            type = element->FirstChildElement("type")->GetText();
             licensePlate = element->FirstChildElement("nummerplaat")->GetText();
             roadName = element->FirstChildElement("baan")->GetText();
             position = (unsigned int) std::atoi(element->FirstChildElement("positie")->GetText());
@@ -84,7 +86,16 @@ void Parser::initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *
 
 //check collisions
         if (road != NULL) {
-            Vehicle *newVehicle = new Vehicle(speed, position, licensePlate, road, new VehicleType(type));
+            Vehicle *newVehicle = NULL;
+            if (type == "AUTO" || type == "auto") newVehicle = new Car(speed, position, licensePlate, road);
+            else if (type == "bus" || type == "BUS") newVehicle = new Bus(speed, position, licensePlate, road);
+            else if (type == "MOTORFIETS" || type == "motorfiets")
+                newVehicle = new Motorcycle(speed, position, licensePlate, road);
+            else if (type == "vrachtwagen" || type == "VRACHTWAGEN")
+                newVehicle = new Truck(speed, position, licensePlate, road);
+            else break;
+
+
             simulationModel->checkCollision(newVehicle);
             simulationModel->addVehicle(newVehicle);
         }

@@ -33,6 +33,8 @@ protected:
 public:
     explicit VBaseException(const EExceptionText &err);
 
+    explicit VBaseException(const std::string &msg, int exitCode);
+
     virtual int getExitCode();
     /*!
      * Deze functie zal de exit code terug geven aan de hand van de enum EEXcptionText
@@ -54,6 +56,8 @@ public:
 class FatalException : public VBaseException {
 public:
     explicit FatalException(const EExceptionText &err);
+
+    explicit FatalException(const std::string &msg);
     /*!
      * basis constructor: maakt een NonFatalException aan
      * @param err requires an EExceptionText die de text van de exception zal initializeren.

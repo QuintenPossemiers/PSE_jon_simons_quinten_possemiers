@@ -26,9 +26,9 @@ protected:
     virtual void SetUp() {
         road1 = new Road("A12", 120, 5000);
         road = new Road("E43", 100, 4500);
-        car1 = new Vehicle(50, 100, "abcdefg", road1, new VehicleType("AUTO"));
-        car2 = new Vehicle(100, 4490, "1234567", road, new VehicleType("AUTO"));
-        car3 = new Vehicle(120, 4990, "SPEEDY", road1, new VehicleType("AUTO"));
+        car1 = new Car(50, 100, "abcdefg", road1);
+        car2 = new Car(100, 4490, "1234567", road);
+        car3 = new Car(120, 4990, "SPEEDY", road1);
 
         simulationModel_.addRoad(road1);
         simulationModel_.addRoad(road);
@@ -48,33 +48,69 @@ protected:
 
 TEST_F(SimulationModelTest, ProperlyInitialised) {
     EXPECT_TRUE(simulationModel_.properlyInitialized());
-    EXPECT_TRUE(car1->properlyInitialized());
-    EXPECT_TRUE(car2->properlyInitialized());
+    EXPECT_TRUE(car1->properlyInitialised());
+    EXPECT_TRUE(car2->properlyInitialised());
     EXPECT_TRUE(road1->properlyInitialized());
     EXPECT_TRUE(road->properlyInitialized());
     Parser p = Parser("../XML_Files/test.xml");
     EXPECT_TRUE(p.properlyInitialized());
 }
 
+TEST_F(SimulationModelTest, RoadVerkeersTekens) {
+    Road road = Road("A12", 120, 5000);
+
+    EXPECT_EQ(-1, road.getNextBusStop(1200));
+
+    EXPECT_NO_FATAL_FAILURE(road.addBusStop(10));
+    EXPECT_NO_FATAL_FAILURE(road.addBusStop(1050));
+    EXPECT_NO_FATAL_FAILURE(road.addBusStop(150));
+
+    EXPECT_EQ(-1, road.getNextBusStop(1200));
+    EXPECT_EQ(10, road.getNextBusStop(0));
+    EXPECT_EQ(150, road.getNextBusStop(120));
+
+    EXPECT_DEATH(road.getNextBusStop(50000),"positie moet kleiner zijn dan de lengte van de baan");
+
+    EXPECT_DEATH(road.addBusStop(50000), "positie moet kleiner zijn dan de lengte van de baan");
+
+}
+
+
+
+
 TEST_F(SimulationModelTest, InputFileTest) {
     Parser parser = Parser("ikhoopdatditnietbestaat.xml");
     EXPECT_THROW(parser.initialiseRoadsAndVehicles(&simulationModel_), exception);
+
+    std::string fileLocation = "../XML_Files/";
+    std::string loc1 = fileLocation + "testWrongTags.xml";
+    std::string loc2 = fileLocation + "testAmountOfCarsAndRoads.xml";
+    std::cout << loc1.c_str();
+    Parser p1 = Parser(loc1.c_str());
+    EXPECT_THROW(p1.initialiseRoadsAndVehicles(&simulationModel_),FatalException);
+    SimulationModel * s1 = new SimulationModel();
+    Parser p2 = Parser(loc2.c_str());
+    p2.initialiseRoadsAndVehicles(s1);
+
+
+    EXPECT_EQ((unsigned int)2, s1->getVehicles().size());
+    EXPECT_EQ((unsigned int)2, s1->getRoads().size());
 }
 
 TEST_F(SimulationModelTest, InconsistenteVerkeersSituatie) {
     Road *wrong = new Road("/0", 9001, 1);
-    Vehicle *wrong_2 = new Vehicle(50, 0, "abcdefh", wrong, new VehicleType("AUTO"));
+    Vehicle *wrong_2 = new Car(50, 0, "abcdefh", wrong);
     EXPECT_THROW(simulationModel_.addVehicle(wrong_2), FatalException);
-    EXPECT_THROW(Vehicle(0, 6000, "nummerplaat", road1, new VehicleType("AUTO")), FatalException);
-    EXPECT_THROW(simulationModel_.addVehicle(new Vehicle(50, 100, "abcdefp", road1, new VehicleType("AUTO"))),
+    EXPECT_THROW(Car(0, 6000, "nummerplaat", road1), FatalException);
+    EXPECT_THROW(simulationModel_.addVehicle(new Car(50, 100, "abcdefp", road1)),
                  FatalException);
     EXPECT_NO_FATAL_FAILURE(simulationModel_.addVehicle(
-            new Vehicle(50, 4500, "abcdefp", road1, new VehicleType("AUTO"))));
+            new Car(50, 4500, "abcdefp", road1)));
     EXPECT_THROW(simulationModel_.addConnection(road1, wrong), FatalException);
-    //EXPECT_THROW(simulationModel_.addVehicle(wrong_2),FatalException);
+    EXPECT_THROW(simulationModel_.addVehicle(wrong_2),FatalException);
     EXPECT_NO_FATAL_FAILURE(simulationModel_.addConnection(road1, road));
-    EXPECT_THROW(Vehicle(25, 5001, "", road1, new VehicleType("AUTO")), FatalException);
-    EXPECT_THROW(Vehicle(150, 1200, "", road1, new VehicleType("AUTO")), NonFatalException);
+    EXPECT_THROW(Car(25, 5001, "", road1), FatalException);
+    EXPECT_THROW(Car(150, 1200, "", road1), NonFatalException);
 
 }
 
@@ -89,7 +125,7 @@ TEST_F(SimulationModelTest, OutputTest) {
     std::stringstream receivedVehicle;
     receivedVehicle << *car1;
     std::string outputTestVehicle =
-            "Voertuig: AUTO (abcdefg)\n --> baan    : A12\n --> positie : 100\n --> snelheid: 50\n";
+            "Voertuig: auto (abcdefg)\n --> baan    : A12\n --> positie : 100\n --> snelheid: 50\n";
     std::string outputTestVehicle2 = receivedVehicle.str();
 
     std::string outputTest2Road =
@@ -108,24 +144,24 @@ TEST_F(SimulationModelTest, OutputTest) {
 
 
 TEST_F(SimulationModelTest, Movement) {
-    EXPECT_EQ(road1, car1->getCurrentRoad());
-    EXPECT_EQ(road, car2->getCurrentRoad());
+    EXPECT_EQ(road1, car1->getFCurrentRoad());
+    EXPECT_EQ(road, car2->getFCurrentRoad());
     EXPECT_EQ((unsigned long) 3, simulationModel_.getVehicles().size());
     simulationModel_.tick();
-    EXPECT_EQ(road1, car2->getCurrentRoad());
-    EXPECT_EQ(road1, car1->getCurrentRoad());
-    EXPECT_EQ((const unsigned int) 102, car2->getSpeed());
-    EXPECT_EQ((const unsigned int) 52, car1->getSpeed());
-    EXPECT_EQ((const unsigned int) 0, car2->getPosition());
-    EXPECT_EQ((const double) 114, car1->getPosition());
+    EXPECT_EQ(road1, car2->getFCurrentRoad());
+    EXPECT_EQ(road1, car1->getFCurrentRoad());
+    EXPECT_EQ((const unsigned int) 102, car2->getFSpeed());
+    EXPECT_EQ((const unsigned int) 52, car1->getFSpeed());
+    EXPECT_EQ((const unsigned int) 0, car2->getFPosition());
+    EXPECT_EQ((const double) 114, car1->getFPosition());
     EXPECT_EQ((unsigned long) 2, simulationModel_.getVehicles().size());
 
-    EXPECT_EQ(road1, car1->getCurrentRoad());
+    EXPECT_EQ(road1, car1->getFCurrentRoad());
 }
 
 TEST_F(SimulationModelTest, Automatic) {
-    EXPECT_EQ(road1, car1->getCurrentRoad());
-    EXPECT_EQ(road, car2->getCurrentRoad());
+    EXPECT_EQ(road1, car1->getFCurrentRoad());
+    EXPECT_EQ(road, car2->getFCurrentRoad());
     EXPECT_EQ((unsigned long) 3, simulationModel_.getVehicles().size());
     simulationModel_.automaticSimulation();
     EXPECT_EQ((unsigned long) 0, simulationModel_.getVehicles().size());

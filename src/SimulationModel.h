@@ -30,7 +30,7 @@ public:
     std::vector<Road *> &getRoads();
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
-    void printToFile();
+    void printToFile(const std::string &fileName = "output.txt");
 
     void addRoad(Road *road);
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");

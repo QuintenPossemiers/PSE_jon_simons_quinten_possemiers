@@ -22,6 +22,7 @@ void initSimulation() {
         simulation.start(location.c_str());
         std::cout << simulation;
         simulation.printToFile();
+        simulation.automaticSimulation();
 
 
     } catch (FatalException &e) {

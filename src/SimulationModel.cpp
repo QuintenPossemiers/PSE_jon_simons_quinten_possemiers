@@ -4,7 +4,7 @@
 
 
 bool test(Vehicle *number) {
-    return number->getCurrentRoad() == NULL;
+    return number->getFCurrentRoad() == NULL;
 };
 
 #include <iostream>
@@ -29,16 +29,16 @@ void SimulationModel::addVehicle(Vehicle *vehicle) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     REQUIRE(vehicle != NULL, "geen geldig voertuig");
     unsigned int i = (unsigned int) fVehicles.size() + 1;
-    if (NULL == doesRoadExist(vehicle->getCurrentRoad()->getName()))
+    if (NULL == doesRoadExist(vehicle->getFCurrentRoad()->getName()))
         throw FatalException(non_existing_road);
     checkCollision(vehicle);
     fVehicles.push_back(vehicle);
     ENSURE(fVehicles.size() == i, "voertuig niet toegevoegd");
 }
 
-void SimulationModel::printToFile(){
+void SimulationModel::printToFile(const std::string &fileName){
     std::ofstream myfile;
-    myfile.open ("outputTest.txt");
+    myfile.open (fileName.c_str());
     myfile << *this;
     myfile.close();
 };
@@ -84,7 +84,7 @@ std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
     std::vector<Vehicle *> vehiclesOnRoad;
 
     for (unsigned int i = 0; i < fVehicles.size(); ++i)
-        if (fVehicles[i]->getCurrentRoad() == road)vehiclesOnRoad.push_back(fVehicles[i]);
+        if (fVehicles[i]->getFCurrentRoad() == road)vehiclesOnRoad.push_back(fVehicles[i]);
 
 
     return vehiclesOnRoad;
@@ -93,15 +93,14 @@ std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
 void SimulationModel::tick(unsigned int time) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     for (unsigned int i = 0; i < fVehicles.size(); ++i) {
-        if (!fVehicles[i]->setNewPosition(time)) {
+        if (!fVehicles[i]->setNewPosition()) {
             fVehicles[i]->leaveRoad();
         } else if (fVehicles[i] != NULL) {
-            fVehicles[i]->setAcceleration(
-                    fVehicles[i]->getAcceleration(get_vehicle_on_road(fVehicles[i]->getCurrentRoad())));
+            fVehicles[i]->updateSpeed();
         }
     }
 
-    fVehicles.erase(std::remove_if(fVehicles.begin(), fVehicles.end(), test), fVehicles.end());//todo help
+    fVehicles.erase(std::remove_if(fVehicles.begin(), fVehicles.end(), test), fVehicles.end());
 }
 
 bool SimulationModel::properlyInitialized() {

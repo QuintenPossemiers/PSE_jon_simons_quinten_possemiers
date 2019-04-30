@@ -35,10 +35,18 @@ FatalException::FatalException(const EExceptionText &err) : VBaseException(err) 
     fExitCode = err;
 }
 
+FatalException::FatalException(const std::string &msg) : VBaseException(msg, 220) {
+    fExitCode = 220;
+}
+
 
 int VBaseException::getExitCode() {
     return fExitCode;
 }
 
 VBaseException::VBaseException(const EExceptionText &err) : std::invalid_argument(exceptionToStr(err)), fExitCode(err) {
+}
+
+VBaseException::VBaseException(const std::string &msg, int exitCode) : invalid_argument(msg), fExitCode(exitCode) {
+
 }
