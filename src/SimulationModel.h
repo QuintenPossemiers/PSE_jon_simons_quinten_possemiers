@@ -37,6 +37,12 @@ public:
     //REQUIRE(road!= NULL,"geen geldige baan");
     //ENSURE(fRoads.size()==i,"baan niet toegevoegd")
 
+    void addBusStopToRoad(std::string &name, unsigned int position);
+
+    void addTraffiLightToRoad(std::string &name, unsigned int position);
+
+    void addZoneToRoad(std::string &name, unsigned int speedLimit, unsigned int position);
+
 
     bool properlyInitialized();
 
@@ -67,7 +73,6 @@ public:
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
     //REQUIRE(from!= NULL,"geen geldige baan waarvan je vertrekt");
     //REQUIRE(to!= NULL,"geen geldige baan waar je naartoe gaat");
-    //ENSURE(from->getConnections().size()==i,"connectie niet toegevoegd");
 
 
     void automaticSimulation();
@@ -81,6 +86,8 @@ public:
 
 private:
     std::vector<Vehicle *> get_vehicle_on_road(Road *road);
+
+    Road* getRoad(std::string &name);
 
 
 };

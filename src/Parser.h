@@ -31,6 +31,8 @@ private:
 
     void initialiseConnections(SimulationModel *simulationModel, std::vector<std::string> &connections);
 
+    void initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel)
+
 public:
     void initialiseRoadsAndVehicles(SimulationModel *simulationModel);
     /*!
@@ -38,7 +40,7 @@ public:
      * @param simulationModel pointer to current simulation model
      */
     //REQUIRE(simulationModel != NULL, "Ongeldig simulatie model!")
-
+public:
     bool properlyInitialized();
     /*!
      *Checkt of parser goed geinitialiseerd is!

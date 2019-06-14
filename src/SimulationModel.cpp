@@ -36,9 +36,9 @@ void SimulationModel::addVehicle(Vehicle *vehicle) {
     ENSURE(fVehicles.size() == i, "voertuig niet toegevoegd");
 }
 
-void SimulationModel::printToFile(const std::string &fileName){
+void SimulationModel::printToFile(const std::string &fileName) {
     std::ofstream myfile;
-    myfile.open (fileName.c_str());
+    myfile.open(fileName.c_str());
     myfile << *this;
     myfile.close();
 };
@@ -120,10 +120,8 @@ void SimulationModel::addConnection(Road *from, Road *to) {
     REQUIRE(from != NULL, "geen geldige baan waarvan je vertrekt");
     REQUIRE(to != NULL, "geen geldige baan waar je naartoe gaat");
     if (to == NULL or !doesRoadExist(to->getName())) throw FatalException(road_non_ex_connection_to);
-    unsigned int i = (unsigned int) from->getConnections().size() + 1;
     if (from == NULL or !doesRoadExist(from->getName()))throw NonFatalException(road_non_ex_connection_from);
     from->addConnection(to);
-    ENSURE(from->getConnections().size() == i, "connectie niet toegevoegd");
 }
 
 void SimulationModel::automaticSimulation() {
@@ -132,6 +130,36 @@ void SimulationModel::automaticSimulation() {
         tick();
     }
     ENSURE(fVehicles.empty(), "simulatie mislukt");
+}
+
+void SimulationModel::addZoneToRoad(std::string &name, unsigned int speedLimit, unsigned int position) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    Road *road = getRoad(name);
+    if (!road)
+        return;
+    road->addZone(position, speedLimit);
+}
+
+void SimulationModel::addBusStopToRoad(std::string &name, unsigned int position) {
+    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
+    for (int i = 0; i < fRoads.size(); ++i) {
+        if (fRoads[i]->getName() == name) {
+            fRoads[i]->addBusStop(position);
+            return;
+        }
+    }
+}
+
+
+Road *SimulationModel::getRoad(std::string &name) {
+    for (int i = 0; i < fRoads.size(); ++i) {
+        if (fRoads[i]->getName() == name) return fRoads[i];
+    }
+    return NULL;
+}
+
+void SimulationModel::addTraffiLightToRoad() {
+
 }
 
 

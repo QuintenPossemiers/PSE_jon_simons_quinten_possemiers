@@ -120,3 +120,30 @@ bool Parser::properlyInitialized() {
     return _initCheck == this;
 }
 
+void Parser::initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel) {
+    unsigned int currentIndex = 0;
+    for (TiXmlElement *signElement = signElements; signElement != NULL; signElement = signElement->NextSiblingElement("BAAN")) {
+        try {
+            std::string street = signElement->FirstChildElement("baan")->GetText();
+
+            unsigned int position = static_cast<unsigned int>(std::atoi(signElement->FirstChildElement("positie")->GetText()));
+
+            std::string type = signElement->FirstChildElement("type")->GetText();
+
+            if(type == "BUSHALTE"){
+
+            }else if (type == "VERKEERSLICHT"){
+
+            }else if (type == "ZONE"){
+                unsigned int speedLimit =
+                        static_cast<unsigned int>(std::atoi(signElement->FirstChildElement("snelheidslimiet")->GetText()));
+            }
+
+
+
+        } catch (const std::invalid_argument &e) {
+            std::cerr << e.what() << std::endl;
+        }
+    }
+}
+
