@@ -129,12 +129,21 @@ void Vehicle::updateSpeed() {
     acceleration = 0.5 * (deltaReal - deltaIdeal);
     if (getKMinVersnelling() >= acceleration)acceleration = getKMinVersnelling();
     if (acceleration >= getKMaxVersnelling()) acceleration = getKMaxVersnelling();
+    if (fSpeed > fCurrentRoad->getSpeedLimit(fPosition)){
+        acceleration = getKMinVersnelling();
+    }
     ENSURE(acceleration <= getKMaxVersnelling(), "acceleration hoger dan max versnelling");
     ENSURE(acceleration >= getKMinVersnelling(), " acceleration lager dan min versnelling");
     }
     fSpeed += (unsigned int) round(acceleration);
-    if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed)fSpeed = fCurrentRoad->getSpeedLimit(fPosition);
-    if((unsigned int)getKMaxSpeed() < fSpeed) fSpeed = (unsigned int)getKMaxSpeed();//todo afremmen ?
+    if(acceleration < 0){
+        if (fCurrentRoad->getSpeedLimit(fPosition) > fSpeed)fSpeed = fCurrentRoad->getSpeedLimit(fPosition);
+    } else if(acceleration > 0){
+        if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed)fSpeed = fCurrentRoad->getSpeedLimit(fPosition);
+    }
+
+
+    //if((unsigned int)getKMaxSpeed() < fSpeed) fSpeed = (unsigned int)getKMaxSpeed();//todo afremmen ?
 }
 
 void Vehicle::leaveRoad() {
