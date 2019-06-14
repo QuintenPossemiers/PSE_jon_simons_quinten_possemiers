@@ -122,23 +122,26 @@ bool Parser::properlyInitialized() {
 
 void Parser::initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel) {
     unsigned int currentIndex = 0;
-    for (TiXmlElement *signElement = signElements; signElement != NULL; signElement = signElement->NextSiblingElement("BAAN")) {
+    for (TiXmlElement *signElement = signElements;
+         signElement != NULL; signElement = signElement->NextSiblingElement("BAAN")) {
         try {
             std::string street = signElement->FirstChildElement("baan")->GetText();
 
-            unsigned int position = static_cast<unsigned int>(std::atoi(signElement->FirstChildElement("positie")->GetText()));
+            unsigned int position = static_cast<unsigned int>(std::atoi(
+                    signElement->FirstChildElement("positie")->GetText()));
 
             std::string type = signElement->FirstChildElement("type")->GetText();
 
-            if(type == "BUSHALTE"){
-
-            }else if (type == "VERKEERSLICHT"){
-
-            }else if (type == "ZONE"){
+            if (type == "BUSHALTE") {
+                simulationModel->addBusStopToRoad(street, position);
+            } else if (type == "VERKEERSLICHT") {
+                simulationModel->addTraffiLightToRoad(street, position);
+            } else if (type == "ZONE") {
                 unsigned int speedLimit =
-                        static_cast<unsigned int>(std::atoi(signElement->FirstChildElement("snelheidslimiet")->GetText()));
+                        static_cast<unsigned int>(std::atoi(
+                                signElement->FirstChildElement("snelheidslimiet")->GetText()));
+                simulationModel->addZoneToRoad(street, speedLimit, position);
             }
-
 
 
         } catch (const std::invalid_argument &e) {
