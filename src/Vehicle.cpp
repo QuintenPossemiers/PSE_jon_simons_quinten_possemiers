@@ -54,7 +54,7 @@ bool Vehicle::properlyInitialised() {
 
 Vehicle::Vehicle(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad)
         : fSpeed(fSpeed), fPosition(fPosition), kLicencePlate(kLicencePlate), fCurrentRoad(fCurrentRoad),
-          fPrevVehicle(NULL),_initCheck(this) {
+          fPrevVehicle(NULL), fStroke(1),_initCheck(this) {
     if (fCurrentRoad->getLength() < fPosition) throw FatalException(vehicle_illegal_position);
     if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed) throw NonFatalException(vehicle_speed_error);
     REQUIRE(fCurrentRoad != NULL, "baan moet bestaan");
@@ -99,12 +99,12 @@ bool Vehicle::operator!=(Vehicle &rhs) {
 bool Vehicle::collides(Vehicle *secondCar) {
     REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     REQUIRE(secondCar != NULL, "voertuig moet bestaan");
-    return collides(secondCar->getFPosition(), secondCar->getFCurrentRoad()->getName());
+    return collides(secondCar->getFPosition(), secondCar->getFCurrentRoad()->getName(),secondCar->getCurrentStroke() );
 }
 
-bool Vehicle::collides(double position, std::string roadName) {
+bool Vehicle::collides(double position, std::string roadName, unsigned int stroke) {
     REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
-    return roadName == fCurrentRoad->getName() and this->fPosition - 5 - this->getKLength()< position and position < this->fPosition + 5;
+    return roadName == fCurrentRoad->getName() and this->fPosition - 5 - this->getKLength()< position and position < this->fPosition + 5 and fStroke == stroke;
     //We veronderstellen dat we met de lengte rekening moeten houden
 }
 
@@ -150,6 +150,10 @@ void Vehicle::leaveRoad() {
     REQUIRE(properlyInitialised(),"voertuig niet goed geinitializeerd");
     fCurrentRoad = NULL;
     ENSURE(getFCurrentRoad() ==NULL, "voertuig heeft baan niet verlaten");
+}
+
+unsigned int Vehicle::getCurrentStroke() {
+    return fStroke;
 }
 
 Bus::Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad) : Vehicle(

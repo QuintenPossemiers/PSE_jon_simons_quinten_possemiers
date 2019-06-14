@@ -17,7 +17,11 @@ private:
 
     Vehicle *fPrevVehicle;
 
+    unsigned int fStroke;
+
     Vehicle *_initCheck;
+
+
 
 public:
     Vehicle(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad);
@@ -72,7 +76,7 @@ public:
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
     //REQUIRE(secondCar!=NULL,"voertuig moet bestaan");
 
-    bool collides(double position, std::string roadName);
+    bool collides(double position, std::string roadName, unsigned int stroke);
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     bool updatePosition();
@@ -86,6 +90,8 @@ public:
     void leaveRoad();
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
     //ENSURE(getFCurrentRoad() ==NULL, "voertuig heeft baan niet verlaten");
+
+    unsigned int getCurrentStroke();
 
 
 };

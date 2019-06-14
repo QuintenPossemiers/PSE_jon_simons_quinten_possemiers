@@ -19,6 +19,7 @@ private:
     std::set<unsigned int> fBusStops;
     std::set<std::pair<unsigned int, unsigned int> > zones;
     std::set<TrafficLight> fTrafficLights;
+    unsigned int fStrokes;
 
     Road *_initCheck;
 
@@ -61,7 +62,7 @@ public:
 
     bool properlyInitialized();
 
-    Road(const std::string &name, unsigned int speedLimit, unsigned int length);
+    Road(const std::string &name, unsigned int speedLimit, unsigned int length, unsigned int strokes=1);
     //ENSURE(properlyInitialized(), "baan niet goed geinitializeerd");
 
     friend std::ostream &operator<<(std::ostream &os, Road &road);
