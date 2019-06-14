@@ -97,6 +97,9 @@ int Road::getNextBusStop(unsigned int currentPosition) {
     for (std::set<unsigned int>::iterator it = fBusStops.begin(); it != fBusStops.end(); ++it) {
         if (currentPosition < *it)return *it;
     }
+    for (int i = 0; i < fConnections.size(); ++i) {
+        return fConnections[i]->getNextBusStop(0);
+    }
     return -1;
 
 

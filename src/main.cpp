@@ -24,7 +24,6 @@ void initSimulation() {
         simulation.automaticSimulation();
         simulation.printToFile();
 
-
     } catch (FatalException &e) {
         std::cerr << e.what() << std::endl;
         //exit(e.getExitCode());

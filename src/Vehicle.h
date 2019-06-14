@@ -21,6 +21,7 @@ private:
 
     Vehicle *_initCheck;
 
+    double calculateAccelerationToStopAtPosition(int distance);
 
 
 public:
@@ -122,6 +123,8 @@ public:
 };
 
 class Bus : public Vehicle {
+private:
+    int fDistanceToNextStop;
 public:
     Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad);
 
