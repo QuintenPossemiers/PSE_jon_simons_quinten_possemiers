@@ -111,7 +111,18 @@ bool Vehicle::collides(double position, std::string roadName, unsigned int strok
 
 
 bool Vehicle::updatePosition() {
-    fPosition += (unsigned int) round((fSpeed / 3.6));
+    Bus *bus = dynamic_cast<Bus *>(this);
+    bool isBus = bus != NULL;
+    if (isBus and bus->getTimeLeft() > 0) {
+        bus->incTimeLeft();
+        return true;
+    }
+    unsigned int updateSpeed = (unsigned int) round((fSpeed / 3.6));
+    fPosition += updateSpeed;
+    if (isBus and updateSpeed == bus->getFDistanceToNextStop()) {
+        bus->incTimeLeft();
+    }
+
     if (fPosition > fCurrentRoad->getLength()) {
         fPosition = 0;//je moet rekening houden met de overgang naar een andere baan
         if (fCurrentRoad->getConnections().empty()) return false;
@@ -124,6 +135,12 @@ bool Vehicle::updatePosition() {
 void Vehicle::updateSpeed() {
     REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     double acceleration = getKMaxVersnelling();
+    Bus *bus = dynamic_cast<Bus *>(this);
+    bool isBus = bus != NULL;
+    if (isBus and bus->getTimeLeft() != 0 and bus->getTimeLeft() != 30){
+       this->fSpeed = 0;
+        return;
+    }
     if (fPrevVehicle) {
 
         double deltaIdeal = 0.75 * this->fSpeed + fPrevVehicle->getKLength() + 2;
@@ -175,7 +192,7 @@ Bus::Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicenc
         fSpeed, fPosition, kLicencePlate, fCurrentRoad) {
     REQUIRE(fSpeed <= getKMaxSpeed(), "dit voertuig mag niet zo snel rijden");
 
-  fDistanceToNextStop =  fCurrentRoad->getNextBusStop(fPosition) - fPosition;
+    fDistanceToNextStop = fCurrentRoad->getNextBusStop(fPosition) - fPosition;
 
 
 }
@@ -198,6 +215,26 @@ const int Bus::getKMinVersnelling() {
 
 const int Bus::getKMaxVersnelling() {
     return kMaxVersnelling;
+}
+
+int Bus::getFDistanceToNextStop() const {
+    return fDistanceToNextStop;
+}
+
+int Bus::getTimeLeft() const {
+    return timeLeft;
+}
+
+
+void Bus::incTimeLeft() {
+    Bus::timeLeft++;
+    if (timeLeft == 31) {
+        timeLeft = 0;
+    }
+}
+
+void Bus::updateNextStop() {
+    fDistanceToNextStop = getFCurrentRoad()->getNextBusStop(getFPosition()) - getFPosition();
 }
 
 Truck::Truck(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad)

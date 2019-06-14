@@ -125,6 +125,8 @@ public:
 class Bus : public Vehicle {
 private:
     int fDistanceToNextStop;
+
+    int timeLeft;
 public:
     Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad);
 
@@ -139,6 +141,14 @@ public:
     virtual const int getKMaxVersnelling();
 
     virtual const int getKMinVersnelling();
+
+    int getFDistanceToNextStop() const;
+
+    int getTimeLeft() const;
+
+    void updateNextStop();
+
+    void incTimeLeft();
 
 public:
     virtual const int getKLength();
