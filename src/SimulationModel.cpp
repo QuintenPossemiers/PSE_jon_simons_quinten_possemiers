@@ -135,7 +135,7 @@ void SimulationModel::automaticSimulation() {
 void SimulationModel::addZoneToRoad(std::string &name, unsigned int speedLimit, unsigned int position) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     Road *road = getRoad(name);
-    if (!road)
+    if (road == NULL)
         return;
     road->addZone(position, speedLimit);
 }
@@ -144,7 +144,7 @@ void SimulationModel::addBusStopToRoad(std::string &name, unsigned int position)
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
 
     Road *road = getRoad(name);
-    if (!road)
+    if (road == NULL)
         return;
     road->addBusStop(position);
 }
@@ -159,7 +159,7 @@ Road *SimulationModel::getRoad(std::string &name) {
 
 void SimulationModel::addTraffiLightToRoad(std::string &name, unsigned int position) {
     Road *road = getRoad(name);
-    if (!road)
+    if (road == NULL)
         return;
     road->addTrafficLight(position);
 }
