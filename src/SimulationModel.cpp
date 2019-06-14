@@ -142,12 +142,11 @@ void SimulationModel::addZoneToRoad(std::string &name, unsigned int speedLimit, 
 
 void SimulationModel::addBusStopToRoad(std::string &name, unsigned int position) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
-    for (int i = 0; i < fRoads.size(); ++i) {
-        if (fRoads[i]->getName() == name) {
-            fRoads[i]->addBusStop(position);
-            return;
-        }
-    }
+
+    Road *road = getRoad(name);
+    if (!road)
+        return;
+    road->addBusStop(position);
 }
 
 
@@ -158,8 +157,11 @@ Road *SimulationModel::getRoad(std::string &name) {
     return NULL;
 }
 
-void SimulationModel::addTraffiLightToRoad() {
-
+void SimulationModel::addTraffiLightToRoad(std::string &name, unsigned int position) {
+    Road *road = getRoad(name);
+    if (!road)
+        return;
+    road->addTrafficLight(position);
 }
 
 
