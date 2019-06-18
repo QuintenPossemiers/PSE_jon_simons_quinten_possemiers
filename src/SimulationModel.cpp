@@ -19,11 +19,9 @@ SimulationModel::SimulationModel() : _initCheck(this) {
 void SimulationModel::addRoad(Road *road) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
     REQUIRE(road != NULL, "geen geldige baan");
-    unsigned int i = (unsigned int) fRoads.size() + 1;
     if (doesRoadExist(road->getName()) != NULL)
         throw NonFatalException(road_dupe_name);
     fRoads.push_back(road);
-    ENSURE(fRoads.size() == i, "baan niet toegevoegd");
 }
 
 void SimulationModel::addVehicle(Vehicle *vehicle) {
@@ -38,6 +36,7 @@ void SimulationModel::addVehicle(Vehicle *vehicle) {
 }
 
 void SimulationModel::printToFile(const std::string &fileName) {
+    REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
     std::ofstream myfile;
     myfile.open(fileName.c_str());
     myfile << *this;
@@ -156,8 +155,7 @@ void SimulationModel::addZoneToRoad(std::string &name, unsigned int speedLimit, 
 }
 
 void SimulationModel::addBusStopToRoad(std::string &name, unsigned int position) {
-    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
-
+    REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
     Road *road = getRoad(name);
     if (road == NULL)
         return;
@@ -173,6 +171,7 @@ Road *SimulationModel::getRoad(std::string &name) {
 }
 
 void SimulationModel::addTraffiLightToRoad(std::string &name, unsigned int position) {
+    REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
     Road *road = getRoad(name);
     if (road == NULL)
         return;
@@ -186,6 +185,7 @@ struct ptr_comparison {
 };
 
 void SimulationModel::sort() {
+    REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
     std::list<Vehicle *> list1;
     for (unsigned int j = 0; j < this->getVehicles().size(); ++j) {
         fVehicles[j]->setFNextVehicle(NULL);

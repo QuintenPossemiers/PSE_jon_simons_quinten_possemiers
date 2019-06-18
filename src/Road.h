@@ -26,18 +26,23 @@ private:
 
 public:
     bool operator<(const Road &rhs) const;
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
     bool operator>(const Road &rhs) const;
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
     bool operator<=(const Road &rhs) const;
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
     bool operator>=(const Road &rhs) const;
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
 
 
 public:
 
     unsigned int getFStrokes() const;
+    //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
     void addBusStop(unsigned int position);
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
@@ -62,6 +67,8 @@ public:
 
 
     unsigned int getIsNextTrafficStop(unsigned int currentPosition);
+    //REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+    //REQUIRE(currentPosition <= this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
 
 
     const std::string &getName();
@@ -78,7 +85,7 @@ public:
     const std::vector<Road *> &getConnections();
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
-    bool properlyInitialized();
+    bool properlyInitialized() const;
 
     Road(const std::string &name, unsigned int speedLimit, unsigned int length, unsigned int strokes=2);
     //ENSURE(properlyInitialized(), "baan niet goed geinitializeerd");
@@ -101,6 +108,7 @@ public:
     //REQUIRE(road != NULL, "geen geldige baan");
 
     void tickVerkeersLichten();
+    //REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
 };
 
 

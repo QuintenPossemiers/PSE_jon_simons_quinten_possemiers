@@ -31,17 +31,20 @@ public:
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
     void printToFile(const std::string &fileName = "output.txt");
+    //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
     void addRoad(Road *road);
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
     //REQUIRE(road!= NULL,"geen geldige baan");
-    //ENSURE(fRoads.size()==i,"baan niet toegevoegd")
 
     void addBusStopToRoad(std::string &name, unsigned int position);
+    //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
     void addTraffiLightToRoad(std::string &name, unsigned int position);
+    //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
     void addZoneToRoad(std::string &name, unsigned int speedLimit, unsigned int position);
+    //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
 
     bool properlyInitialized();
@@ -84,12 +87,14 @@ public:
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
     void sort();
+    //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
 
 private:
     std::vector<Vehicle *> get_vehicle_on_road(Road *road);
 
     Road* getRoad(std::string &name);
+
 
 
 

@@ -17,39 +17,47 @@ Car::Car(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicenc
 }
 
 const int Car::getKLength() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kLength;
 }
 
 const int Car::getKMinVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMinVersnelling;
 }
 
 const int Car::getKMaxVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxVersnelling;
 }
 
 
 unsigned int Vehicle::getFSpeed() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fSpeed;
 }
 
 unsigned int Vehicle::getFPosition() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fPosition;
 }
 
 const std::string &Vehicle::getKLicencePlate() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kLicencePlate;
 }
 
 Road *Vehicle::getFCurrentRoad() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fCurrentRoad;
 }
 
-Vehicle *Vehicle::getFPrevVehicle() const {
+Vehicle *Vehicle::getFPrevVehicle()  {
+    REQUIRE(properlyInitialised(),"voertuig niet goed geinitializeerd");
     return fPrevVehicle;
 }
 
-bool Vehicle::properlyInitialised() {
+bool Vehicle::properlyInitialised() const{
     return this == _initCheck;
 }
 
@@ -57,9 +65,9 @@ Vehicle::Vehicle(unsigned int fSpeed, unsigned int fPosition, const std::string 
         : fSpeed(fSpeed), fNoAcceleration(0), fPosition(fPosition), kLicencePlate(kLicencePlate),
           fCurrentRoad(fCurrentRoad),
           fPrevVehicle(NULL), fStroke(1), _initCheck(this) {
+    REQUIRE(fCurrentRoad != NULL, "baan moet bestaan");
     if (fCurrentRoad->getLength() < fPosition) throw FatalException(vehicle_illegal_position);
     if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed) throw NonFatalException(vehicle_speed_error);
-    REQUIRE(fCurrentRoad != NULL, "baan moet bestaan");
     ENSURE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 }
 
@@ -374,6 +382,7 @@ void Vehicle::leaveRoad() {
 }
 
 double Vehicle::getCurrentStroke() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fStroke;
 }
 
@@ -390,14 +399,18 @@ void Vehicle::setFStroke(double stroke) {
 }
 
 void Vehicle::resetAccelerationTimer() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     fNoAcceleration = 0;
+    ENSURE(fNoAcceleration == 0, "fNoAcceleration is niet op 0 gezet");
 }
 
 void Vehicle::incAccelerationTimer() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     fNoAcceleration++;
 }
 
 int Vehicle::getDistanceToNextVehicle(Vehicle *x, bool start) {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     if (fCurrentRoad == NULL) return -1;
     if ((ceil(fStroke) == ceil(x->getCurrentStroke()) or ceil(fStroke) == floor(x->getCurrentStroke()) or
          floor(fStroke) == floor(x->getCurrentStroke()) or
@@ -418,32 +431,41 @@ int Vehicle::getDistanceToNextVehicle(Vehicle *x, bool start) {
 }
 
 Vehicle *Vehicle::getFNextVehicle() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fNextVehicle;
 }
 
 void Vehicle::setFNextVehicle(Vehicle *NextVehicle) {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     Vehicle::fNextVehicle = NextVehicle;
+    ENSURE(fNextVehicle== getFNextVehicle(), "nextvehicle niet aangepast");
 }
 
 void Vehicle::setFPrevVehicle(Vehicle *PrevVehicle) {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     Vehicle::fPrevVehicle = PrevVehicle;
+    ENSURE(fPrevVehicle == getFPrevVehicle(), "fPrevVehicle niet aangepast");
 }
 
 bool Vehicle::operator<(const Vehicle &rhs) const {
+    REQUIRE(properlyInitialised(),"voertuig niet goed geinitializeerd");
     if (*rhs.getFCurrentRoad() == *fCurrentRoad and fPosition < rhs.getFPosition()) return true;
     return *fCurrentRoad > *rhs.getFCurrentRoad();
 }
 
 bool Vehicle::operator>(const Vehicle &rhs) const {
+    REQUIRE(properlyInitialised(),"voertuig niet goed geinitializeerd");
     if (*rhs.getFCurrentRoad() == *fCurrentRoad and fPosition > rhs.getFPosition()) return true;
     return *fCurrentRoad < *rhs.getFCurrentRoad();
 }
 
 bool Vehicle::operator<=(const Vehicle &rhs) const {
+    REQUIRE(properlyInitialised(),"voertuig niet goed geinitializeerd");
     return !(rhs < *this);
 }
 
 bool Vehicle::operator>=(const Vehicle &rhs) const {
+    REQUIRE(properlyInitialised(),"voertuig niet goed geinitializeerd");
     return !(*this < rhs);
 }
 
@@ -460,15 +482,19 @@ unsigned int Vehicle::getFNoAcceleration() const {
     return fNoAcceleration;
 }
 
-bool Vehicle::isFGoingUp() const {
+bool Vehicle::isFGoingUp()  {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fGoingUp;
 }
 
 void Vehicle::setFGoingUp(bool GoingUp) {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     Vehicle::fGoingUp = GoingUp;
+    ENSURE(fGoingUp == isFGoingUp(), "fGoingUp niet aangepast");
 }
 
 unsigned int Vehicle::getRadiusOnStroke(int stroke) {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     Vehicle *prev = fPrevVehicle;
     unsigned int radius = 0;
     while (prev != NULL) {
@@ -503,42 +529,54 @@ Bus::Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicenc
 }
 
 const int Bus::getKLength() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kLength;
 }
 
 const unsigned int Bus::getKMaxSpeed() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxSpeed;
 }
 
 const char *Bus::getKTypeName() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return "bus";
 }
 
 const int Bus::getKMinVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMinVersnelling;
 }
 
 const int Bus::getKMaxVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxVersnelling;
 }
 
 int Bus::getFDistanceToNextStop() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fDistanceToNextStop;
 }
 
 int Bus::getTimeLeft() const {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return fTimeLeft;
 }
 
 
 void Bus::incTimeLeft() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     Bus::fTimeLeft++;
     if (fTimeLeft == 31) {
         fTimeLeft = 0;
     }
+    ENSURE(fTimeLeft>=0,"time left kleiner dan 0");
+    ENSURE(fTimeLeft>31,"time left groter dan 31");
+
 }
 
 void Bus::updateNextStop() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     fDistanceToNextStop = getFCurrentRoad()->getNextBusStop(getFPosition()) - getFPosition();
 }
 
@@ -549,22 +587,27 @@ Truck::Truck(unsigned int fSpeed, unsigned int fPosition, const std::string &kLi
 }
 
 const int Truck::getKLength() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kLength;
 }
 
 const unsigned int Truck::getKMaxSpeed() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxSpeed;
 }
 
 const char *Truck::getKTypeName() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return "vrachtwagen";
 }
 
 const int Truck::getKMinVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMinVersnelling;
 }
 
 const int Truck::getKMaxVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxVersnelling;
 }
 
@@ -575,21 +618,26 @@ Motorcycle::Motorcycle(unsigned int fSpeed, unsigned int fPosition, const std::s
 }
 
 const int Motorcycle::getKLength() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kLength;
 }
 
 const unsigned int Motorcycle::getKMaxSpeed() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxSpeed;
 }
 
 const char *Motorcycle::getKTypeName() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return "motorfiets";
 }
 
 const int Motorcycle::getKMinVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMinVersnelling;
 }
 
 const int Motorcycle::getKMaxVersnelling() {
+    REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
     return kMaxVersnelling;
 }

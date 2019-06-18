@@ -27,22 +27,31 @@ private:
 
     Vehicle *_initCheck;
 public:
-    bool isFGoingUp() const;
+    bool isFGoingUp() ;
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     void setFGoingUp(bool fGoingUp);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
+    //ENSURE(fGoingUp == isFGoingUp, "fGoingUp niet aangepast")
 
     void setFPrevVehicle(Vehicle *fPrevVehicle);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
+    //ENSURE(fPrevVehicle == getFPrevVehicle, "fPrevVehicle niet aangepast")
 
 private:
 
 public:
     bool operator<(const Vehicle &rhs) const;
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     bool operator>(const Vehicle &rhs) const;
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     bool operator<=(const Vehicle &rhs) const;
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     bool operator>=(const Vehicle &rhs) const;
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
 private:
 
@@ -51,40 +60,59 @@ private:
 
 public:
     Vehicle(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad);
+    //REQUIRE(fCurrentRoad != NULL, "baan moet bestaan");
+    //ENSURE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
-    bool properlyInitialised();
+    bool properlyInitialised() const ;
 
     virtual const int getKLength() = 0;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const unsigned int getKMaxSpeed() = 0;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMaxVersnelling() = 0;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMinVersnelling() = 0;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const char* getKTypeName() = 0;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     unsigned int getFSpeed() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     Vehicle *getFNextVehicle() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     void setFNextVehicle(Vehicle *fNextVehicle);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
+    //ENSURE(fNextVehicle== getFNextVehicle(), "nextvehicle niet aangepast");
 
     unsigned int getNextVehocleSize(double stroke);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     unsigned int getFNoAcceleration() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     unsigned int getFPosition() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     unsigned int getRadiusOnStroke(int stroke);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     const std::string &getKLicencePlate() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     int getDistanceToNextVehicle(Vehicle* x, bool start=true);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     Road *getFCurrentRoad() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
-    Vehicle *getFPrevVehicle() const;
+    Vehicle *getFPrevVehicle() ;
+    //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     void setSpeed(unsigned int speed);
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
@@ -130,12 +158,18 @@ public:
     //ENSURE(getFCurrentRoad() ==NULL, "voertuig heeft baan niet verlaten");
 
     double getCurrentStroke();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     void setFStroke(double fStroke);
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
+    //ENSURE(getCurrentStroke() == fStroke, "strook niet aangepast");
 
     void resetAccelerationTimer();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
+    //ENSURE(fNoAcceleration == 0; "fNoAcceleration is niet op 0 gezet");
 
     void incAccelerationTimer();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
 
 };
@@ -155,14 +189,19 @@ public:
 
 public:
     virtual const int getKLength();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const unsigned int getKMaxSpeed();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const char* getKTypeName();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMaxVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMinVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 };
 
 class Bus : public Vehicle {
@@ -182,23 +221,34 @@ public:
     static const int kMaxVersnelling =1;
 
     virtual const int getKMaxVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMinVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     int getFDistanceToNextStop() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     int getTimeLeft() const;
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     void updateNextStop();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     void incTimeLeft();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
+    //ENSURE(fTimeLeft>=0,"time left kleiner dan 0");
+    //ENSURE(fTimeLeft>31,"time left groter dan 31");
 
 public:
     virtual const int getKLength();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const unsigned int getKMaxSpeed();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const char* getKTypeName();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 };
 
 class Truck : public Vehicle {
@@ -214,15 +264,20 @@ public:
     static const int kMaxVersnelling =1;
 
     virtual const int getKMaxVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMinVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
 public:
     virtual const int getKLength();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const unsigned int getKMaxSpeed();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const char* getKTypeName();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 };
 class Motorcycle : public Vehicle {
 public:
@@ -237,15 +292,20 @@ public:
     static const int kMaxVersnelling =4;
 
     virtual const int getKMaxVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const int getKMinVersnelling();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
 public:
     virtual const int getKLength();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const unsigned int getKMaxSpeed();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 
     virtual const char* getKTypeName();
+    //REQUIRE(properlyInitialised(), "voertuig niet goed geinitializeerd");
 };
 
 

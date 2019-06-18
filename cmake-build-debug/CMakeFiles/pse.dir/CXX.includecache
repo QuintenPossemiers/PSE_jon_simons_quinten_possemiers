@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/DataStats.cpp
+fstream
+-
+sstream
+-
+DataStats.h
+/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/DataStats.h
+
+/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/DataStats.h
+iostream
+-
+DesignByContract.h
+/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/DesignByContract.h
+
+/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/DesignByContract.h
+assert.h
+-
+
