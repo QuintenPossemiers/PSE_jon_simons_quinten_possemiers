@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Install script for directory: /home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers
-=======
 # Install script for directory: /home/quinten/Desktop/PSE_jon_simons_quinten_possemiers
->>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,9 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD
-file(WRITE "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
-=======
 file(WRITE "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

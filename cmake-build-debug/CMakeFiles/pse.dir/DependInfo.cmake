@@ -4,17 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinystr.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinyxml.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlerror.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinyxmlerror.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlparser.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Exceptions.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Exceptions.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Parser.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Parser.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Road.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Road.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/SimulationModel.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/SimulationModel.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/TrafficLight.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/TrafficLight.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Vehicle.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Vehicle.cpp.o"
-  "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/main.cpp" "/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/main.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinystr.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinyxml.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlerror.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinyxmlerror.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlparser.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/DataStats.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/DataStats.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/Exceptions.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Exceptions.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/Parser.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Parser.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/Road.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Road.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/SimulationModel.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/SimulationModel.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/StatisticsSimulation.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/StatisticsSimulation.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/TrafficLight.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/TrafficLight.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/Vehicle.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/Vehicle.cpp.o"
+  "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/main.cpp" "/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/CMakeFiles/pse.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

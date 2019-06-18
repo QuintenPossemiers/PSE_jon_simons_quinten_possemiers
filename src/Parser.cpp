@@ -48,17 +48,11 @@ void Parser::initialiseRoads(TiXmlElement *roadElements, SimulationModel *simula
                     static_cast<unsigned int>(std::atoi(road->FirstChildElement("snelheidslimiet")->GetText()));
             unsigned int length = static_cast<unsigned int>(std::atoi(road->FirstChildElement("lengte")->GetText()));
 
-            //unsigned int strokes = 1;
+            unsigned int strokes = 1;
 
-<<<<<<< HEAD
-            //if (road->FirstChildElement("rijstroken") != NULL){
-               // strokes = static_cast<unsigned int>(std::atoi(road->FirstChildElement("rijstroken")->GetText()));
-            //}
-=======
             if (road->FirstChildElement("rijstroken") != NULL) {
                 strokes = static_cast<unsigned int>(std::atoi(road->FirstChildElement("rijstroken")->GetText()));
             }
->>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 
 
             simulationModel->addRoad(new Road(name, speedLimit, length, strokes));

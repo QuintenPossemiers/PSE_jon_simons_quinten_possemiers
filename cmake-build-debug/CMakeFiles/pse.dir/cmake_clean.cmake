@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/pse.dir/TinyXml/tinyxmlerror.cpp.o"
   "CMakeFiles/pse.dir/TinyXml/tinyxmlparser.cpp.o"
   "CMakeFiles/pse.dir/src/TrafficLight.cpp.o"
+  "CMakeFiles/pse.dir/src/DataStats.cpp.o"
+  "CMakeFiles/pse.dir/src/StatisticsSimulation.cpp.o"
   "pse.pdb"
   "pse"
 )
