@@ -13,7 +13,7 @@ link_directories(gtest/lib)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES src/main.cpp src/Parser.cpp src/Vehicle.cpp
-        src/Road.cpp src/SimulationModel.cpp src/Exceptions.cpp TinyXml/tinystr.cpp TinyXml/tinyxml.cpp TinyXml/tinyxmlerror.cpp TinyXml/tinyxmlparser.cpp src/DesignByContract.h src/TrafficLight.cpp src/TrafficLight.h)
+        src/Road.cpp src/SimulationModel.cpp src/Exceptions.cpp TinyXml/tinystr.cpp TinyXml/tinyxml.cpp TinyXml/tinyxmlerror.cpp TinyXml/tinyxmlparser.cpp src/DesignByContract.h src/TrafficLight.cpp src/TrafficLight.h src/DataStats.cpp src/DataStats.h src/StatisticsSimulation.cpp src/StatisticsSimulation.h)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES src/mainTests.cpp src/Parser.cpp src/Vehicle.cpp

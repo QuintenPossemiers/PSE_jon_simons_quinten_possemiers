@@ -9,7 +9,11 @@ class Vehicle {
 private:
     unsigned int fSpeed;
 
+    unsigned int fNoAcceleration;
+
     unsigned int fPosition;
+
+    bool fGoingUp;
 
     const std::string kLicencePlate;
 
@@ -17,9 +21,30 @@ private:
 
     Vehicle *fPrevVehicle;
 
-    unsigned int fStroke;
+    Vehicle *fNextVehicle;
+
+    double fStroke;
 
     Vehicle *_initCheck;
+public:
+    bool isFGoingUp() const;
+
+    void setFGoingUp(bool fGoingUp);
+
+    void setFPrevVehicle(Vehicle *fPrevVehicle);
+
+private:
+
+public:
+    bool operator<(const Vehicle &rhs) const;
+
+    bool operator>(const Vehicle &rhs) const;
+
+    bool operator<=(const Vehicle &rhs) const;
+
+    bool operator>=(const Vehicle &rhs) const;
+
+private:
 
     double calculateAccelerationToStopAtPosition(int distance);
 
@@ -41,9 +66,19 @@ public:
 
     unsigned int getFSpeed() const;
 
+    Vehicle *getFNextVehicle() const;
+
+    void setFNextVehicle(Vehicle *fNextVehicle);
+
+    unsigned int getNextVehocleSize(double stroke);
+
+    unsigned int getFNoAcceleration() const;
+
     unsigned int getFPosition() const;
 
     const std::string &getKLicencePlate() const;
+
+    int getDistanceToNextVehicle(Vehicle* x, bool start=true);
 
     Road *getFCurrentRoad() const;
 
@@ -77,7 +112,7 @@ public:
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
     //REQUIRE(secondCar!=NULL,"voertuig moet bestaan");
 
-    bool collides(double position, std::string roadName, unsigned int stroke);
+    bool collides(double position, std::string roadName, double stroke);
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
 
     bool updatePosition();
@@ -92,7 +127,13 @@ public:
     //REQUIRE(properlyInitialized(),"voertuig niet goed geinitializeerd");
     //ENSURE(getFCurrentRoad() ==NULL, "voertuig heeft baan niet verlaten");
 
-    unsigned int getCurrentStroke();
+    double getCurrentStroke();
+
+    void setFStroke(double fStroke);
+
+    void resetAccelerationTimer();
+
+    void incAccelerationTimer();
 
 
 };
@@ -126,7 +167,7 @@ class Bus : public Vehicle {
 private:
     int fDistanceToNextStop;
 
-    int timeLeft;
+    int fTimeLeft;
 public:
     Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad);
 

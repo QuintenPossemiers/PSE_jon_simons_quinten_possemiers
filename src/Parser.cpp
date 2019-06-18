@@ -1,7 +1,9 @@
 
 #include <bits/ios_base.h>
 #include <iostream>
+#include <sstream>
 #include "Parser.h"
+#include <list>
 #include "Exceptions.h"
 
 Parser::Parser(const char *kXmlPath) : kXmlPath(kXmlPath), _initCheck(this) {
@@ -15,18 +17,23 @@ void Parser::initialiseRoadsAndVehicles(SimulationModel *simulationModel) {
     TiXmlElement *root;
 
     //Open the file and throw an error message if the file could not be found!
-    if (!doc.LoadFile(kXmlPath))
-        throw FatalException(doc.ErrorDesc());
-
+    if (!doc.LoadFile(kXmlPath)) {
+        std::stringstream ss;
+        ss << doc.ErrorDesc();
+        ss << " @row: ";
+        ss << doc.ErrorRow();
+        throw FatalException(ss.str());
+    }
 
     //Initialise the root of the xml file and check if it is not a null pointer
     root = doc.FirstChildElement();
-    if (root == NULL) throw NonFatalException(file_root);
+    if (root == NULL)throw NonFatalException(file_root);
 
     std::vector<std::string> connections;
     initialiseRoads(root->FirstChildElement("BAAN"), simulationModel, connections);
     initialiseConnections(simulationModel, connections);
     initialiseVehicles(root->FirstChildElement("VOERTUIG"), simulationModel);
+    initialiseSigns(root->FirstChildElement("VERKEERSTEKEN"), simulationModel);
     doc.Clear();
 
 }
@@ -43,13 +50,12 @@ void Parser::initialiseRoads(TiXmlElement *roadElements, SimulationModel *simula
 
             unsigned int strokes = 1;
 
-            if (road->FirstChildElement("rijstroken") != NULL){
+            if (road->FirstChildElement("rijstroken") != NULL) {
                 strokes = static_cast<unsigned int>(std::atoi(road->FirstChildElement("rijstroken")->GetText()));
             }
 
 
-
-            simulationModel->addRoad(new Road(name, speedLimit, length));
+            simulationModel->addRoad(new Road(name, speedLimit, length, strokes));
 
             for (TiXmlElement *connection = road->FirstChildElement("verbinding"); connection != NULL;
                  connection = connection->NextSiblingElement("verbinding")) {
@@ -128,7 +134,7 @@ bool Parser::properlyInitialized() {
 }
 
 void Parser::initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel) {
-    unsigned int currentIndex = 0;
+    //unsigned int currentIndex = 0;
     for (TiXmlElement *signElement = signElements;
          signElement != NULL; signElement = signElement->NextSiblingElement("BAAN")) {
         try {
@@ -156,4 +162,5 @@ void Parser::initialiseSigns(TiXmlElement *signElements, SimulationModel *simula
         }
     }
 }
+
 

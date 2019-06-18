@@ -1,6 +1,7 @@
 #include "Vehicle.h"
 #include "Exceptions.h"
 #include <fstream>
+#include <list>
 
 
 bool test(Vehicle *number) {
@@ -92,12 +93,26 @@ std::vector<Vehicle *> SimulationModel::get_vehicle_on_road(Road *road) {
 
 void SimulationModel::tick(unsigned int time) {
     REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
-    for (unsigned int i = 0; i < fVehicles.size(); ++i) {
+//    for (unsigned int i = 0; i < fVehicles.size(); ++i) {
+//        if (!fVehicles[i]->updatePosition()) {
+//            fVehicles[i]->leaveRoad();
+//        } else if (fVehicles[i] != NULL) {
+//            fVehicles[i]->updateSpeed();
+//        }
+//    }
+
+    for (unsigned int i = fVehicles.size()-1; i < (unsigned int)-1; --i) {
         if (!fVehicles[i]->updatePosition()) {
             fVehicles[i]->leaveRoad();
-        } else if (fVehicles[i] != NULL) {
+        }
+    }
+    for (unsigned int i = fVehicles.size()-1;i < (unsigned int)-1; --i) {
+        if (fVehicles[i]->getFCurrentRoad() != NULL) {
             fVehicles[i]->updateSpeed();
         }
+    }
+    for (unsigned int j = 0; j < fRoads.size(); ++j) {
+        fRoads[j]->tickVerkeersLichten();
     }
 
     fVehicles.erase(std::remove_if(fVehicles.begin(), fVehicles.end(), test), fVehicles.end());
@@ -151,7 +166,7 @@ void SimulationModel::addBusStopToRoad(std::string &name, unsigned int position)
 
 
 Road *SimulationModel::getRoad(std::string &name) {
-    for (int i = 0; i < fRoads.size(); ++i) {
+    for (unsigned int i = 0; i < fRoads.size(); ++i) {
         if (fRoads[i]->getName() == name) return fRoads[i];
     }
     return NULL;
@@ -163,6 +178,29 @@ void SimulationModel::addTraffiLightToRoad(std::string &name, unsigned int posit
         return;
     road->addTrafficLight(position);
 }
+
+
+template<class T>
+struct ptr_comparison
+{
+    bool operator()(T* a, T* b) { return *a < *b; }
+};
+
+void SimulationModel::sort() {
+    std::list<Vehicle*> list1;
+    for (unsigned int j = 0; j < this->getVehicles().size(); ++j) {
+        list1.push_back(fVehicles[j]);
+    }
+    list1.sort(ptr_comparison<Vehicle>());
+    fVehicles.clear();
+    fVehicles.insert(fVehicles.begin(),list1.begin(), list1.end());
+    for (unsigned int i = 0; i < fVehicles.size(); ++i) {
+        fVehicles[i]->setFPrevVehicle(i==fVehicles.size()-1?NULL:fVehicles[i+1]);
+        fVehicles[i]->setFNextVehicle(i==0?NULL:fVehicles[i-1]);
+    }
+}
+
+
 
 
 

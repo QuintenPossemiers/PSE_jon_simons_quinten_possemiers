@@ -31,7 +31,7 @@ private:
 
     void initialiseConnections(SimulationModel *simulationModel, std::vector<std::string> &connections);
 
-    void initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel)
+    void initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel);
 
 public:
     void initialiseRoadsAndVehicles(SimulationModel *simulationModel);

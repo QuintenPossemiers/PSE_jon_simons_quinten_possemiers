@@ -32,7 +32,7 @@ bool TrafficLight::operator<(const TrafficLight &rhs) const {
 }
 
 bool TrafficLight::operator>(const TrafficLight &rhs) const {
-    return rhs < *this;
+    return fPosition < rhs.fPosition;
 }
 
 bool TrafficLight::operator<=(const TrafficLight &rhs) const {
@@ -53,4 +53,12 @@ bool TrafficLight::operator!=(const TrafficLight &rhs) const {
 
 bool TrafficLight::properlyInitialised() {
     return this == _initCheck;
+}
+
+const std::string &TrafficLight::getFColor() const {
+    return fColor;
+}
+
+unsigned int TrafficLight::getFPosition() const {
+    return fPosition;
 }
