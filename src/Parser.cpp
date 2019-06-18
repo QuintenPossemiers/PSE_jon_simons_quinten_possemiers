@@ -41,11 +41,11 @@ void Parser::initialiseRoads(TiXmlElement *roadElements, SimulationModel *simula
                     static_cast<unsigned int>(std::atoi(road->FirstChildElement("snelheidslimiet")->GetText()));
             unsigned int length = static_cast<unsigned int>(std::atoi(road->FirstChildElement("lengte")->GetText()));
 
-            unsigned int strokes = 1;
+            //unsigned int strokes = 1;
 
-            if (road->FirstChildElement("rijstroken") != NULL){
-                strokes = static_cast<unsigned int>(std::atoi(road->FirstChildElement("rijstroken")->GetText()));
-            }
+            //if (road->FirstChildElement("rijstroken") != NULL){
+               // strokes = static_cast<unsigned int>(std::atoi(road->FirstChildElement("rijstroken")->GetText()));
+            //}
 
 
 
@@ -128,7 +128,7 @@ bool Parser::properlyInitialized() {
 }
 
 void Parser::initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel) {
-    unsigned int currentIndex = 0;
+    //unsigned int currentIndex = 0;
     for (TiXmlElement *signElement = signElements;
          signElement != NULL; signElement = signElement->NextSiblingElement("BAAN")) {
         try {

@@ -119,7 +119,7 @@ bool Vehicle::updatePosition() {
     }
     unsigned int updateSpeed = (unsigned int) round((fSpeed / 3.6));
     fPosition += updateSpeed;
-    if (isBus and updateSpeed == bus->getFDistanceToNextStop()) {
+    if (isBus and (unsigned)updateSpeed == (unsigned )bus->getFDistanceToNextStop()) {
         bus->incTimeLeft();
     }
 
