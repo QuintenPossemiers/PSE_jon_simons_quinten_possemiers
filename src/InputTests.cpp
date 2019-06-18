@@ -1,13 +1,5 @@
 
 
-//============================================================================
-// Name        : TicTactToeInputTest.cpp
-// Author      : Serge Demeyer
-// Version     :
-// Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
-// Description : TicTactToe in C++, Ansi-style
-//============================================================================
-
 #include <iostream>
 #include <fstream>
 #include <sys/stat.h>
@@ -72,17 +64,17 @@ TEST_F(InputTests, InputLegalGames) {
     ofstream myfile;
     SuccessEnum importResult;
     int fileCounter = 1;
-    string fileName = "testInput/legalGame" + to_string(fileCounter) + ".xml";
+    string fileName = "testInput/legalinput" + to_string(fileCounter) + ".xml";
 
     while (FileExists(fileName)) {
         myfile.open("testInput/zzzError.txt");
-        importResult = TicTacToeImporter::importTicTacToeGame(fileName.c_str(), myfile, ttt_);
+        importResult = Parser::initialiseRoadsAndVehicles(&model, "testInput/zzzInput.xml", myfile);
         myfile.close();
         EXPECT_TRUE(importResult == Success);
         EXPECT_TRUE(FileIsEmpty("testInput/zzzError.txt"));
 
         fileCounter = fileCounter + 1;
-        fileName = "testInput/legalGame" + to_string(fileCounter) + ".xml";
+        fileName = "testInput/legalinput" + to_string(fileCounter) + ".xml";
     };
 
     EXPECT_TRUE(fileCounter == 12);
@@ -99,7 +91,7 @@ TEST_F(InputTests, InputXMLSyntaxErrors) {
 
     while (FileExists(fileName)) {
         myfile.open("testInput/zzzError.txt");
-        importResult = TicTacToeImporter::importTicTacToeGame(fileName.c_str(), myfile, ttt_);
+        importResult = Parser::initialiseRoadsAndVehicles(&model, fileName.c_str(), myfile);
         myfile.close();
         EXPECT_TRUE(importResult == ImportAborted);
         errorfileName = "testInput/xmlsyntaxerror" + to_string(fileCounter) + ".txt";
@@ -123,7 +115,7 @@ TEST_F(InputTests, InputIllegalGames) {
 
     while (FileExists(fileName)) {
         myfile.open("testInput/zzzError.txt");
-        importResult = TicTacToeImporter::importTicTacToeGame(fileName.c_str(), myfile, ttt_);
+        importResult = Parser::initialiseRoadsAndVehicles(&model, fileName.c_str(), myfile);
         myfile.close();
         EXPECT_TRUE(importResult == PartialImport);
         errorfileName = "testInput/illegalError" + to_string(fileCounter) + ".txt";
