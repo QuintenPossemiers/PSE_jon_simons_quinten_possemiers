@@ -1,0 +1,2 @@
+XML PARTIAL IMPORT: Illegal position '2500'.
+XML PARTIAL IMPORT: Illegal position '7300'.

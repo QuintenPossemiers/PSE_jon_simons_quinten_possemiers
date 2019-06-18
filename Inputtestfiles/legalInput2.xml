@@ -1,0 +1,35 @@
+<root>
+    <BAAN>
+        <naam>E19</naam>
+        <snelheidslimiet>100</snelheidslimiet>
+        <lengte>2000</lengte>
+        <verbinding>E313</verbinding>
+    </BAAN>
+    <BAAN>
+        <naam>E313</naam>
+        <snelheidslimiet>100</snelheidslimiet>
+        <lengte>2000</lengte>
+    </BAAN>
+    <VERKEERSTEKEN>
+	<type>BUSHALTE</type>
+	<baan>E19</baan>
+	<positie>250</positie>
+    </VERKEERSTEKEN>
+    <VOERTUIG>
+        <type>BUS</type>
+        <nummerplaat>1THK180</nummerplaat>
+        <baan>E19</baan>
+        <positie>0</positie>
+        <snelheid>80
+        </snelheid>
+
+    </VOERTUIG>
+    <VOERTUIG>
+        <type>VRACHTWAGEN</type>
+        <nummerplaat>651BUF</nummerplaat>
+        <baan>E19</baan>
+        <positie>75</positie>
+        <snelheid>80
+        </snelheid>
+    </VOERTUIG>
+</root>

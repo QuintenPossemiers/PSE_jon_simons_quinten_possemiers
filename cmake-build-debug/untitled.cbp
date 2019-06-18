@@ -8,6 +8,40 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
+<<<<<<< HEAD
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pse">
+				<Option output="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+=======
 				<Option working_dir="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
@@ -40,11 +74,16 @@
 			<Target title="pse">
 				<Option output="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+<<<<<<< HEAD
+					<Add directory="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+=======
 					<Add directory="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -55,6 +94,17 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pse/fast">
+				<Option output="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+=======
 					<Build command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -64,11 +114,16 @@
 			<Target title="pse/fast">
 				<Option output="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+<<<<<<< HEAD
+					<Add directory="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+=======
 					<Add directory="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -79,6 +134,17 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pse_debug">
+				<Option output="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse_debug" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+=======
 					<Build command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -88,11 +154,16 @@
 			<Target title="pse_debug">
 				<Option output="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse_debug" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+<<<<<<< HEAD
+					<Add directory="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+=======
 					<Add directory="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -103,6 +174,17 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse_debug"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pse_debug/fast">
+				<Option output="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse_debug" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+=======
 					<Build command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse_debug"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -112,11 +194,16 @@
 			<Target title="pse_debug/fast">
 				<Option output="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/pse_debug" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+<<<<<<< HEAD
+					<Add directory="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+=======
 					<Add directory="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/gtest/include"/>
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -127,6 +214,40 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
+					<Build command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse_debug/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinystr.h">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxml.h">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlerror.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/TinyXml/tinyxmlparser.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/DesignByContract.h">
+=======
 					<Build command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 pse_debug/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -176,9 +297,33 @@
 			<Option target="pse_debug"/>
 		</Unit>
 		<Unit filename="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/Parser.cpp">
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 			<Option target="pse"/>
 			<Option target="pse_debug"/>
 		</Unit>
+<<<<<<< HEAD
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Exceptions.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Exceptions.h">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Parser.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Parser.h">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Road.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Road.h">
+=======
 		<Unit filename="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/Parser.h">
 			<Option target="pse"/>
 			<Option target="pse_debug"/>
@@ -200,11 +345,47 @@
 			<Option target="pse_debug"/>
 		</Unit>
 		<Unit filename="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/StatisticsSimulation.cpp">
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 			<Option target="pse"/>
+			<Option target="pse_debug"/>
 		</Unit>
+<<<<<<< HEAD
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/SimulationModel.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/SimulationModel.h">
+=======
 		<Unit filename="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/StatisticsSimulation.h">
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+<<<<<<< HEAD
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/TrafficLight.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/TrafficLight.h">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Vehicle.cpp">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/Vehicle.h">
+			<Option target="pse"/>
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/main.cpp">
 			<Option target="pse"/>
 		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/src/mainTests.cpp">
+			<Option target="pse_debug"/>
+		</Unit>
+		<Unit filename="/home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/CMakeLists.txt">
+=======
 		<Unit filename="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/src/TrafficLight.cpp">
 			<Option target="pse"/>
 			<Option target="pse_debug"/>
@@ -228,6 +409,7 @@
 			<Option target="pse_debug"/>
 		</Unit>
 		<Unit filename="/home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/CMakeLists.txt">
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

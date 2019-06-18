@@ -128,6 +128,9 @@ bool Vehicle::updatePosition() {
         //todo what to do?
     }
     fPosition += updateSpeed;
+<<<<<<< HEAD
+    if (isBus and (unsigned)updateSpeed == (unsigned )bus->getFDistanceToNextStop()) {
+=======
     if (fPrevVehicle != NULL and fPosition >= fPrevVehicle->getFPosition() - fPrevVehicle->getKLength() and
         fCurrentRoad == fPrevVehicle->getFCurrentRoad()) {
         std::cout << fSpeed << " " << fPosition << " " << fStroke << " " << fPrevVehicle << " "
@@ -138,6 +141,7 @@ bool Vehicle::updatePosition() {
         throw FatalException("fck");
     }
     if (isBus and updateSpeed == bus->getFDistanceToNextStop()) {
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
         bus->incTimeLeft();
     }
 
