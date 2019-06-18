@@ -136,7 +136,7 @@ bool Parser::properlyInitialized() {
 void Parser::initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel) {
     //unsigned int currentIndex = 0;
     for (TiXmlElement *signElement = signElements;
-         signElement != NULL; signElement = signElement->NextSiblingElement("BAAN")) {
+         signElement != NULL; signElement = signElement->NextSiblingElement("VERKEERSTEKEN")) {
         try {
             std::string street = signElement->FirstChildElement("baan")->GetText();
 

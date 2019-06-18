@@ -123,6 +123,10 @@ bool Vehicle::updatePosition() {
     }
 
     int updateSpeed = (int) round((fSpeed / 3.6));
+    if ((unsigned int)updateSpeed > fCurrentRoad->getIsNextTrafficStop(fPosition)){
+        //throw  NonFatalException(duplicate_plate);
+        //todo what to do?
+    }
     fPosition += updateSpeed;
     if (fPrevVehicle != NULL and fPosition >= fPrevVehicle->getFPosition() - fPrevVehicle->getKLength() and
         fCurrentRoad == fPrevVehicle->getFCurrentRoad()) {
@@ -164,8 +168,6 @@ void Vehicle::updateSpeed() {
     if (isBus and distToTraffic > distToBusStop) closestStop = distToBusStop;
 
     double acceleration;
-    int y = getNextVehocleSize(fStroke);
-    std::cout << y << "\n";
     double deltaIdeal = (0.75 * this->fSpeed) + getNextVehocleSize(fStroke) + 2;
 
     if (closestStop == (unsigned int) -1 and distToNextCar == (unsigned int) -1) {
@@ -175,7 +177,11 @@ void Vehicle::updateSpeed() {
         if (deltaIdeal * 2 > closestStop or
             (deltaIdeal == (unsigned int) -1 and closestStop == (unsigned int) -1)) {
             double stopAcc = calculateAccelerationToStopAtPosition(closestStop - fPosition);
-            if (stopAcc < acceleration) acceleration = stopAcc;
+            int distAcc = (round(closestStop* 3.6)) -fSpeed;
+            if (stopAcc < acceleration){
+                acceleration = stopAcc;
+                if (distAcc <= getKMinVersnelling())acceleration = distAcc;
+            }
         }
     }
 
@@ -195,6 +201,9 @@ void Vehicle::updateSpeed() {
     if (fSpeed > 300) fSpeed =0;
 
 
+    if (fPosition < 250 and kLicencePlate == std::string("koffiepot")and fCurrentRoad->getName() == std::string("E19")){
+        std::cout << fSpeed << " " << acceleration << " " << fPosition <<"\n";
+    }
 
 
 //

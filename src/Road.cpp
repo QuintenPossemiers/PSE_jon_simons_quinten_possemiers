@@ -150,7 +150,7 @@ unsigned int Road::getIsNextTrafficStop(unsigned int currentPosition) {
 
 
     for (std::set<TrafficLight>::iterator it = fTrafficLights.begin(); it != fTrafficLights.end(); ++it) {
-        if (it->getFPosition() > currentPosition and it->getFColor() != "green") {
+        if (it->getFPosition() >= currentPosition and it->getFColor() != "green") {
             return it->getFPosition() - currentPosition;
         }
     }
