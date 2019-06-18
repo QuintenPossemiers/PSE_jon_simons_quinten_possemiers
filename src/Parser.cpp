@@ -14,6 +14,9 @@ enum SuccessEnum
 Parser::initialiseRoadsAndVehicles(SimulationModel *simulationModel, const char *kXmlPath, std::ostream &errStream) {
     REQUIRE(simulationModel != NULL, "Ongeldig simulatie model!");
 
+    simulationModel->getVehicles().clear();
+    simulationModel->getRoads().clear();
+
     TiXmlDocument doc;
     SuccessEnum endResult = Success;
     SuccessEnum p1 = Success, p2 = Success, p3 = Success, p4 = Success;
@@ -171,7 +174,7 @@ Parser::initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *simul
                     errStream << "Position moet numeriek zijn! dus niet: " << position << std::endl;
                 }
                 bool typecheck = true;
-                if (type != "AUTO" or type != "BUS" or type != "MOTORFIETS" or type != "VRACHTWAGEN") {
+                if (type != "AUTO" and type != "BUS" and type != "MOTORFIETS" and type != "VRACHTWAGEN") {
                     returnVal = PartialImport;
                     errStream << "Voertuig moet van type MOTORFIETS, VRACHTWAGEN BUS of AUTO zijn dus niet: " << type
                               << std::endl;

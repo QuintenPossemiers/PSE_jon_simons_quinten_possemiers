@@ -20,7 +20,8 @@ void initSimulation() {
     try {
         std::string location = "../XML_Files/" + fileName + ".xml";
         SimulationModel simulation = SimulationModel();
-        simulation.start(location.c_str());
+        Parser p = Parser();
+        p.initialiseRoadsAndVehicles(&simulation, location.c_str(), std::cout);
         StatisticsSimulation stat =  StatisticsSimulation(&simulation);
         simulation.sort();
         stat.run();

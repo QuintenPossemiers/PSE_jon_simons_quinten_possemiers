@@ -16,9 +16,10 @@
 using namespace std;
 
 #include "SimulationModel.h"
+#include "Utils.h"
 
 
-class InputTests: public ::testing::Test {
+class InputTests : public ::testing::Test {
 protected:
     friend class SimulationModel;
 
@@ -28,52 +29,44 @@ protected:
     virtual void TearDown() {
     }
 
-    TicTacToe ttt_;
+    SimulationModel model;
 };
 
 /**
 Tests InputHappyDay
 */
-TEST_F(InputTest, InputHappyDay) {
+TEST_F(InputTests, InputHappyDay) {
     ASSERT_TRUE(DirectoryExists("Inputtestfiles"));
 
     ofstream myfile;
     SuccessEnum importResult;
 
     myfile.open("testInput/zzzInput.xml");
-    myfile << "<?xml version=\"1.0\" ?>" << endl
-           << "<TicTacToe>" << endl
-           << "\t<MOVES_O>a1c1b2a3c3</MOVES_O>" << endl
-           << "\t<MOVES_X>b1a2c2b3</MOVES_X>" << endl
-           << "</TicTacToe>" << endl;
+    myfile << "root<<" << endl
+           << "\t<BAAN> " << endl
+           << "\t<naam>E19</naam>" << endl
+           << "\t\t<snelheidslimiet>100</snelheidslimiet>" << endl
+           << "\t\t<lengte>1000</lengte>" << endl
+           << "\t</BAAN>" << endl
+           << "\t<VOERTUIG> " << endl
+           << "\t < type >AUTO</type >" << endl
+           << "\t\t<nummerplaat>ABC100</nummerplaat>" << endl
+           << "\t\t<baan>E19</baan>" << endl
+           << "\t\t<positie>100</positie>" << endl
+           << "\t\t<snelheid>80</snelheid>" << endl
+           << "\t</VOERTUIG>" << endl
+           << "</root>" << endl;
     myfile.close();
     myfile.open("testInput/zzzError.txt");
-    importResult = TicTacToeImporter::importTicTacToeGame("testInput/zzzInput.xml", myfile, ttt_);
+    importResult = Parser::initialiseRoadsAndVehicles(&model, "testInput/zzzInput.xml", myfile);
     myfile.close();
     EXPECT_TRUE(importResult == Success);
 
-    while (ttt_.notDone()) {
-        ttt_.doMove();
-    };
-
-    char col, row;
-    bool markIsX = false; // start with 'O'
-    // The diagonal is recognised as a winner. Sow we stop after verifying first two rows
-    for (row = minRow; row < maxRow; row++)
-        for (col = minCol; col <= maxCol; col++) {
-            if (markIsX)
-                EXPECT_EQ('X', ttt_.getMark(col, row));
-            else
-                EXPECT_EQ('O', ttt_.getMark(col, row));
-            markIsX = not markIsX;
-        };
-    EXPECT_FALSE(ttt_.notDone());
-    EXPECT_EQ(7, ttt_.nrOfMoves());
-    EXPECT_EQ('O', ttt_.getWinner());
-
+    model.automaticSimulation();
+    EXPECT_EQ(0, model.getVehicles().size());
 }
 
-TEST_F(TicTactToeInputTest, InputLegalGames) {
+TEST_F(InputTests, InputLegalGames) {
     ASSERT_TRUE(DirectoryExists("testInput"));
 
     ofstream myfile;
@@ -81,7 +74,7 @@ TEST_F(TicTactToeInputTest, InputLegalGames) {
     int fileCounter = 1;
     string fileName = "testInput/legalGame" + to_string(fileCounter) + ".xml";
 
-    while (FileExists (fileName)) {
+    while (FileExists(fileName)) {
         myfile.open("testInput/zzzError.txt");
         importResult = TicTacToeImporter::importTicTacToeGame(fileName.c_str(), myfile, ttt_);
         myfile.close();
@@ -95,7 +88,7 @@ TEST_F(TicTactToeInputTest, InputLegalGames) {
     EXPECT_TRUE(fileCounter == 12);
 }
 
-TEST_F(TicTactToeInputTest, InputXMLSyntaxErrors) {
+TEST_F(InputTests, InputXMLSyntaxErrors) {
     ASSERT_TRUE(DirectoryExists("testInput"));
 
     ofstream myfile;
@@ -104,7 +97,7 @@ TEST_F(TicTactToeInputTest, InputXMLSyntaxErrors) {
     string fileName = "testInput/xmlsyntaxerror" + to_string(fileCounter) + ".xml";
     string errorfileName;
 
-    while (FileExists (fileName)) {
+    while (FileExists(fileName)) {
         myfile.open("testInput/zzzError.txt");
         importResult = TicTacToeImporter::importTicTacToeGame(fileName.c_str(), myfile, ttt_);
         myfile.close();
@@ -119,7 +112,7 @@ TEST_F(TicTactToeInputTest, InputXMLSyntaxErrors) {
     EXPECT_TRUE(fileCounter == 5);
 }
 
-TEST_F(TicTactToeInputTest, InputIllegalGames) {
+TEST_F(InputTests, InputIllegalGames) {
     ASSERT_TRUE(DirectoryExists("testInput"));
 
     ofstream myfile;
@@ -128,7 +121,7 @@ TEST_F(TicTactToeInputTest, InputIllegalGames) {
     string fileName = "testInput/illegalGame" + to_string(fileCounter) + ".xml";
     string errorfileName;
 
-    while (FileExists (fileName)) {
+    while (FileExists(fileName)) {
         myfile.open("testInput/zzzError.txt");
         importResult = TicTacToeImporter::importTicTacToeGame(fileName.c_str(), myfile, ttt_);
         myfile.close();

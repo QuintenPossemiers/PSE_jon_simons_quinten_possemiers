@@ -58,11 +58,6 @@ public:
     Road *doesRoadExist(std::string name);
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
-
-    void start(const char *xml_path);
-    //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
-
-
     void tick(unsigned int time = 1);
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 

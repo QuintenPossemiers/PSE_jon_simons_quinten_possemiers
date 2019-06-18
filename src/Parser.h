@@ -25,22 +25,22 @@ public:
     //ENSURE(properlyInitialized(),"parser niet succesful");
 private:
 
-    enum SuccessEnum initialiseRoads(TiXmlElement *roadElements, SimulationModel *simulationModel,
+    static SuccessEnum initialiseRoads(TiXmlElement *roadElements, SimulationModel *simulationModel,
                          std::vector<std::string> &connections, std::ostream& errStream);
 
-    enum SuccessEnum initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *simulationModel, std::ostream& errStream);
+    static enum SuccessEnum initialiseVehicles(TiXmlElement *vehicleElements, SimulationModel *simulationModel, std::ostream& errStream);
 
-    enum SuccessEnum initialiseConnections(SimulationModel *simulationModel, std::vector<std::string> &connections, std::ostream& errStream);
+    static enum SuccessEnum initialiseConnections(SimulationModel *simulationModel, std::vector<std::string> &connections, std::ostream& errStream);
 
-    enum SuccessEnum initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel, std::ostream& errStream);
+    static enum SuccessEnum initialiseSigns(TiXmlElement *signElements, SimulationModel *simulationModel, std::ostream& errStream);
 
-    const std::string fetch_text(TiXmlNode *pElement, std::ostream& errStream);
+    static const std::string fetch_text(TiXmlNode *pElement, std::ostream& errStream);
 
-    bool isNumeric(const std::string& s);
+    static bool isNumeric(const std::string& s);
 
 
 public:
-    enum SuccessEnum initialiseRoadsAndVehicles(SimulationModel *simulationModel, const char *kXmlPath, std::ostream& errStream);
+    static SuccessEnum initialiseRoadsAndVehicles(SimulationModel *simulationModel, const char *kXmlPath, std::ostream& errStream);
     /*!
      * Fills simulation model with data from the file!
      * @param simulationModel pointer to current simulation model

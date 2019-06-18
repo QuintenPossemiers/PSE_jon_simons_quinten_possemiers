@@ -56,13 +56,8 @@ std::vector<Vehicle *> &SimulationModel::getVehicles() {
     return fVehicles;
 }
 
-void SimulationModel::start(const char *xml_path) {
-    REQUIRE(properlyInitialized(), "simulatie model niet geinitialiseerd");
-    fVehicles.clear();
-    fRoads.clear();
-    Parser parser = Parser(xml_path);
-    return parser.initialiseRoadsAndVehicles(this);
-}
+
+
 
 std::ostream &operator<<(std::ostream &os, SimulationModel &model) {
     REQUIRE(model.properlyInitialized(), "simulatie model niet geinitialiseerd");
@@ -200,6 +195,8 @@ void SimulationModel::sort() {
         fVehicles[i]->setFNextVehicle(i == 0 ? NULL : fVehicles[i - 1]);
     }
 }
+
+
 
 
 
