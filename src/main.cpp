@@ -24,6 +24,7 @@ void initSimulation() {
         StatisticsSimulation stat =  StatisticsSimulation(&simulation);
         simulation.sort();
         stat.run();
+        stat.toFile("tests");
         std::cout << simulation;
         //simulation.automaticSimulation();
         simulation.printToFile();

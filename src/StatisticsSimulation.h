@@ -16,6 +16,8 @@ class StatisticsSimulation {
 public:
     StatisticsSimulation(SimulationModel *simulation);
 
+    void toFile(const char* name);
+
     void run();
 };
 

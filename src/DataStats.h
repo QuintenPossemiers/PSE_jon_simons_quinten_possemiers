@@ -20,9 +20,22 @@ public:
 
     DataStats();
 
+    void toFile(const DataStats &stats);
+
+    const std::string &getKLicencePlate() const;
+
+    unsigned int getFMaxSpeed() const;
+
+    double getFMeanSpeed() const;
+
+    unsigned int getFMovingTicks() const;
+
+    unsigned int getFTicks() const;
+
     void add(const unsigned int& rhs);
 
     friend std::ostream &operator<<(std::ostream &os, const DataStats &stats);
+
 
 
 };

@@ -22,6 +22,7 @@ void Parser::initialiseRoadsAndVehicles(SimulationModel *simulationModel) {
         ss << doc.ErrorDesc();
         ss << " @row: ";
         ss << doc.ErrorRow();
+
         throw FatalException(ss.str());
     }
 
