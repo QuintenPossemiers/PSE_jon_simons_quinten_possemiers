@@ -12,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/pse_debug.dir/src/TrafficLight.cpp.o"
   "CMakeFiles/pse_debug.dir/src/InputTests.cpp.o"
   "CMakeFiles/pse_debug.dir/src/Utils.cpp.o"
+  "CMakeFiles/pse_debug.dir/src/OutputTests.cpp.o"
   "pse_debug.pdb"
   "pse_debug"
 )

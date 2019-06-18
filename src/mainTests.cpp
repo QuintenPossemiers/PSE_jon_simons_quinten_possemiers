@@ -4,9 +4,11 @@
 #include <gtest/gtest.h>
 
 #include "SimulationModel.h"
+#include "StatisticsSimulation.h"
 #include "Road.h"
 #include "Vehicle.h"
 #include "Exceptions.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -52,7 +54,7 @@ TEST_F(SimulationModelTest, ProperlyInitialised) {
     EXPECT_TRUE(car2->properlyInitialised());
     EXPECT_TRUE(road1->properlyInitialized());
     EXPECT_TRUE(road->properlyInitialized());
-    Parser p = Parser("../XML_Files/test.xml");
+    Parser p = Parser();
     EXPECT_TRUE(p.properlyInitialized());
 }
 
@@ -60,7 +62,6 @@ TEST_F(SimulationModelTest, RoadVerkeersTekens) {
     Road road = Road("A12", 120, 5000);
 
     EXPECT_EQ((unsigned int )120, road.getSpeedLimit(0));
-    //EXPECT_THROW(road.getSpeedLimit(50000),FatalException); // todo fix tests
     EXPECT_EQ((unsigned int) 120, road.getSpeedLimit(0));
 
 
@@ -112,23 +113,6 @@ TEST_F(SimulationModelTest, RoadVerkeersTekens) {
 
 
 
-TEST_F(SimulationModelTest, InputFileTest) {
-    Parser parser = Parser("ikhoopdatditnietbestaat.xml");
-    EXPECT_THROW(parser.initialiseRoadsAndVehicles(&simulationModel_), exception);
-
-    std::string fileLocation = "../XML_Files/";
-    std::string loc1 = fileLocation + "testWrongTags.xml";
-    std::string loc2 = fileLocation + "testAmountOfCarsAndRoads.xml";
-    Parser p1 = Parser(loc1.c_str());
-    EXPECT_THROW(p1.initialiseRoadsAndVehicles(&simulationModel_),FatalException);
-    SimulationModel * s1 = new SimulationModel();
-    Parser p2 = Parser(loc2.c_str());
-    p2.initialiseRoadsAndVehicles(s1);
-
-
-    EXPECT_EQ((unsigned int)2, s1->getVehicles().size());
-    EXPECT_EQ((unsigned int)2, s1->getRoads().size());
-}
 
 TEST_F(SimulationModelTest, InconsistenteVerkeersSituatie) {
     Road *wrong = new Road("/0", 9001, 1);
@@ -145,34 +129,6 @@ TEST_F(SimulationModelTest, InconsistenteVerkeersSituatie) {
     EXPECT_THROW(Car(25, 5001, "", road1), FatalException);
     EXPECT_THROW(Car(150, 1200, "", road1), NonFatalException);
 
-}
-
-
-TEST_F(SimulationModelTest, OutputTest) {
-    std::stringstream receivedRoad;
-    receivedRoad << *road1;
-    std::string outputTestRoad =
-            "Baan: A12\n --> snelheidslimiet  : 120\n --> lengte           : 5000\n";
-    std::string outputTestRoad2 = receivedRoad.str();
-
-    std::stringstream receivedVehicle;
-    receivedVehicle << *car1;
-    std::string outputTestVehicle =
-            "Voertuig: auto (abcdefg)\n --> baan    : A12\n --> positie : 100\n --> snelheid: 50\n";
-    std::string outputTestVehicle2 = receivedVehicle.str();
-
-    std::string outputTest2Road =
-            "Baan: E43\n --> snelheidslimiet  : 100\n --> lengte           : 4500\n --> verbinding       : A12\n";
-
-
-    std::stringstream receivedRoad2;
-    receivedRoad2 << *road;
-    std::string outputTest2Road2 = receivedRoad2.str();
-
-
-    EXPECT_EQ(outputTestRoad, outputTestRoad2);
-    EXPECT_EQ(outputTestVehicle, outputTestVehicle2);
-    EXPECT_EQ(outputTest2Road2, outputTest2Road);
 }
 
 
@@ -201,13 +157,48 @@ TEST_F(SimulationModelTest, Automatic) {
 
 }
 
+TEST_F(SimulationModelTest, Verkeerstekens) {
+    StatisticsSimulation m = StatisticsSimulation(&simulationModel_);
+    ofstream myfile;
+    Parser p = Parser();
+
+    myfile.open("../MainTests/test1_ERR.xml");
+    p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test1.xml", myfile);
+    m.run();
+    m.toFile("../MainTests/test1_Out.xml");
+    myfile.close();
+    EXPECT_TRUE(
+            FileCompare("../MainTests/test1_Out.xml", "MainTests/test1Correction.xml"));
+
+    myfile.open("../MainTests/test2_ERR.xml");
+    p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test2.xml", myfile);
+    m.run();
+    m.toFile("../MainTests/test2_Out.xml");
+    myfile.close();
+    EXPECT_TRUE(
+            FileCompare("../MainTests/test2_Out.xml", "MainTests/test2Correction.xml"));
+
+
+    myfile.open("../MainTests/test3_ERR.xml");
+    p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test3.xml", myfile);
+    m.run();
+    m.toFile("../MainTests/test3_Out.xml");
+    myfile.close();
+    EXPECT_TRUE(
+            FileCompare("../MainTests/test3_Out.xml", "MainTests/test3Correction.xml"));
+
+
+    myfile.open("../MainTests/test4_ERR.xml");
+    p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test4.xml", myfile);
+    m.run();
+    m.toFile("../MainTests/test4_Out.xml");
+    myfile.close();
+    EXPECT_TRUE(
+            FileCompare("../MainTests/test4_Out.xml", "MainTests/test1Correction.xml"));
+}
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
-
-
-/**
- * Parser constructor
- * */

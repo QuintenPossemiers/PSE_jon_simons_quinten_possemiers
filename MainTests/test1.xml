@@ -1,0 +1,51 @@
+<root>
+    <BAAN>
+        <naam>E19</naam>
+        <snelheidslimiet>100</snelheidslimiet>
+        <lengte>2000</lengte>
+        <verbinding>E313</verbinding>
+    </BAAN>
+    <BAAN>
+        <naam>E313</naam>
+        <snelheidslimiet>100</snelheidslimiet>
+        <lengte>2000</lengte>
+    </BAAN>
+
+    <VOERTUIG>
+        <type>BUS</type>
+        <nummerplaat>651BUF</nummerplaat>
+        <baan>E19</baan>
+        <positie>50</positie>
+        <snelheid>60
+        </snelheid>
+    </VOERTUIG>
+
+    <VOERTUIG>
+        <type>AUTO</type>
+        <nummerplaat>1THK180</nummerplaat>
+        <baan>E19</baan>
+        <positie>20</positie>
+        <snelheid>60
+        </snelheid>
+
+    </VOERTUIG>
+
+    <VOERTUIG>
+        <type>VRACHTWAGEN</type>
+        <nummerplaat>koffiepot</nummerplaat>
+        <baan>E19</baan>
+        <positie>200</positie>
+        <snelheid>40
+        </snelheid>
+    </VOERTUIG>
+
+    <VOERTUIG>
+        <type>VRACHTWAGEN</type>
+        <nummerplaat>appelmoes</nummerplaat>
+        <baan>E19</baan>
+        <positie>230</positie>
+        <snelheid>80
+        </snelheid>
+
+    </VOERTUIG>
+</root>

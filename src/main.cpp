@@ -4,7 +4,7 @@
 #include "Exceptions.h"
 #include "StatisticsSimulation.h"
 
-const std::string fileName = "test123";
+const std::string fileName = "test4";
 
 void initSimulation();
 
@@ -18,7 +18,7 @@ void initSimulation() {
      * Function to initialise the engine handling the simulation
      * */
     try {
-        std::string location = "../XML_Files/" + fileName + ".xml";
+        std::string location = "../MainTests/" + fileName + ".xml";
         SimulationModel simulation = SimulationModel();
         Parser p = Parser();
         p.initialiseRoadsAndVehicles(&simulation, location.c_str(), std::cout);

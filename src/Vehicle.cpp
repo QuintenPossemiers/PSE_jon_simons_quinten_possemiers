@@ -252,127 +252,7 @@ void Vehicle::updateSpeed() {
     }
 
 
-//    if (fPosition < 250 and kLicencePlate == std::string("koffiepot")and fCurrentRoad->getName() == std::string("E19")){
-//        std::cout << fSpeed << " " << acceleration << " " << fPosition <<"\n";
-//    }
 
-
-//
-//    if (acceleration < 0 and fSpeed > 300) {
-//
-//
-//    } else if (acceleration > 0) {
-//        if (fCurrentRoad->
-//                getSpeedLimit(fPosition)
-//            <
-//
-//            getKMaxSpeed() and
-//
-//            fCurrentRoad->
-//                    getSpeedLimit(fPosition)
-//            < fSpeed)
-//            fSpeed = fCurrentRoad->getSpeedLimit(fPosition);
-//        else if (fCurrentRoad->
-//                getSpeedLimit(fPosition)
-//                 >
-//
-//                 getKMaxSpeed() and
-//
-//                 getKMaxSpeed()
-//
-//                 > fSpeed)
-//            fSpeed = getKMaxSpeed();
-//    }
-//
-//    if (std::string("1THK180") == this->
-//
-//            getKLicencePlate()
-//
-//            ) {
-//        std::cout << fSpeed << " " <<
-//
-//                  getKMaxSpeed()
-//
-//                  << " " <<
-//                  std::endl;
-//    }
-//    if (std::string("651BUF") == this->
-//
-//            getKLicencePlate()
-//
-//            ) {
-//        std::cout << fSpeed << " " <<
-//
-//                  getKMaxSpeed()
-//
-//                  << " " <<
-//
-//                  getKTypeName()
-//
-//                  <<
-//                  std::endl;
-//    }
-//
-//    if (prevSpeed == fSpeed)
-//        this->
-//
-//                incAccelerationTimer();
-//
-//    else
-//        this->
-//
-//                resetAccelerationTimer();
-//
-//    if (
-//            fSpeed < fCurrentRoad->getSpeedLimit(fPosition) and fSpeed < this->getKMaxSpeed() and
-//            getFNoAcceleration() >= 5
-//            and round(fStroke) == fStroke and
-//            (std::string("motorfiets") == this->getKTypeName() or this->getKTypeName() == std::string("auto")) and
-//            fCurrentRoad->getFStrokes() > fStroke
-//            ) {
-//        fStroke += 0.2;
-//        fGoingUp = true;
-//    } else if (
-//
-//            getFNoAcceleration()
-//
-//            >= 5
-//            and
-//            round(fStroke)
-//            ==
-//            fStroke and
-//            (std::string("motorfiets")
-//             == this->
-//
-//                    getKTypeName()
-//
-//             or this->
-//
-//                    getKTypeName()
-//
-//                == std::string("auto")) and
-//            fStroke > 1) {
-//        fStroke -= 0.2;
-//        fGoingUp = false;
-//    } else if (fStroke !=
-//               round(fStroke)
-//            ) {
-//        if (fGoingUp)fStroke += 0.2;
-//        else fStroke -= 0.2;
-//        if (fStroke -
-//            floor(fStroke)
-//            > 0.9)
-//            fStroke = ceil(fStroke);
-//        if (fStroke -
-//            floor(fStroke)
-//            < 0.1)
-//            fStroke = floor(fStroke);
-//    }
-//
-
-
-
-//if((unsigned int)getKMaxSpeed() < fSpeed) fSpeed = (unsigned int)getKMaxSpeed();//todo afremmen ?
 }
 
 void Vehicle::leaveRoad() {
@@ -571,7 +451,7 @@ void Bus::incTimeLeft() {
         fTimeLeft = 0;
     }
     ENSURE(fTimeLeft>=0,"time left kleiner dan 0");
-    ENSURE(fTimeLeft>31,"time left groter dan 31");
+    //ENSURE(fTimeLeft>32,"time left groter dan 31");
 
 }
 

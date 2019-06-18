@@ -108,7 +108,6 @@ int Road::getNextBusStop(unsigned int currentPosition) {
 void Road::addZone(unsigned int position, unsigned int speedLimit) {
     REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
-    REQUIRE(fSpeedLimit >= speedLimit, "snelheidslimiet van de baan wordt overschreden");
 
     zones.insert(std::make_pair(position, speedLimit));
     ENSURE(zones.count(std::make_pair(position, speedLimit)) == 1, "zone kan niet worden toegevoegd");

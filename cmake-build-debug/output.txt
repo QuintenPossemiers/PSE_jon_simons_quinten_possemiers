@@ -1,9 +1,0 @@
-Baan: E19
- --> snelheidslimiet  : 100
- --> lengte           : 2000
- --> verbinding       : E313
-
-Baan: E313
- --> snelheidslimiet  : 100
- --> lengte           : 2000
-

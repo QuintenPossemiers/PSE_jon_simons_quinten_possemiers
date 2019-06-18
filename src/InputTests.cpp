@@ -99,7 +99,7 @@ TEST_F(InputTests, InputXMLSyntaxErrors) {
 
         fileCounter = fileCounter + 1;
         fileName = "testInput/xmlsyntaxerror" + to_string(fileCounter) + ".xml";
-    };
+    }
 
     EXPECT_TRUE(fileCounter == 5);
 }
@@ -123,7 +123,7 @@ TEST_F(InputTests, InputIllegalGames) {
 
         fileCounter = fileCounter + 1;
         fileName = "testInput/illegalGame" + to_string(fileCounter) + ".xml";
-    };
+    }
 
     EXPECT_TRUE(fileCounter == 6);
 }
