@@ -10,21 +10,48 @@
         <snelheidslimiet>100</snelheidslimiet>
         <lengte>2000</lengte>
     </BAAN>
+
+    <VERKEERSTEKEN>
+        <type>VERKEERSLICHT</type>
+        <baan>E19</baan>
+        <positie>80</positie>
+    </VERKEERSTEKEN>
+
     <VOERTUIG>
-        <type>VRACHTWAGEN</type>
+        <type>BUS</type>
+        <nummerplaat>651BUF</nummerplaat>
+        <baan>E19</baan>
+        <positie>40</positie>
+        <snelheid>20
+        </snelheid>
+    </VOERTUIG>
+
+    <VOERTUIG>
+        <type>AUTO</type>
         <nummerplaat>1THK180</nummerplaat>
         <baan>E19</baan>
-        <positie>0</positie>
-        <snelheid>80
+        <positie>20</positie>
+        <snelheid>10
         </snelheid>
 
     </VOERTUIG>
+
     <VOERTUIG>
         <type>VRACHTWAGEN</type>
-        <nummerplaat>651BUF</nummerplaat>
+        <nummerplaat>koffiepot</nummerplaat>
         <baan>E19</baan>
-        <positie>75</positie>
+        <positie>200</positie>
         <snelheid>80
         </snelheid>
+    </VOERTUIG>
+
+    <VOERTUIG>
+        <type>AUTO</type>
+        <nummerplaat>appelmoes</nummerplaat>
+        <baan>E19</baan>
+        <positie>230</positie>
+        <snelheid>80
+        </snelheid>
+
     </VOERTUIG>
 </root>

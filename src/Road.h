@@ -23,7 +23,22 @@ private:
 
     Road *_initCheck;
 
+
 public:
+    bool operator<(const Road &rhs) const;
+
+    bool operator>(const Road &rhs) const;
+
+    bool operator<=(const Road &rhs) const;
+
+    bool operator>=(const Road &rhs) const;
+
+
+
+public:
+
+    unsigned int getFStrokes() const;
+
     void addBusStop(unsigned int position);
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
     //REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
@@ -46,6 +61,9 @@ public:
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
 
+    unsigned int getIsNextTrafficStop(unsigned int currentPosition);
+
+
     const std::string &getName();
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
 
@@ -62,7 +80,7 @@ public:
 
     bool properlyInitialized();
 
-    Road(const std::string &name, unsigned int speedLimit, unsigned int length, unsigned int strokes=1);
+    Road(const std::string &name, unsigned int speedLimit, unsigned int length, unsigned int strokes=2);
     //ENSURE(properlyInitialized(), "baan niet goed geinitializeerd");
 
     friend std::ostream &operator<<(std::ostream &os, Road &road);
@@ -81,6 +99,8 @@ public:
     void addConnection(Road *road);
     //REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
     //REQUIRE(road != NULL, "geen geldige baan");
+
+    void tickVerkeersLichten();
 };
 
 

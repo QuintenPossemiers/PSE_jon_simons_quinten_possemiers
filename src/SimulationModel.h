@@ -83,11 +83,15 @@ public:
     friend std::ostream &operator<<(std::ostream &os, SimulationModel &model);
     //REQUIRE(properlyInitialized(),"simulatie model niet geinitialiseerd");
 
+    void sort();
+
 
 private:
     std::vector<Vehicle *> get_vehicle_on_road(Road *road);
 
     Road* getRoad(std::string &name);
+
+
 
 
 };

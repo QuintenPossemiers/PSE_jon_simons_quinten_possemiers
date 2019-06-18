@@ -20,6 +20,10 @@ public:
 
     std::string getColor();
 
+    const std::string &getFColor() const;
+
+    unsigned int getFPosition() const;
+
     bool operator<(const TrafficLight &rhs) const;
 
     bool operator>(const TrafficLight &rhs) const;

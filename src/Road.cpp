@@ -91,13 +91,17 @@ void Road::addBusStop(unsigned int position) {
 
 int Road::getNextBusStop(unsigned int currentPosition) {
     REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
-    REQUIRE(currentPosition < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+    REQUIRE(currentPosition <= this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
 
 
     for (std::set<unsigned int>::iterator it = fBusStops.begin(); it != fBusStops.end(); ++it) {
-        if (currentPosition < *it)return *it;
+        if (currentPosition < *it)return *it - currentPosition;
     }
+<<<<<<< HEAD
     for (unsigned int i = 0; i < (unsigned)fConnections.size(); ++i) {
+=======
+    for (unsigned int i = 0; i < fConnections.size(); ++i) {
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456
         return fConnections[i]->getNextBusStop(0);
     }
     return -1;
@@ -118,6 +122,56 @@ void Road::addTrafficLight(unsigned int position) {
     REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     REQUIRE(position < this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
     fTrafficLights.insert(TrafficLight(position));
+}
+
+bool Road::operator<(const Road &rhs) const {
+    if (&rhs == this) return true;
+    if (fConnections.empty())return false;
+    return *fConnections[0] < rhs;
+}
+
+bool Road::operator>(const Road &rhs) const {
+    if (&rhs == this) return false;
+    if (fConnections.empty())return true;
+    return *fConnections[0] > rhs;
+}
+
+bool Road::operator<=(const Road &rhs) const {
+    return !(rhs < *this);
+}
+
+bool Road::operator>=(const Road &rhs) const {
+    return !(*this < rhs);
+}
+
+unsigned int Road::getFStrokes() const {
+    return fStrokes;
+}
+
+unsigned int Road::getIsNextTrafficStop(unsigned int currentPosition) {
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
+    REQUIRE(currentPosition <= this->getLength(), "positie moet kleiner zijn dan de lengte van de baan");
+
+
+    for (std::set<TrafficLight>::iterator it = fTrafficLights.begin(); it != fTrafficLights.end(); ++it) {
+        if (it->getFPosition() > currentPosition and it->getFColor() != "green") {
+            return it->getFPosition() - currentPosition;
+        }
+    }
+    return -1;
+
+}
+
+void Road::tickVerkeersLichten() {
+    std::set<TrafficLight> y;
+    std::set<TrafficLight>::iterator it;
+    for (it = fTrafficLights.begin(); it != fTrafficLights.end(); ++it) {
+        TrafficLight x = *it;
+        x.clockCycle();
+        y.insert(x);
+    }
+    fTrafficLights = y;
+
 }
 
 

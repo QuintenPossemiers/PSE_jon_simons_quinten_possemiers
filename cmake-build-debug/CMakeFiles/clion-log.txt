@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /opt/clion-2018.3.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers
 -- The C compiler identification is GNU 7.4.0
 -- The CXX compiler identification is GNU 7.4.0
@@ -16,3 +17,9 @@
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/jondalar/CLionProjects/PSE_jon_simons_quinten_possemiers/cmake-build-debug
+=======
+/snap/clion/73/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/quinten/Desktop/PSE_jon_simons_quinten_possemiers
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/quinten/Desktop/PSE_jon_simons_quinten_possemiers/cmake-build-debug
+>>>>>>> aa03174890ba258624990fd9ba2f1178ce5e2456

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SimulationModel.h"
 #include "Exceptions.h"
+#include "StatisticsSimulation.h"
 
 const std::string fileName = "test123";
 
@@ -20,13 +21,16 @@ void initSimulation() {
         std::string location = "../XML_Files/" + fileName + ".xml";
         SimulationModel simulation = SimulationModel();
         simulation.start(location.c_str());
+        StatisticsSimulation stat =  StatisticsSimulation(&simulation);
+        simulation.sort();
+        stat.run();
         std::cout << simulation;
-        simulation.automaticSimulation();
+        //simulation.automaticSimulation();
         simulation.printToFile();
 
     } catch (FatalException &e) {
-        std::cerr << e.what() << std::endl;
-        //exit(e.getExitCode());
+        std::cerr << e.what()<< std::endl;
+        exit(e.getExitCode());
 
     }
 };
