@@ -61,7 +61,7 @@ void SimulationModel::start(const char *xml_path) {
     fVehicles.clear();
     fRoads.clear();
     Parser parser = Parser(xml_path);
-    parser.initialiseRoadsAndVehicles(this);
+    return parser.initialiseRoadsAndVehicles(this);
 }
 
 std::ostream &operator<<(std::ostream &os, SimulationModel &model) {

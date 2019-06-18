@@ -78,7 +78,7 @@ void Road::addConnection(Road *road) {
     fConnections.push_back(road);
 }
 
-bool Road::properlyInitialized() {
+bool Road::properlyInitialized() const {
     return _initCheck == this;
 }
 
@@ -121,31 +121,31 @@ void Road::addTrafficLight(unsigned int position) {
 }
 
 bool Road::operator<(const Road &rhs) const {
-    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     if (&rhs == this) return true;
     if (fConnections.empty())return false;
     return *fConnections[0] < rhs;
 }
 
 bool Road::operator>(const Road &rhs) const {
-    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     if (&rhs == this) return false;
     if (fConnections.empty())return true;
     return *fConnections[0] > rhs;
 }
 
 bool Road::operator<=(const Road &rhs) const {
-    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return !(rhs < *this);
 }
 
 bool Road::operator>=(const Road &rhs) const {
-    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return !(*this < rhs);
 }
 
 unsigned int Road::getFStrokes() const {
-    REQUIRE(properlyInitialized(),"baan is niet geinitialiseerd");
+    REQUIRE(properlyInitialized(), "baan is niet geinitialiseerd");
     return fStrokes;
 }
 
