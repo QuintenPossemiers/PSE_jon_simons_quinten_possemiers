@@ -11,30 +11,12 @@
         <lengte>2000</lengte>
     </BAAN>
 
-    <VERKEERSTEKEN>
-        <type>VERKEERSLICHT</type>
-        <baan>E19</baan>
-        <positie>80</positie>
-    </VERKEERSTEKEN>
-
-    <VERKEERSTEKEN>
-        <type>VERKEERSLICHT</type>
-        <baan>E19</baan>
-        <positie>280</positie>
-    </VERKEERSTEKEN>
-
-    <VERKEERSTEKEN>
-        <type>VERKEERSLICHT</type>
-        <baan>E19</baan>
-        <positie>1300</positie>
-    </VERKEERSTEKEN>
-
     <VOERTUIG>
         <type>BUS</type>
         <nummerplaat>651BUF</nummerplaat>
         <baan>E19</baan>
         <positie>50</positie>
-        <snelheid>20
+        <snelheid>60
         </snelheid>
     </VOERTUIG>
 
@@ -43,7 +25,7 @@
         <nummerplaat>1THK180</nummerplaat>
         <baan>E19</baan>
         <positie>20</positie>
-        <snelheid>10
+        <snelheid>60
         </snelheid>
 
     </VOERTUIG>
@@ -58,7 +40,7 @@
     </VOERTUIG>
 
     <VOERTUIG>
-        <type>AUTO</type>
+        <type>VRACHTWAGEN</type>
         <nummerplaat>appelmoes</nummerplaat>
         <baan>E19</baan>
         <positie>230</positie>

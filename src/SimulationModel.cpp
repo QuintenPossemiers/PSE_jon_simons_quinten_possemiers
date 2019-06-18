@@ -101,12 +101,12 @@ void SimulationModel::tick(unsigned int time) {
 //        }
 //    }
 
-    for (unsigned int i = fVehicles.size()-1; i < (unsigned int)-1; --i) {
+    for (unsigned int i = fVehicles.size() - 1; i < (unsigned int) -1; --i) {
         if (!fVehicles[i]->updatePosition()) {
             fVehicles[i]->leaveRoad();
         }
     }
-    for (unsigned int i = fVehicles.size()-1;i < (unsigned int)-1; --i) {
+    for (unsigned int i = fVehicles.size() - 1; i < (unsigned int) -1; --i) {
         if (fVehicles[i]->getFCurrentRoad() != NULL) {
             fVehicles[i]->updateSpeed();
         }
@@ -181,22 +181,23 @@ void SimulationModel::addTraffiLightToRoad(std::string &name, unsigned int posit
 
 
 template<class T>
-struct ptr_comparison
-{
-    bool operator()(T* a, T* b) { return *a < *b; }
+struct ptr_comparison {
+    bool operator()(T *a, T *b) { return *a < *b; }
 };
 
 void SimulationModel::sort() {
-    std::list<Vehicle*> list1;
+    std::list<Vehicle *> list1;
     for (unsigned int j = 0; j < this->getVehicles().size(); ++j) {
+        fVehicles[j]->setFNextVehicle(NULL);
+        fVehicles[j]->setFPrevVehicle(NULL);
         list1.push_back(fVehicles[j]);
     }
     list1.sort(ptr_comparison<Vehicle>());
     fVehicles.clear();
-    fVehicles.insert(fVehicles.begin(),list1.begin(), list1.end());
+    fVehicles.insert(fVehicles.begin(), list1.begin(), list1.end());
     for (unsigned int i = 0; i < fVehicles.size(); ++i) {
-        fVehicles[i]->setFPrevVehicle(i==fVehicles.size()-1?NULL:fVehicles[i+1]);
-        fVehicles[i]->setFNextVehicle(i==0?NULL:fVehicles[i-1]);
+        fVehicles[i]->setFPrevVehicle(i == fVehicles.size() - 1 ? NULL : fVehicles[i + 1]);
+        fVehicles[i]->setFNextVehicle(i == 0 ? NULL : fVehicles[i - 1]);
     }
 }
 

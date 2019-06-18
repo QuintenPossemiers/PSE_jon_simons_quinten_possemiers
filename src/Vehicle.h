@@ -76,6 +76,8 @@ public:
 
     unsigned int getFPosition() const;
 
+    unsigned int getRadiusOnStroke(int stroke);
+
     const std::string &getKLicencePlate() const;
 
     int getDistanceToNextVehicle(Vehicle* x, bool start=true);

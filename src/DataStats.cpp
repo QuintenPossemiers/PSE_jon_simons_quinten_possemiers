@@ -2,6 +2,7 @@
 // Created by quinten on 17.06.19.
 //
 
+#include <fstream>
 #include "DataStats.h"
 
 DataStats::DataStats(const std::string &fLicencePlate) : kLicencePlate(fLicencePlate), fMaxSpeed(), fMeanSpeed(), fMovingTicks(), fTicks() {}
@@ -15,6 +16,7 @@ void DataStats::add(const unsigned int &rhs) {
 
 std::ostream &operator<<(std::ostream &os, const DataStats &stats) {
     os << stats.fTicks << " " << stats.kLicencePlate<< " " << stats.fMaxSpeed<<" " << stats.fMovingTicks << std::endl;
+
     return os;
 }
 

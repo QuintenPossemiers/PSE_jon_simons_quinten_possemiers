@@ -54,7 +54,8 @@ bool Vehicle::properlyInitialised() {
 }
 
 Vehicle::Vehicle(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad)
-        : fSpeed(fSpeed), fPosition(fPosition), kLicencePlate(kLicencePlate), fCurrentRoad(fCurrentRoad),
+        : fSpeed(fSpeed), fNoAcceleration(0), fPosition(fPosition), kLicencePlate(kLicencePlate),
+          fCurrentRoad(fCurrentRoad),
           fPrevVehicle(NULL), fStroke(1), _initCheck(this) {
     if (fCurrentRoad->getLength() < fPosition) throw FatalException(vehicle_illegal_position);
     if (fCurrentRoad->getSpeedLimit(fPosition) < fSpeed) throw NonFatalException(vehicle_speed_error);
@@ -123,19 +124,32 @@ bool Vehicle::updatePosition() {
     }
 
     int updateSpeed = (int) round((fSpeed / 3.6));
-    if ((unsigned int)updateSpeed > fCurrentRoad->getIsNextTrafficStop(fPosition)){
+    if ((unsigned int) updateSpeed > fCurrentRoad->getIsNextTrafficStop(fPosition)) {
         //throw  NonFatalException(duplicate_plate);
         //todo what to do?
     }
     fPosition += updateSpeed;
     if (fPrevVehicle != NULL and fPosition >= fPrevVehicle->getFPosition() - fPrevVehicle->getKLength() and
-        fCurrentRoad == fPrevVehicle->getFCurrentRoad()) {
-        std::cout << fSpeed << " " << fPosition << " " << fStroke << " " << fPrevVehicle << " "
-                  << fCurrentRoad->getName() << "\n";
-        std::cout << fPrevVehicle->getFSpeed() << " " << fPrevVehicle->fPosition << " " << fPrevVehicle->fStroke << " "
-                  << fPrevVehicle->fCurrentRoad->getName();
+        fCurrentRoad == fPrevVehicle->getFCurrentRoad() and
+        (ceil(fStroke) == ceil(fPrevVehicle->getCurrentStroke()) or
+         ceil(fStroke) == floor(fPrevVehicle->getCurrentStroke()) or
+         floor(fStroke) == floor(fPrevVehicle->getCurrentStroke()) or
+         floor(fStroke) == ceil(fPrevVehicle->getCurrentStroke()))) {
+        std::cout << fStroke;
         std::cout << "  \n";
         throw FatalException("fck");
+    } else if (fPrevVehicle != NULL and fPosition >= fPrevVehicle->getFPosition() and
+               fCurrentRoad == fPrevVehicle->getFCurrentRoad()) {
+        Vehicle *x = fPrevVehicle;
+        Vehicle *y = fNextVehicle;
+        fPrevVehicle = x->getFPrevVehicle();
+        fNextVehicle = x;
+        fPrevVehicle->setFNextVehicle(this);
+        if (y != NULL)
+            y->setFPrevVehicle(x);
+        x->setFNextVehicle(y);
+        x->setFPrevVehicle(this);
+
     }
     if (isBus and updateSpeed == bus->getFDistanceToNextStop()) {
         bus->incTimeLeft();
@@ -157,15 +171,21 @@ void Vehicle::updateSpeed() {
     unsigned int distToBusStop = fCurrentRoad->getNextBusStop(fPosition);
     unsigned int distToNextCar = getDistanceToNextVehicle(this);
     unsigned int closestStop = distToTraffic;
+    bool sign = false;
+
 
     Bus *bus = dynamic_cast<Bus *>(this);
     bool isBus = bus != NULL;
-    if (isBus and bus->getTimeLeft() != 0) {
+    if (isBus and bus->getTimeLeft() != 0 and bus->getTimeLeft() != 30) {
         bus->incTimeLeft();
         this->fSpeed = 0;
         return;
+    } else if (isBus and bus->getTimeLeft() == 30) {
+        bus->incTimeLeft();
+        fPosition += distToBusStop + 1;
     }
     if (isBus and distToTraffic > distToBusStop) closestStop = distToBusStop;
+    if (isBus and distToTraffic > distToBusStop and fSpeed == 0) bus->incTimeLeft();
 
     double acceleration;
     double deltaIdeal = (0.75 * this->fSpeed) + getNextVehocleSize(fStroke) + 2;
@@ -177,10 +197,13 @@ void Vehicle::updateSpeed() {
         if (deltaIdeal * 2 > closestStop or
             (deltaIdeal == (unsigned int) -1 and closestStop == (unsigned int) -1)) {
             double stopAcc = calculateAccelerationToStopAtPosition(closestStop - fPosition);
-            int distAcc = (round(closestStop* 3.6)) -fSpeed;
-            if (stopAcc < acceleration){
+            int distAcc = (round(closestStop * 3.6)) - fSpeed;
+            if (stopAcc < acceleration) {
                 acceleration = stopAcc;
-                if (distAcc <= getKMinVersnelling())acceleration = distAcc;
+                if (distAcc <= getKMinVersnelling()) {
+                    acceleration = distAcc;
+                    sign = true;
+                }
             }
         }
     }
@@ -195,15 +218,35 @@ void Vehicle::updateSpeed() {
     ENSURE(acceleration >= getKMinVersnelling(), " acceleration lager dan min versnelling");
     int lowerEnd = fCurrentRoad->getSpeedLimit(fPosition) > getKMaxSpeed() ? getKMaxSpeed() :
                    fCurrentRoad->getSpeedLimit(fPosition);
-    //unsigned int prevSpeed = fSpeed;
+
+    unsigned int prevSpeed = fSpeed;
     if (lowerEnd < fSpeed + acceleration)fSpeed = lowerEnd;
     else fSpeed += (int) round(acceleration);
-    if (fSpeed > 300) fSpeed =0;
+    if (fSpeed > 300) fSpeed = 0;
+    if (prevSpeed == fSpeed)this->incAccelerationTimer();
+    else resetAccelerationTimer();
 
-
-    if (fPosition < 250 and kLicencePlate == std::string("koffiepot")and fCurrentRoad->getName() == std::string("E19")){
-        std::cout << fSpeed << " " << acceleration << " " << fPosition <<"\n";
+    if (this->getFNoAcceleration() >= 5 and !sign and (std::string("auto") == getKTypeName() or
+                                                       std::string("motorfiets") == getKTypeName()) and
+        ceil(fStroke) == fStroke and getRadiusOnStroke(ceil(fStroke + 1)) >= deltaIdeal and
+        fCurrentRoad->getFStrokes() >= fStroke + 1) {
+        fGoingUp = true;
+        fStroke += 0.2;
+    } else if (this->getFNoAcceleration() >= 5 and !sign and (std::string("auto") == getKTypeName() or
+                                                              std::string("motorfiets") == getKTypeName()) and
+               ceil(fStroke) == fStroke and getRadiusOnStroke(ceil(fStroke - 1)) >= deltaIdeal and fStroke > 1) {
+        fGoingUp = false;
+        fStroke -= 0.2;
+    } else if (fStroke != ceil(fStroke)) {
+        fStroke += fGoingUp ? 0.2 : -0.2;
+        if (fStroke - floor(fStroke) > 0.95)fStroke = floor(fStroke) + 1;
+        else if (fStroke - floor(fStroke) < 0.05) fStroke = floor(fStroke);
     }
+
+
+//    if (fPosition < 250 and kLicencePlate == std::string("koffiepot")and fCurrentRoad->getName() == std::string("E19")){
+//        std::cout << fSpeed << " " << acceleration << " " << fPosition <<"\n";
+//    }
 
 
 //
@@ -355,7 +398,7 @@ void Vehicle::incAccelerationTimer() {
 }
 
 int Vehicle::getDistanceToNextVehicle(Vehicle *x, bool start) {
-    if (fCurrentRoad ==NULL) return -1;
+    if (fCurrentRoad == NULL) return -1;
     if ((ceil(fStroke) == ceil(x->getCurrentStroke()) or ceil(fStroke) == floor(x->getCurrentStroke()) or
          floor(fStroke) == floor(x->getCurrentStroke()) or
          floor(fStroke) == ceil(x->getCurrentStroke())) and this != x) {
@@ -363,7 +406,7 @@ int Vehicle::getDistanceToNextVehicle(Vehicle *x, bool start) {
         Road *startingRoad = x->getFCurrentRoad();
         while (startingRoad != fCurrentRoad and startingRoad != NULL) {
             distance += startingRoad->getLength();
-            if (!startingRoad->getConnections().empty()){
+            if (!startingRoad->getConnections().empty()) {
                 startingRoad = startingRoad->getConnections()[0];
             }
         }
@@ -423,6 +466,31 @@ bool Vehicle::isFGoingUp() const {
 
 void Vehicle::setFGoingUp(bool GoingUp) {
     Vehicle::fGoingUp = GoingUp;
+}
+
+unsigned int Vehicle::getRadiusOnStroke(int stroke) {
+    Vehicle *prev = fPrevVehicle;
+    unsigned int radius = 0;
+    while (prev != NULL) {
+        if (ceil(prev->fStroke) == stroke or floor(prev->fStroke) == stroke) {
+            radius = (prev->getFPosition() - fPosition);
+            prev = NULL;
+        } else {
+            prev = prev->fPrevVehicle;
+        }
+    }
+    if (radius == 0) radius = (unsigned int) -1;
+    prev = fNextVehicle;
+    while (prev != NULL) {
+        if (ceil(prev->fStroke) == stroke or floor(prev->fStroke) == stroke) {
+            if (radius > fPosition - prev->getFPosition())
+                radius = (fPosition - prev->getFPosition());
+            prev = NULL;
+        } else {
+            prev = prev->fNextVehicle;
+        }
+    }
+    return radius;
 }
 
 Bus::Bus(unsigned int fSpeed, unsigned int fPosition, const std::string &kLicencePlate, Road *fCurrentRoad) : Vehicle(
