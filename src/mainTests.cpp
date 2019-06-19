@@ -73,7 +73,7 @@ TEST_F(SimulationModelTest, RoadVerkeersTekens) {
 
     EXPECT_EQ(-1, road.getNextBusStop(1200));
     EXPECT_EQ(10, road.getNextBusStop(0));
-    EXPECT_EQ(150, road.getNextBusStop(120));
+    EXPECT_EQ(30, road.getNextBusStop(120));
 
     road.addZone(4000, 75);
     road.addZone(2000, 50);
@@ -84,10 +84,6 @@ TEST_F(SimulationModelTest, RoadVerkeersTekens) {
     EXPECT_EQ((unsigned int) 90, road.getSpeedLimit(180));
     EXPECT_EQ((unsigned int) 50, road.getSpeedLimit(2500));
 
-
-    EXPECT_DEATH(road.addTrafficLight((unsigned int)5020), "positie moet kleiner zijn dan de lengte van de baan");
-    EXPECT_DEATH(road.addZone(5020, 50), "positie moet kleiner zijn dan de lengte van de baan");
-    EXPECT_DEATH(road.addZone(10, 250),  "snelheidslimiet van de baan wordt overschreden");
 
     TrafficLight x = TrafficLight(0);
     EXPECT_TRUE(x.properlyInitialised());
@@ -162,39 +158,37 @@ TEST_F(SimulationModelTest, Verkeerstekens) {
     ofstream myfile;
     Parser p = Parser();
 
-    myfile.open("../MainTests/test1_ERR.xml");
+    myfile.open("../MainTests/test1_ERR");
     p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test1.xml", myfile);
     m.run();
-    m.toFile("../MainTests/test1_Out.xml");
+    m.toFile("../MainTests/test1_Out");
     myfile.close();
     EXPECT_TRUE(
-            FileCompare("../MainTests/test1_Out.xml", "MainTests/test1Correction.xml"));
+            FileCompare("../MainTests/test1_Out", "../MainTests/test1Correction"));
 
-    myfile.open("../MainTests/test2_ERR.xml");
+    myfile.open("../MainTests/test2_ERR");
     p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test2.xml", myfile);
     m.run();
-    m.toFile("../MainTests/test2_Out.xml");
+    m.toFile("../MainTests/test2_Out");
     myfile.close();
     EXPECT_TRUE(
-            FileCompare("../MainTests/test2_Out.xml", "MainTests/test2Correction.xml"));
+            FileCompare("../MainTests/test2_Out", "../MainTests/test2Correction"));
 
-
-    myfile.open("../MainTests/test3_ERR.xml");
+    myfile.open("../MainTests/test3_ERR");
     p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test3.xml", myfile);
     m.run();
-    m.toFile("../MainTests/test3_Out.xml");
+    m.toFile("../MainTests/test3_Out");
     myfile.close();
     EXPECT_TRUE(
-            FileCompare("../MainTests/test3_Out.xml", "MainTests/test3Correction.xml"));
+            FileCompare("../MainTests/test3_Out", "../MainTests/test3Correction"));
 
-
-    myfile.open("../MainTests/test4_ERR.xml");
+    myfile.open("../MainTests/test4_ERR");
     p.initialiseRoadsAndVehicles(&simulationModel_,"../MainTests/test4.xml", myfile);
     m.run();
-    m.toFile("../MainTests/test4_Out.xml");
+    m.toFile("../MainTests/test4_Out");
     myfile.close();
     EXPECT_TRUE(
-            FileCompare("../MainTests/test4_Out.xml", "MainTests/test1Correction.xml"));
+            FileCompare("../MainTests/test4_Out", "../MainTests/test4Correction"));
 }
 
 

@@ -1,2 +1,0 @@
-XML PARTIAL IMPORT: Expected <naam> ... </naam>.
-XML PARTIAL IMPORT: Illegal road 'A12'.

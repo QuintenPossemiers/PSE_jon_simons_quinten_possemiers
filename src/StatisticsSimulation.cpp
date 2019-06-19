@@ -11,6 +11,7 @@ StatisticsSimulation::StatisticsSimulation(SimulationModel *simulation) : fSimul
 }
 
 void StatisticsSimulation::run() {
+    fSimulation->sort();
     for (unsigned int i = 0; i < fSimulation->getVehicles().size(); ++i) {
         std::string lp = fSimulation->getVehicles()[i]->getKLicencePlate();
         fData.insert(std::pair<std::string, DataStats>(lp, DataStats(lp)));

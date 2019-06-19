@@ -23,12 +23,8 @@ void initSimulation() {
         Parser p = Parser();
         p.initialiseRoadsAndVehicles(&simulation, location.c_str(), std::cout);
         StatisticsSimulation stat =  StatisticsSimulation(&simulation);
-        simulation.sort();
         stat.run();
-        stat.toFile("tests");
-        std::cout << simulation;
-        //simulation.automaticSimulation();
-        simulation.printToFile();
+        stat.toFile("test4Correction");
 
     } catch (FatalException &e) {
         std::cerr << e.what()<< std::endl;

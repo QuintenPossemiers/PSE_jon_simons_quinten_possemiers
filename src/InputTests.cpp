@@ -28,20 +28,19 @@ protected:
 Tests InputHappyDay
 */
 TEST_F(InputTests, InputHappyDay) {
-    ASSERT_TRUE(DirectoryExists("Inputtestfiles"));
 
     ofstream myfile;
     SuccessEnum importResult;
 
-    myfile.open("testInput/zzzInput.xml");
-    myfile << "root<<" << endl
+    myfile.open("zzzInput.xml");
+    myfile << "<root>" << endl
            << "\t<BAAN> " << endl
            << "\t<naam>E19</naam>" << endl
            << "\t\t<snelheidslimiet>100</snelheidslimiet>" << endl
            << "\t\t<lengte>1000</lengte>" << endl
            << "\t</BAAN>" << endl
            << "\t<VOERTUIG> " << endl
-           << "\t < type >AUTO</type >" << endl
+           << "\t <type>AUTO</type>" << endl
            << "\t\t<nummerplaat>ABC100</nummerplaat>" << endl
            << "\t\t<baan>E19</baan>" << endl
            << "\t\t<positie>100</positie>" << endl
@@ -49,81 +48,34 @@ TEST_F(InputTests, InputHappyDay) {
            << "\t</VOERTUIG>" << endl
            << "</root>" << endl;
     myfile.close();
-    myfile.open("testInput/zzzError.txt");
-    importResult = Parser::initialiseRoadsAndVehicles(&model, "testInput/zzzInput.xml", myfile);
+    myfile.open("zzzError.txt");
+    importResult = Parser::initialiseRoadsAndVehicles(&model, "zzzInput.xml", myfile);
     myfile.close();
     EXPECT_TRUE(importResult == Success);
 
     model.automaticSimulation();
-    EXPECT_EQ(0, model.getVehicles().size());
+    EXPECT_EQ((unsigned int)0, model.getVehicles().size());
 }
 
 TEST_F(InputTests, InputLegalGames) {
-    ASSERT_TRUE(DirectoryExists("testInput"));
 
     ofstream myfile;
     SuccessEnum importResult;
     int fileCounter = 1;
-    string fileName = "testInput/legalinput" + to_string(fileCounter) + ".xml";
+    string fileName = "../Inputtestfiles/legalInput" + to_string(fileCounter) + ".xml";
 
     while (FileExists(fileName)) {
-        myfile.open("testInput/zzzError.txt");
-        importResult = Parser::initialiseRoadsAndVehicles(&model, "testInput/zzzInput.xml", myfile);
+        myfile.open("zzzError.txt");
+        importResult = Parser::initialiseRoadsAndVehicles(&model, "zzzInput.xml", myfile);
         myfile.close();
         EXPECT_TRUE(importResult == Success);
-        EXPECT_TRUE(FileIsEmpty("testInput/zzzError.txt"));
+        EXPECT_TRUE(FileIsEmpty("zzzError.txt"));
 
-        fileCounter = fileCounter + 1;
-        fileName = "testInput/legalinput" + to_string(fileCounter) + ".xml";
+        fileCounter++;
+        fileName = "../Inputtestfiles/legalInput" + to_string(fileCounter) + ".xml";;
     };
-
-    EXPECT_TRUE(fileCounter == 12);
-}
-
-TEST_F(InputTests, InputXMLSyntaxErrors) {
-    ASSERT_TRUE(DirectoryExists("testInput"));
-
-    ofstream myfile;
-    SuccessEnum importResult;
-    int fileCounter = 1;
-    string fileName = "testInput/xmlsyntaxerror" + to_string(fileCounter) + ".xml";
-    string errorfileName;
-
-    while (FileExists(fileName)) {
-        myfile.open("testInput/zzzError.txt");
-        importResult = Parser::initialiseRoadsAndVehicles(&model, fileName.c_str(), myfile);
-        myfile.close();
-        EXPECT_TRUE(importResult == ImportAborted);
-        errorfileName = "testInput/xmlsyntaxerror" + to_string(fileCounter) + ".txt";
-        EXPECT_TRUE(FileCompare("testInput/zzzError.txt", errorfileName));
-
-        fileCounter = fileCounter + 1;
-        fileName = "testInput/xmlsyntaxerror" + to_string(fileCounter) + ".xml";
-    }
-
-    EXPECT_TRUE(fileCounter == 5);
-}
-
-TEST_F(InputTests, InputIllegalGames) {
-    ASSERT_TRUE(DirectoryExists("testInput"));
-
-    ofstream myfile;
-    SuccessEnum importResult;
-    int fileCounter = 1;
-    string fileName = "testInput/illegalGame" + to_string(fileCounter) + ".xml";
-    string errorfileName;
-
-    while (FileExists(fileName)) {
-        myfile.open("testInput/zzzError.txt");
-        importResult = Parser::initialiseRoadsAndVehicles(&model, fileName.c_str(), myfile);
-        myfile.close();
-        EXPECT_TRUE(importResult == PartialImport);
-        errorfileName = "testInput/illegalError" + to_string(fileCounter) + ".txt";
-        EXPECT_TRUE(FileCompare("testInput/zzzError.txt", errorfileName));
-
-        fileCounter = fileCounter + 1;
-        fileName = "testInput/illegalGame" + to_string(fileCounter) + ".xml";
-    }
 
     EXPECT_TRUE(fileCounter == 6);
 }
+
+
